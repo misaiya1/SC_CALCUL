@@ -28,7 +28,7 @@ myChecked = False
 NetFreq = 50
 Root2 = 1.414
 Root3 = 1.732
-
+TWOPI = 2*pi
 ''' 函数：返回变量是否被定义过 '''
 
 
@@ -361,8 +361,8 @@ class MyFrame(SC_CALCUL):
                 temp3 = float(self.m_grid2.GetCellValue(2, i))
 
                 iGenRpm.append(float(temp1))
-                iTorqueLongTime.append(float(temp2) * 1E3)
-                iTorqueShortTime.append(float(temp3) * 1E3)
+                iTorqueLongTime.append(float(temp2) * 1E0)
+                iTorqueShortTime.append(float(temp3) * 1E0)
 
                 tempMin = min(tempMin, float(self.m_grid2.GetCellValue(0, i)))
                 tempMax = max(tempMax, float(self.m_grid2.GetCellValue(0, i)))
@@ -410,15 +410,15 @@ class MyFrame(SC_CALCUL):
         iGenRpm = np.append(iGenRpm, GenRpm)
         if baohan == 1:
             # iTorqueLongTime.append(tempLong * 1E3)
-            iTorqueLongTime = np.append(iTorqueLongTime, tempLong * 1E3)
-            iTorqueShortTime = np.append(iTorqueShortTime, tempShort * 1E3)
+            iTorqueLongTime = np.append(iTorqueLongTime, tempLong * 1E0)
+            iTorqueShortTime = np.append(iTorqueShortTime, tempShort * 1E0)
         else:
             # 取左右2个转速，按比例增加iTorqueLongTime iTorqueShortTime
             tempLong = (GenRpm - tempLeft) / (tempRight - tempLeft) * (tempRight1 - tempLeft1) + tempLeft1
-            iTorqueLongTime = np.append(iTorqueLongTime, tempLong * 1E3)
+            iTorqueLongTime = np.append(iTorqueLongTime, tempLong * 1E0)
 
             tempShort = (GenRpm - tempLeft) / (tempRight - tempLeft) * (tempRight2 - tempLeft2) + tempLeft2
-            iTorqueShortTime = np.append(iTorqueShortTime, tempShort * 1E3)
+            iTorqueShortTime = np.append(iTorqueShortTime, tempShort * 1E0)
 
         n = n + 1
         ##########################################################################作图
@@ -464,25 +464,37 @@ class MyFrame(SC_CALCUL):
         iAX2 = [0 for i in range(n)]
         iAY2 = [0 for i in range(n)]
         iAZ2 = [0 for i in range(n)]
-        # O:RPM-- P:Long-- Q:Pmlong-- R:PeLongAD S:Short--  T:Pmshort--  U:PeShortAE  V:psi--  W:isd0--  X:isqLong--  Y:isqShort--  Z:irqLong--
-        # AA:isqShort  AB:zcjplLong--  AC:zcjplShort--  AD:WgenLong  AE:WgenShort  AF:zclLong  AG:zclShort  AH:GenHzLong  AI:GenHzShort
+        # O:RPM-- P:Long-- Q:Pmlong-- R:PeLongAD--- S:Short--  T:Pmshort--  U:PeShortAE---  V:psi--  W:isd0--  X:isqLong--  Y:isqShort--  Z:irqLong--
+        # AA:isqShort--  AB:zcjplLong--  AC:zcjplShort--  AD:WgenLong--  AE:WgenShort--  AF:zclLong--  AG:zclShort--  AH:GenHzLong--  AI:GenHzShort--
+        # AJ:usdLong  AK:usqLong  AL:usLong  AM:pj1  AN:usdShort  AO:usqShort  AP:usShort  AQ:pj2  AR:--  AS:  AT:
+        # AU:  AV:  AW:  AX:  AY:  AZ:
+
 
         for i in range(n):
             iQ2[i] = iO2[i] * 2 * 3.14 / 60 * iP2[i]
             iT2[i] = iO2[i] * 2 * 3.14 / 60 * iS2[i]
 
             iV2[i] = D2 / 1.732 * 1.414 / 2 / pi / B2
+            iW2[i] = iV2[i]/Lm
             iX2[i] = 2 * iP2[i] * Lrr / 3 / pp / Lm / iV2[i]
             iY2[i] = 2 * iS2[i] * Lrr / 3 / pp / Lm / iV2[i]
             iZ2[i] = -Lm / Lrr * iX2[i]
 
-            iAB[i] = Rr / Lrr * iX2[i] / iW2[i]
-            iAC[i] = Rr / Lrr * iY2[i] / iW2[i]
-            iAD[i] = iAB2[i] + iO2[i] * 2 * 3.14 / 60 * pp
-            iAC[i] = iAC2[i] + iO2[i] * 2 * 3.14 / 60 * pp
+            iAA2[i]= -Lm/Lrr*iY2[i]
+            iAB2[i] = Rr / Lrr * iX2[i] / iW2[i]
+            iAC2[i] = Rr / Lrr * iY2[i] / iW2[i]
+            iAD2[i] = iAB2[i] + iO2[i] * 2 * 3.14 / 60 * pp
+            iAE2[i] = iAC2[i] + iO2[i] * 2 * 3.14 / 60 * pp
 
-            # iAB2[i] = Rr/Lrr*iX2[i]/iW2[i]
-            # iR2[i] = iP2[i]*iAD2[i]/pp
+            iR2[i] =iP2[i]*iAD2[i]/pp
+            iU2[i] =iS2[i]*iAE2[i]/pp
+
+            iAF2[i] =(iAD2[i]-6.28/60*iO2*pp)/iAD2[i]
+            iAG2[i] =(iAE2[i]-6.28/60*iO2*pp)/iAE2[i]
+            iAH2[i] =iAD2[i]/2/3.14
+            iAI2[i] =iAE2[i]/2/3.14
+
+
 
         global iZhuanChaLv
         # iZhuanChaLv = [0 for i in range(n)]
