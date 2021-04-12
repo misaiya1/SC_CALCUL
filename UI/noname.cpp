@@ -337,7 +337,7 @@ SC_CALCUL::SC_CALCUL( wxWindow* parent, wxWindowID id, const wxString& title, co
 	wxBoxSizer* bSizer134;
 	bSizer134 = new wxBoxSizer( wxVERTICAL );
 	
-	m_textCtrlS = new wxTextCtrl( this, wxID_ANY, wxT("1725"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_textCtrlS = new wxTextCtrl( this, wxID_ANY, wxT("550"), wxDefaultPosition, wxDefaultSize, 0 );
 	bSizer134->Add( m_textCtrlS, 0, wxALL|wxALIGN_CENTER_HORIZONTAL, 5 );
 	
 	m_staticText171 = new wxStaticText( this, wxID_ANY, wxT("右侧计算使用的转速点[RPM]"), wxDefaultPosition, wxDefaultSize, wxALIGN_CENTER_HORIZONTAL );

@@ -358,7 +358,7 @@ class SC_CALCUL ( wx.Frame ):
 		
 		bSizer134 = wx.BoxSizer( wx.VERTICAL )
 		
-		self.m_textCtrlS = wx.TextCtrl( self, wx.ID_ANY, u"1725", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.m_textCtrlS = wx.TextCtrl( self, wx.ID_ANY, u"550", wx.DefaultPosition, wx.DefaultSize, 0 )
 		bSizer134.Add( self.m_textCtrlS, 0, wx.ALL|wx.ALIGN_CENTER_HORIZONTAL, 5 )
 		
 		self.m_staticText171 = wx.StaticText( self, wx.ID_ANY, u"右侧计算使用的转速点[RPM]", wx.DefaultPosition, wx.DefaultSize, wx.ALIGN_CENTER_HORIZONTAL )

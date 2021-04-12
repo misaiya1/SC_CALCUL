@@ -75,10 +75,10 @@ class MyFrame(SC_CALCUL):
         self.m_grid2.SetRowLabelValue(1, '载荷需求转矩（长期）[Nm]')  # ???
         self.m_grid2.SetRowLabelValue(2, '载荷需求转矩（短时）[Nm]')  # ???
         # 第一列加宽
-        #self.m_grid2.AutoSizeColLabelSize()
-        #self.m_grid2.AutoSizeRowLabelSize()
-        #self.m_grid2.AutoSize()
-        #self.m_grid2.Fit()
+        # self.m_grid2.AutoSizeColLabelSize()
+        # self.m_grid2.AutoSizeRowLabelSize()
+        # self.m_grid2.AutoSize()
+        # self.m_grid2.Fit()
         self.m_grid2.AutoSizeRowLabelSize(1)
         self.m_grid2.SetRowLabelSize(160)
         # ctrl - c
@@ -235,7 +235,7 @@ class MyFrame(SC_CALCUL):
         VdcRate = float(self.m_Vdc.GetValue())  # 额定直流母线电压
         C2 = VdcRate
 
-        RateVolt = float(self.m_Vdc.m_RateVolt())  #发电机额定电压
+        RateVolt = float(self.m_RateVolt.GetValue())  # 发电机额定电压
         D2 = RateVolt
 
         GridVRMS = float(self.m_GridVRMS.GetValue()) * netVotGain  # 电网电压
@@ -282,7 +282,7 @@ class MyFrame(SC_CALCUL):
 
         Lss = Lm + Lks
         Lrr = Lm + Lkr
-        lamada = 1-Lm**2/Lss/Lrr
+        lamada = 1 - Lm ** 2 / Lss / Lrr
         J8 = Lss
         K8 = Lrr
         L8 = lamada
@@ -300,20 +300,19 @@ class MyFrame(SC_CALCUL):
         NetFreq = float(self.m_hz.GetValue())  # 电网频率
         N2 = NetFreq
 
-
-        SetGenCurRate = float(self.m_SetGenCurRate.GetValue())  #机侧变流器额定电流 Arms
+        SetGenCurRate = float(self.m_SetGenCurRate.GetValue())  # 机侧变流器额定电流 Arms
         M8 = SetGenCurRate
 
-        SetGenCurMax = float(self.m_SetGenCurMax.GetValue())  #机侧变流器极限电流 Arms
+        SetGenCurMax = float(self.m_SetGenCurMax.GetValue())  # 机侧变流器极限电流 Arms
         M5 = SetGenCurMax
 
-        SetNetCurRate = float(self.m_SetNetCurRate.GetValue())  #网侧变流器额定电流 Arms
+        SetNetCurRate = float(self.m_SetNetCurRate.GetValue())  # 网侧变流器额定电流 Arms
         M11 = SetNetCurRate
 
-        SetNetCurMax = float(self.m_SetNetCurMax.GetValue())  #网侧变流器极限电流 Arms
+        SetNetCurMax = float(self.m_SetNetCurMax.GetValue())  # 网侧变流器极限电流 Arms
         M14 = SetNetCurMax
 
-        SetSatMaxI = float(self.m_SetSatMaxI.GetValue())  #定子极限电流 Arms
+        SetSatMaxI = float(self.m_SetSatMaxI.GetValue())  # 定子极限电流 Arms
         N5 = SetSatMaxI
 
         # TongBuZhuanSu = 60 * NetFreq / pp  # 同步转速
@@ -331,7 +330,7 @@ class MyFrame(SC_CALCUL):
 
         ###########################################################################
 
-        global iGenRpm, iTorqueLongTime,iTorqueShortTime, tempMin, tempMax, n
+        global iGenRpm, iTorqueLongTime, iTorqueShortTime, tempMin, tempMax, n
         tempMin = 1e6
         tempMax = 0
         tempLeft = 0
@@ -340,7 +339,7 @@ class MyFrame(SC_CALCUL):
         tempRight1 = 1e6
         tempLong = 0;
         tempShort = 0;
-        
+
         self.m_grid2.SetRowLabelValue(0, '转速[RPM]')  # ???
         self.m_grid2.SetRowLabelValue(1, '载荷需求转矩（长期）[Nm]')  # ???
         self.m_grid2.SetRowLabelValue(2, '载荷需求转矩（短时）[Nm]')  # ???
@@ -374,20 +373,20 @@ class MyFrame(SC_CALCUL):
                     tempShort = temp3
 
                 if temp1 < GenRpm and temp1 >= tempLeft:
-                    tempLeft = temp1            #刷新最小值
+                    tempLeft = temp1  # 刷新最小值
                     tempLeft1 = temp2
                     tempLeft2 = temp3
 
                 if temp1 > GenRpm and temp1 <= tempRight:
-                    tempRight = temp1           #刷新最大值
+                    tempRight = temp1  # 刷新最大值
                     tempRight1 = temp2
                     tempRight2 = temp3
 
                 n = n + 1
         print('num %s' % n)
 
-        if GenRpm < tempMin:        #比最小值还小？
-            GenRpm = tempMin        #不允许
+        if GenRpm < tempMin:  # 比最小值还小？
+            GenRpm = tempMin  # 不允许
             self.m_textCtrlS.SetValue(str(tempMin))
 
         if GenRpm > tempMax:
@@ -406,11 +405,11 @@ class MyFrame(SC_CALCUL):
         iTorqueShortTime = iTorqueShortTime[index]
 
         # 队列最后加入 单点值
-        #iGenRpm.append(GenRpm)
+        # iGenRpm.append(GenRpm)
         ###################################
         iGenRpm = np.append(iGenRpm, GenRpm)
         if baohan == 1:
-            #iTorqueLongTime.append(tempLong * 1E3)
+            # iTorqueLongTime.append(tempLong * 1E3)
             iTorqueLongTime = np.append(iTorqueLongTime, tempLong * 1E3)
             iTorqueShortTime = np.append(iTorqueShortTime, tempShort * 1E3)
         else:
@@ -424,10 +423,14 @@ class MyFrame(SC_CALCUL):
         n = n + 1
         ##########################################################################作图
 
-        iP2 = [0 for i in range(n)]
-        iQ2 = [0 for i in range(n)]
+        iO2 = [0 for i in range(n)]
+        iO2 = iGenRpm
+        iP2 = [0 for i in range(n)]  # 扭矩长期
+        iP2 = iTorqueLongTime
+        iQ2 = [0 for i in range(n)]  # 发电机轴功率
         iR2 = [0 for i in range(n)]
-        iS2 = [0 for i in range(n)]
+        iS2 = [0 for i in range(n)]  # 扭矩短期
+        iS2 = iTorqueShortTime
         iT2 = [0 for i in range(n)]
         iU2 = [0 for i in range(n)]
         iV2 = [0 for i in range(n)]
@@ -461,9 +464,27 @@ class MyFrame(SC_CALCUL):
         iAX2 = [0 for i in range(n)]
         iAY2 = [0 for i in range(n)]
         iAZ2 = [0 for i in range(n)]
+        # O:RPM-- P:Long-- Q:Pmlong-- R:PeLongAD S:Short--  T:Pmshort--  U:PeShortAE  V:psi--  W:isd0--  X:isqLong--  Y:isqShort--  Z:irqLong--
+        # AA:isqShort  AB:zcjplLong--  AC:zcjplShort--  AD:WgenLong  AE:WgenShort  AF:zclLong  AG:zclShort  AH:GenHzLong  AI:GenHzShort
 
+        for i in range(n):
+            iQ2[i] = iO2[i] * 2 * 3.14 / 60 * iP2[i]
+            iT2[i] = iO2[i] * 2 * 3.14 / 60 * iS2[i]
 
-        # global iZhuanChaLv
+            iV2[i] = D2 / 1.732 * 1.414 / 2 / pi / B2
+            iX2[i] = 2 * iP2[i] * Lrr / 3 / pp / Lm / iV2[i]
+            iY2[i] = 2 * iS2[i] * Lrr / 3 / pp / Lm / iV2[i]
+            iZ2[i] = -Lm / Lrr * iX2[i]
+
+            iAB[i] = Rr / Lrr * iX2[i] / iW2[i]
+            iAC[i] = Rr / Lrr * iY2[i] / iW2[i]
+            iAD[i] = iAB2[i] + iO2[i] * 2 * 3.14 / 60 * pp
+            iAC[i] = iAC2[i] + iO2[i] * 2 * 3.14 / 60 * pp
+
+            # iAB2[i] = Rr/Lrr*iX2[i]/iW2[i]
+            # iR2[i] = iP2[i]*iAD2[i]/pp
+
+        global iZhuanChaLv
         # iZhuanChaLv = [0 for i in range(n)]
         # global iStatorAPower
         # iStatorAPower = [0 for i in range(n)]
@@ -1352,5 +1373,6 @@ class MyFrame(SC_CALCUL):
         # print(TF)
         #
         # ##############################################test
+
 
 '''end of file'''
