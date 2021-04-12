@@ -378,33 +378,37 @@
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state x="2691" y="438" key="Github.CreateGistDialog/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1611907784368" />
-    <state x="2746" y="417" width="642" height="247" key="Github.ShareDialog" timestamp="1617954039693">
+    <state x="2746" y="417" width="642" height="247" key="Github.ShareDialog" timestamp="1618207666948">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="2746" y="417" width="642" height="247" key="Github.ShareDialog/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1617954039693" />
-    <state width="1899" height="218" key="GridCell.Tab.0.bottom" timestamp="1618195739363">
+    <state x="2746" y="417" width="642" height="247" key="Github.ShareDialog/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1618207666948" />
+    <state x="2649" y="222" width="461" height="755" key="Github.UntrackedFilesDialog" timestamp="1618207694356">
+      <screen x="1920" y="0" width="1920" height="1040" />
+    </state>
+    <state x="2649" y="222" width="461" height="755" key="Github.UntrackedFilesDialog/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1618207694356" />
+    <state width="1899" height="218" key="GridCell.Tab.0.bottom" timestamp="1618206159036">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state width="1259" height="187" key="GridCell.Tab.0.bottom/0.0.1280.680/1920.0.1920.1040@0.0.1280.680" timestamp="1614925177698" />
-    <state width="1899" height="218" key="GridCell.Tab.0.bottom/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1618195739363" />
+    <state width="1899" height="218" key="GridCell.Tab.0.bottom/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1618206159036" />
     <state width="1259" height="125" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1616125983762" />
-    <state width="1899" height="218" key="GridCell.Tab.0.center" timestamp="1618195739363">
+    <state width="1899" height="218" key="GridCell.Tab.0.center" timestamp="1618206159035">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state width="1259" height="187" key="GridCell.Tab.0.center/0.0.1280.680/1920.0.1920.1040@0.0.1280.680" timestamp="1614925177698" />
-    <state width="1899" height="218" key="GridCell.Tab.0.center/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1618195739363" />
+    <state width="1899" height="218" key="GridCell.Tab.0.center/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1618206159035" />
     <state width="1259" height="125" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1616125983762" />
-    <state width="1899" height="218" key="GridCell.Tab.0.left" timestamp="1618195739363">
+    <state width="1899" height="218" key="GridCell.Tab.0.left" timestamp="1618206159035">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state width="1259" height="187" key="GridCell.Tab.0.left/0.0.1280.680/1920.0.1920.1040@0.0.1280.680" timestamp="1614925177697" />
-    <state width="1899" height="218" key="GridCell.Tab.0.left/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1618195739363" />
+    <state width="1899" height="218" key="GridCell.Tab.0.left/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1618206159035" />
     <state width="1259" height="125" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1616125983762" />
-    <state width="1899" height="218" key="GridCell.Tab.0.right" timestamp="1618195739363">
+    <state width="1899" height="218" key="GridCell.Tab.0.right" timestamp="1618206159035">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state width="1259" height="187" key="GridCell.Tab.0.right/0.0.1280.680/1920.0.1920.1040@0.0.1280.680" timestamp="1614925177698" />
-    <state width="1899" height="218" key="GridCell.Tab.0.right/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1618195739363" />
+    <state width="1899" height="218" key="GridCell.Tab.0.right/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1618206159035" />
     <state width="1259" height="125" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1616125983762" />
     <state width="1899" height="347" key="GridCell.Tab.1.bottom" timestamp="1615259127435">
       <screen x="1920" y="0" width="1920" height="1040" />
@@ -454,15 +458,6 @@
     <state x="2543" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1615192697300" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/ExcelOperator.py</url>
-          <line>1252</line>
-          <option name="timeStamp" value="6" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
     <watches-manager>
       <configuration name="PythonConfigurationType">
         <watch expression="checked" />
