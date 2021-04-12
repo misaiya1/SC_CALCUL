@@ -282,10 +282,10 @@ class MyFrame(SC_CALCUL):
 
         Lss = Lm + Lks
         Lrr = Lm + Lkr
-        lamada = 1 - Lm ** 2 / Lss / Lrr
+        Lamada = 1 - Lm ** 2 / Lss / Lrr
         J8 = Lss
         K8 = Lrr
-        L8 = lamada
+        L8 = Lamada
 
         print('myChecked   HAVE %f' % myChecked)
         print('======================================')
@@ -466,8 +466,8 @@ class MyFrame(SC_CALCUL):
         iAZ2 = [0 for i in range(n)]
         # O:RPM-- P:Long-- Q:Pmlong-- R:PeLongAD--- S:Short--  T:Pmshort--  U:PeShortAE---  V:psi--  W:isd0--  X:isqLong--  Y:isqShort--  Z:irqLong--
         # AA:isqShort--  AB:zcjplLong--  AC:zcjplShort--  AD:WgenLong--  AE:WgenShort--  AF:zclLong--  AG:zclShort--  AH:GenHzLong--  AI:GenHzShort--
-        # AJ:usdLong  AK:usqLong  AL:usLong  AM:pj1  AN:usdShort  AO:usqShort  AP:usShort  AQ:pj2  AR:--  AS:  AT:
-        # AU:  AV:  AW:  AX:  AY:  AZ:
+        # AJ:usdLong  AK:usqLong  AL:usLong  AM:pj1  AN:usdShort  AO:usqShort  AP:usShort  AQ:pj2  AR:--
+        # AS:  AT:  AU:  AV:  AW:  AX:  AY:  AZ:
 
 
         for i in range(n):
@@ -494,7 +494,13 @@ class MyFrame(SC_CALCUL):
             iAH2[i] =iAD2[i]/2/3.14
             iAI2[i] =iAE2[i]/2/3.14
 
+            iAJ2[i] =Rs*iW2[i]-iAD2[i]*Lss*Lamada*iX2[i]
+            iAK2[i] =Rs*iX2[i]+iAD2[i]*Lss*iW2[i]
+            iAL2[i] =(iAJ2[i]**2+iAK2[i]**2)**0.5/1.414
 
+            iAN2[i] =Rs*iW2[i]-iAD2[i]*Lss*Lamada*iX2[i]
+            iAO2[i] =Rs*iX2[i]+iAD2[i]*Lss*iW2[i]
+            iAP2[i] =(iAJ2[i]**2+iAK2[i]**2)**0.5/1.414
 
         global iZhuanChaLv
         # iZhuanChaLv = [0 for i in range(n)]
