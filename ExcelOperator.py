@@ -407,6 +407,7 @@ class MyFrame(SC_CALCUL):
 
         # 队列最后加入 单点值
         #iGenRpm.append(GenRpm)
+        ###################################
         iGenRpm = np.append(iGenRpm, GenRpm)
         if baohan == 1:
             #iTorqueLongTime.append(tempLong * 1E3)
