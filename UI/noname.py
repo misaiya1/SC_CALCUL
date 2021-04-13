@@ -161,14 +161,6 @@ class SC_CALCUL ( wx.Frame ):
 		self.m_SetSatMaxI = wx.TextCtrl( self.m_scrolledWindow2, wx.ID_ANY, u"1503", wx.DefaultPosition, wx.DefaultSize, 0 )
 		fgSizer3.Add( self.m_SetSatMaxI, 0, wx.ALL, 5 )
 		
-		self.m_Tgonet = wx.StaticText( self.m_scrolledWindow2, wx.ID_ANY, u"(选填)备用", wx.DefaultPosition, wx.DefaultSize, 0 )
-		self.m_Tgonet.Wrap( -1 )
-		
-		fgSizer3.Add( self.m_Tgonet, 0, wx.ALL, 5 )
-		
-		self.m_GoNetPower = wx.TextCtrl( self.m_scrolledWindow2, wx.ID_ANY, u"0", wx.DefaultPosition, wx.DefaultSize, 0 )
-		fgSizer3.Add( self.m_GoNetPower, 0, wx.ALL, 5 )
-		
 		
 		self.m_scrolledWindow2.SetSizer( fgSizer3 )
 		self.m_scrolledWindow2.Layout()
@@ -282,7 +274,7 @@ class SC_CALCUL ( wx.Frame ):
 		self.m_grid2.SetDefaultCellAlignment( wx.ALIGN_LEFT, wx.ALIGN_TOP )
 		bSizer51.Add( self.m_grid2, 1, wx.ALL|wx.EXPAND, 5 )
 		
-		self.m_staticText63 = wx.StaticText( self, wx.ID_ANY, u"磁链给定说明：弱磁区间，手动给定，低速阶段根据空载开路电压计算", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.m_staticText63 = wx.StaticText( self, wx.ID_ANY, u"磁链给定说明：弱磁区间，可手动给定磁链参数。如为“空白”或“0”则根据空载开路电压计算。", wx.DefaultPosition, wx.DefaultSize, 0 )
 		self.m_staticText63.Wrap( -1 )
 		
 		bSizer51.Add( self.m_staticText63, 0, wx.ALL, 5 )

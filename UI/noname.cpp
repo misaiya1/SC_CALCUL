@@ -140,13 +140,6 @@ SC_CALCUL::SC_CALCUL( wxWindow* parent, wxWindowID id, const wxString& title, co
 	m_SetSatMaxI = new wxTextCtrl( m_scrolledWindow2, wxID_ANY, wxT("1503"), wxDefaultPosition, wxDefaultSize, 0 );
 	fgSizer3->Add( m_SetSatMaxI, 0, wxALL, 5 );
 	
-	m_Tgonet = new wxStaticText( m_scrolledWindow2, wxID_ANY, wxT("(选填)备用"), wxDefaultPosition, wxDefaultSize, 0 );
-	m_Tgonet->Wrap( -1 );
-	fgSizer3->Add( m_Tgonet, 0, wxALL, 5 );
-	
-	m_GoNetPower = new wxTextCtrl( m_scrolledWindow2, wxID_ANY, wxT("0"), wxDefaultPosition, wxDefaultSize, 0 );
-	fgSizer3->Add( m_GoNetPower, 0, wxALL, 5 );
-	
 	
 	m_scrolledWindow2->SetSizer( fgSizer3 );
 	m_scrolledWindow2->Layout();
@@ -260,7 +253,7 @@ SC_CALCUL::SC_CALCUL( wxWindow* parent, wxWindowID id, const wxString& title, co
 	m_grid2->SetDefaultCellAlignment( wxALIGN_LEFT, wxALIGN_TOP );
 	bSizer51->Add( m_grid2, 1, wxALL|wxEXPAND, 5 );
 	
-	m_staticText63 = new wxStaticText( this, wxID_ANY, wxT("磁链给定说明：弱磁区间，手动给定，低速阶段根据空载开路电压计算"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticText63 = new wxStaticText( this, wxID_ANY, wxT("磁链给定说明：弱磁区间，可手动给定磁链参数。如为“空白”或“0”则根据空载开路电压计算。"), wxDefaultPosition, wxDefaultSize, 0 );
 	m_staticText63->Wrap( -1 );
 	bSizer51->Add( m_staticText63, 0, wxALL, 5 );
 	

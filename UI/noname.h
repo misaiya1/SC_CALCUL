@@ -71,8 +71,6 @@ class SC_CALCUL : public wxFrame
 		wxTextCtrl* m_SetGenCurMax;
 		wxStaticText* m_SetSatMaxI1111;
 		wxTextCtrl* m_SetSatMaxI;
-		wxStaticText* m_Tgonet;
-		wxTextCtrl* m_GoNetPower;
 		wxCheckBox* m_checkBox1;
 		wxStaticText* m_staticText221;
 		wxTextCtrl* m_Rs;
