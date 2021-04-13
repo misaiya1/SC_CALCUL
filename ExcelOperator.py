@@ -28,7 +28,7 @@ myChecked = False
 NetFreq = 50
 Root2 = 1.414
 Root3 = 1.732
-TWOPI = 2*pi
+TWOPI = 2 * pi
 ''' 函数：返回变量是否被定义过 '''
 
 
@@ -157,7 +157,7 @@ class MyFrame(SC_CALCUL):
         self.PlotAll()
 
     def m_buttonOnButtonClick2(self, event):
-        print("press button2")
+        print("press button2")   #报告生成
         self.DoWork(1)
         self.Plot1()
         self.Plot2()
@@ -466,41 +466,51 @@ class MyFrame(SC_CALCUL):
         iAZ2 = [0 for i in range(n)]
         # O:RPM-- P:Long-- Q:Pmlong-- R:PeLongAD--- S:Short--  T:Pmshort--  U:PeShortAE---  V:psi--  W:isd0--  X:isqLong--  Y:isqShort--  Z:irqLong--
         # AA:isqShort--  AB:zcjplLong--  AC:zcjplShort--  AD:WgenLong--  AE:WgenShort--  AF:zclLong--  AG:zclShort--  AH:GenHzLong--  AI:GenHzShort--
-        # AJ:usdLong  AK:usqLong  AL:usLong  AM:pj1  AN:usdShort  AO:usqShort  AP:usShort  AQ:pj2  AR:--
+        # AJ:usdLong--  AK:usqLong--  AL:usLong--  AM:pj1  AN:usdShort--  AO:usqShort--  AP:usShort--  AQ:pj2  AR:--
         # AS:  AT:  AU:  AV:  AW:  AX:  AY:  AZ:
-
 
         for i in range(n):
             iQ2[i] = iO2[i] * 2 * 3.14 / 60 * iP2[i]
             iT2[i] = iO2[i] * 2 * 3.14 / 60 * iS2[i]
 
             iV2[i] = D2 / 1.732 * 1.414 / 2 / pi / B2
-            iW2[i] = iV2[i]/Lm
+            iW2[i] = iV2[i] / Lm
             iX2[i] = 2 * iP2[i] * Lrr / 3 / pp / Lm / iV2[i]
             iY2[i] = 2 * iS2[i] * Lrr / 3 / pp / Lm / iV2[i]
             iZ2[i] = -Lm / Lrr * iX2[i]
 
-            iAA2[i]= -Lm/Lrr*iY2[i]
+            iAA2[i] = -Lm / Lrr * iY2[i]
             iAB2[i] = Rr / Lrr * iX2[i] / iW2[i]
             iAC2[i] = Rr / Lrr * iY2[i] / iW2[i]
             iAD2[i] = iAB2[i] + iO2[i] * 2 * 3.14 / 60 * pp
             iAE2[i] = iAC2[i] + iO2[i] * 2 * 3.14 / 60 * pp
 
-            iR2[i] =iP2[i]*iAD2[i]/pp
-            iU2[i] =iS2[i]*iAE2[i]/pp
+            iR2[i] = iP2[i] * iAD2[i] / pp
+            iU2[i] = iS2[i] * iAE2[i] / pp
 
-            iAF2[i] =(iAD2[i]-6.28/60*iO2*pp)/iAD2[i]
-            iAG2[i] =(iAE2[i]-6.28/60*iO2*pp)/iAE2[i]
-            iAH2[i] =iAD2[i]/2/3.14
-            iAI2[i] =iAE2[i]/2/3.14
+            iAF2[i] = (iAD2[i] - 6.28 / 60 * iO2 * pp) / iAD2[i]
+            iAG2[i] = (iAE2[i] - 6.28 / 60 * iO2 * pp) / iAE2[i]
+            iAH2[i] = iAD2[i] / 2 / 3.14
+            iAI2[i] = iAE2[i] / 2 / 3.14
 
-            iAJ2[i] =Rs*iW2[i]-iAD2[i]*Lss*Lamada*iX2[i]
-            iAK2[i] =Rs*iX2[i]+iAD2[i]*Lss*iW2[i]
-            iAL2[i] =(iAJ2[i]**2+iAK2[i]**2)**0.5/1.414
+            iAJ2[i] = Rs * iW2[i] - iAD2[i] * Lss * Lamada * iX2[i]
+            iAK2[i] = Rs * iX2[i] + iAD2[i] * Lss * iW2[i]
+            iAL2[i] = (iAJ2[i] ** 2 + iAK2[i] ** 2) ** 0.5 / 1.414
 
-            iAN2[i] =Rs*iW2[i]-iAD2[i]*Lss*Lamada*iX2[i]
-            iAO2[i] =Rs*iX2[i]+iAD2[i]*Lss*iW2[i]
-            iAP2[i] =(iAJ2[i]**2+iAK2[i]**2)**0.5/1.414
+            iAN2[i] = Rs * iX2[i] - iAE2[i] * (Lss * iY2[i] + Lm * iAA2[i])  # 歧义
+            iAO2[i] = Rs * iY2[i] + iAE2[i] * Lss * iW2[i]
+            iAP2[i] = (iAN2[i] ** 2 + iAO2[i] ** 2) ** 0.5 / 1.414
+
+            iAM2[i] = 1 if (iAL2[i] < VdcRate / 1.732 / 1.414) else 0
+            iAQ2[i] = 1 if (iAP2[i] < VdcRate / 1.732 / 1.414) else 0
+
+            iAS2[i] = 1.5 * (iAJ2[i] * iW2[i] + iX2[i] * iAK2[i])
+            iAT2[i] = iAS2[i] - iR2[i]
+            iAU2[i] = 3 * ((iW2[i] ** 2 + iX2[i] ** 2) ** 0.5 / 1.414) ** 2 * Rs
+            iAV2[i] = iAF2[i] * iR2[i]
+            iAW2[i] = 3 * (iZ2[i] / 1.414) ** 2 * Rr
+            iAX2[i] = 1 - (iAU2[i] + iAW2[i]) / abs(iQ2[i])
+            iAY2[i] = abs(iAS2[i]) / ((iW2[i] ** 2 + iX2[i] ** 2) ** 0.5 / 1.414 * iAL2[i] * 3)
 
         global iZhuanChaLv
         # iZhuanChaLv = [0 for i in range(n)]
