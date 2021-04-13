@@ -68,12 +68,12 @@ class MyFrame(SC_CALCUL):
         self.m_staticText15.SetFont(font1)
         self.m_button.SetFont(font1)
         self.m_button2.SetFont(font1)
-        self.m_button1.SetFont(font1)
         self.m_staticText16.SetFont(font1)
 
         self.m_grid2.SetRowLabelValue(0, '转速[RPM]')  # ???
         self.m_grid2.SetRowLabelValue(1, '载荷需求转矩（长期）[Nm]')  # ???
         self.m_grid2.SetRowLabelValue(2, '载荷需求转矩（短时）[Nm]')  # ???
+        self.m_grid2.SetRowLabelValue(3, '磁链给定')  # ???
         # 第一列加宽
         # self.m_grid2.AutoSizeColLabelSize()
         # self.m_grid2.AutoSizeRowLabelSize()
@@ -119,6 +119,18 @@ class MyFrame(SC_CALCUL):
         self.m_grid2.SetCellValue(2, 8, '-22450')
         self.m_grid2.SetCellValue(2, 9, '-21300')
         self.m_grid2.SetCellValue(2, 10, '-20250')
+
+
+        self.m_grid2.SetCellValue(3, 2, '1.90')
+        self.m_grid2.SetCellValue(3, 3, '1.80')
+        self.m_grid2.SetCellValue(3, 4, '1.70')
+        self.m_grid2.SetCellValue(3, 5, '1.60')
+        self.m_grid2.SetCellValue(3, 6, '1.50')
+        self.m_grid2.SetCellValue(3, 7, '1.40')
+        self.m_grid2.SetCellValue(3, 8, '1.35')
+        self.m_grid2.SetCellValue(3, 9, '1.25')
+        self.m_grid2.SetCellValue(3, 10, '1.20')
+
 
         self.statusbar = self.CreateStatusBar()
         self.Centre()
@@ -330,19 +342,28 @@ class MyFrame(SC_CALCUL):
 
         ###########################################################################
 
-        global iGenRpm, iTorqueLongTime, iTorqueShortTime, tempMin, tempMax, n
+        global iGenRpm, iTorqueLongTime, iTorqueShortTime,iPsi, tempMin, tempMax, n
         tempMin = 1e6
         tempMax = 0
         tempLeft = 0
         tempLeft1 = 0
+        tempLeft2 = 0
+        tempLeft3 = 0
+
         tempRight = 1e6
         tempRight1 = 1e6
+        tempRight2 = 1e6
+        tempRight3 = 1e6
+
         tempLong = 0;
         tempShort = 0;
+        tempPsi = 0;
 
         self.m_grid2.SetRowLabelValue(0, '转速[RPM]')  # ???
         self.m_grid2.SetRowLabelValue(1, '载荷需求转矩（长期）[Nm]')  # ???
         self.m_grid2.SetRowLabelValue(2, '载荷需求转矩（短时）[Nm]')  # ???
+        self.m_grid2.SetRowLabelValue(3, '磁链给定')  # ???
+
         m = 26
         n = 0
         baohan = 0
@@ -350,8 +371,9 @@ class MyFrame(SC_CALCUL):
         iGenRpm = []
         iTorqueLongTime = []
         iTorqueShortTime = []
+        iPsi = []
         for i in range(m):
-            if (self.m_grid2.GetCellValue(0, i) == '') or (self.m_grid2.GetCellValue(1, i) == ''):
+            if (self.m_grid2.GetCellValue(0, i) == '') :
                 pass
                 # print('empty %s' % i)
             else:
@@ -359,10 +381,15 @@ class MyFrame(SC_CALCUL):
                 temp1 = float(self.m_grid2.GetCellValue(0, i))
                 temp2 = float(self.m_grid2.GetCellValue(1, i))
                 temp3 = float(self.m_grid2.GetCellValue(2, i))
+                try:
+                    temp4 = float(self.m_grid2.GetCellValue(3, i))
+                except:
+                    temp4 = 0;
 
                 iGenRpm.append(float(temp1))
                 iTorqueLongTime.append(float(temp2) * 1E0)
                 iTorqueShortTime.append(float(temp3) * 1E0)
+                iPsi.append(float(temp4) * 1E0)
 
                 tempMin = min(tempMin, float(self.m_grid2.GetCellValue(0, i)))
                 tempMax = max(tempMax, float(self.m_grid2.GetCellValue(0, i)))
@@ -371,16 +398,19 @@ class MyFrame(SC_CALCUL):
                     baohan = 1
                     tempLong = temp2
                     tempShort = temp3
+                    tempPsi = temp4
 
                 if temp1 < GenRpm and temp1 >= tempLeft:
                     tempLeft = temp1  # 刷新最小值
                     tempLeft1 = temp2
                     tempLeft2 = temp3
+                    tempLeft3  = temp4
 
                 if temp1 > GenRpm and temp1 <= tempRight:
                     tempRight = temp1  # 刷新最大值
                     tempRight1 = temp2
                     tempRight2 = temp3
+                    tempRight3 = temp4
 
                 n = n + 1
         print('num %s' % n)
@@ -398,11 +428,13 @@ class MyFrame(SC_CALCUL):
         iGenRpm = np.array(iGenRpm)
         iTorqueLongTime = np.array(iTorqueLongTime)
         iTorqueShortTime = np.array(iTorqueShortTime)
+        iPsi = np.array(iPsi)
 
         index = np.argsort(iGenRpm)
         iGenRpm = iGenRpm[index]
         iTorqueLongTime = iTorqueLongTime[index]
         iTorqueShortTime = iTorqueShortTime[index]
+        iPsi = iPsi[index]
 
         # 队列最后加入 单点值
         # iGenRpm.append(GenRpm)
@@ -412,6 +444,7 @@ class MyFrame(SC_CALCUL):
             # iTorqueLongTime.append(tempLong * 1E3)
             iTorqueLongTime = np.append(iTorqueLongTime, tempLong * 1E0)
             iTorqueShortTime = np.append(iTorqueShortTime, tempShort * 1E0)
+            iPsi = np.append(iPsi, tempPsi * 1E0)
         else:
             # 取左右2个转速，按比例增加iTorqueLongTime iTorqueShortTime
             tempLong = (GenRpm - tempLeft) / (tempRight - tempLeft) * (tempRight1 - tempLeft1) + tempLeft1
@@ -419,6 +452,9 @@ class MyFrame(SC_CALCUL):
 
             tempShort = (GenRpm - tempLeft) / (tempRight - tempLeft) * (tempRight2 - tempLeft2) + tempLeft2
             iTorqueShortTime = np.append(iTorqueShortTime, tempShort * 1E0)
+
+            tempPsi = (GenRpm - tempLeft) / (tempRight - tempLeft) * (tempRight3 - tempLeft3) + tempLeft3
+            iPsi = np.append(iPsi, tempPsi * 1E0)
 
         n = n + 1
         ##########################################################################作图
@@ -473,7 +509,12 @@ class MyFrame(SC_CALCUL):
             iQ2[i] = iO2[i] * 2 * 3.14 / 60 * iP2[i]
             iT2[i] = iO2[i] * 2 * 3.14 / 60 * iS2[i]
 
+
             iV2[i] = D2 / 1.732 * 1.414 / 2 / pi / B2
+            if iPsi[i] != 0:
+                iV2[i] = iPsi[i]
+
+
             iW2[i] = iV2[i] / Lm
             iX2[i] = 2 * iP2[i] * Lrr / 3 / pp / Lm / iV2[i]
             iY2[i] = 2 * iS2[i] * Lrr / 3 / pp / Lm / iV2[i]
@@ -488,8 +529,8 @@ class MyFrame(SC_CALCUL):
             iR2[i] = iP2[i] * iAD2[i] / pp
             iU2[i] = iS2[i] * iAE2[i] / pp
 
-            iAF2[i] = (iAD2[i] - 6.28 / 60 * iO2 * pp) / iAD2[i]
-            iAG2[i] = (iAE2[i] - 6.28 / 60 * iO2 * pp) / iAE2[i]
+            iAF2[i] = (iAD2[i] - 6.28 / 60 * iO2[i] * pp) / iAD2[i]
+            iAG2[i] = (iAE2[i] - 6.28 / 60 * iO2[i] * pp) / iAE2[i]
             iAH2[i] = iAD2[i] / 2 / 3.14
             iAI2[i] = iAE2[i] / 2 / 3.14
 
@@ -512,157 +553,54 @@ class MyFrame(SC_CALCUL):
             iAX2[i] = 1 - (iAU2[i] + iAW2[i]) / abs(iQ2[i])
             iAY2[i] = abs(iAS2[i]) / ((iW2[i] ** 2 + iX2[i] ** 2) ** 0.5 / 1.414 * iAL2[i] * 3)
 
-        global iZhuanChaLv
-        # iZhuanChaLv = [0 for i in range(n)]
-        # global iStatorAPower
-        # iStatorAPower = [0 for i in range(n)]
-        # global iRotorAPower
-        # iRotorAPower = [0 for i in range(n)]
-        # global iTotalAPower
-        # iTotalAPower = [0 for i in range(n)]
-        # global iRotorVoltRMS
-        # iRotorVoltRMS = [0 for i in range(n)]
-        # global iGenId
-        # iGenId = [0 for i in range(n)]
-        # global iGenIq
-        # iGenIq = [0 for i in range(n)]
-        # global iGenIrmsGS
-        # iGenIrmsGS = [0 for i in range(n)]
-        # global iGenIrmsSJ
-        # iGenIrmsSJ = [0 for i in range(n)]
-        # global iStatorId
-        # iStatorId = [0 for i in range(n)]
-        # global iStatorIq
-        # iStatorIq = [0 for i in range(n)]
-        # global iStatorIrms
-        # iStatorIrms = [0 for i in range(n)]
-        # global iNetIrms
-        # iNetIrms = [0 for i in range(n)]
-        # global iGenVd
-        # iGenVd = [0 for i in range(n)]
-        # global iGenVq
-        # iGenVq = [0 for i in range(n)]
-        # global iGenV
-        # iGenV = [0 for i in range(n)]
-        # global iGenVrms
-        # iGenVrms = [0 for i in range(n)]
-        # global iTorque
-        # iTorque = [0 for i in range(n)]
-        # global iGridrms
-        # iGridrms = [0 for i in range(n)]
-        #
-        # global iNetMaxVar
-        # iNetMaxVar = [0 for i in range(n)]
-        #
-        # for i in range(n):
-        #     if iGenRpm[i] == TongBuZhuanSu:
-        #         iGenRpm[i] = iGenRpm[i] + 1
-        #
-        #     iZhuanChaLv[i] = (TongBuZhuanSu - iGenRpm[i]) / TongBuZhuanSu  # 转差率
-        #     iQ2[i] = iZhuanChaLv[i]
-        #
-        #     iNetMaxVar[i] = np.sqrt(GoNetPower ** 2 - ((iZhuanChaLv[i] / (1 - iZhuanChaLv[i])) * iTorqueLongTime[i]) ** 2)
-        #
-        #     # print(GoNetPower, iTorqueLongTime[i])
-        #     iStatorAPower[i] = iTorqueLongTime[i] / (1 - iZhuanChaLv[i])  # 定子有功
-        #     iR2[i] = iStatorAPower[i]
-        #     iRotorAPower[i] = iStatorAPower[i] * iZhuanChaLv[i]  # 转子有功
-        #     iS2[i] = iRotorAPower[i]
-        #     iRotorVoltRMS[i] = RotorOpenVoltage * iZhuanChaLv[i]  # 转子电压有效值
-        #     iT2[i] = iRotorVoltRMS[i]
-        #     #########################################################################  转子（机侧）电流
-        #     iGenId[i] = iR2[i] / 1.5 / (L2 / (L2 + J2) * Vpp)  # J2为定子漏感
-        #     iU2 = iGenId
-        #     iGenIq[i] = (D2 / 1.5 - Vpp ** 2 / (L2 + J2) / 2 / pi / N2) / (L2 * Vpp / (L2 + J2))
-        #     iV2[i] = iGenIq[i]
-        #
-        #     iGenIrmsGS[i] = (iU2[i] ** 2 + iV2[i] ** 2) ** 0.5 / 1.414
-        #     iAD2[i] = iGenIrmsGS[i]
-        #     iGenIrmsSJ[i] = iAD2[i] * F2 / E2
-        #     iAE2[i] = iGenIrmsSJ[i]
-        #
-        #     #########################################################################  定子电流，网侧电流
-        #     iStatorId[i] = -iR2[i] / 1.5 / Vpp
-        #     iX2[i] = iStatorId[i]
-        #     iStatorIq[i] = -D2 / 1.5 / Vpp
-        #     iW2[i] = iStatorIq[i]
-        #     iStatorIrms[i] = (iW2[i] ** 2 + iX2[i] ** 2) ** 0.5 / 1.414
-        #     iY2[i] = iStatorIrms[i]
-        #     iNetIrms[i] = 1 / M2 * iS2[i] / 1.732 / F2
-        #     iAF2[i] = iNetIrms[i]
-        #
-        #     #########################################################################  测试
-        #     Xm__Xss = L2 / (L2 + J2)
-        #     watchPaper = iStatorIq[i] / iGenIq[i] / Xm__Xss
-        #
-        #     print('Xm__Xss = %s' % Xm__Xss)
-        #     print('Ids = %s' % iStatorIq[i])
-        #     print('IdrB = %s' % (iGenIq[i] * Xm__Xss))
-        #
-        #     temp = Vpp / (Xm + Xs)
-        #     print('watchPaper2 = %s' % temp)
-        #     print('Vpp = %s' % Vpp)
-        #
-        #     #########################################################################  电压
-        #     iGenVd[i] = Rr * iGenId[i] - iZhuanChaLv[i] * (NetFreq * 2 * pi) * (
-        #             Lm * (iStatorIq[i]) + (Lkr + Lm) * iGenIq[i])
-        #     iZ2[i] = iGenVd[i]
-        #     iGenVq[i] = Rr * iGenIq[i] + iZhuanChaLv[i] * (NetFreq * 2 * pi) * (
-        #             Lm * (iStatorId[i]) + (Lm + Lkr) * iGenId[i])
-        #     iAA2[i] = iGenVq[i]
-        #
-        #     iGenV[i] = (iZ2[i] ** 2 + iAA2[i] ** 2) ** 0.5
-        #     iAB2[i] = iGenV[i]
-        #     iGenVrms[i] = iAB2[i] * E2 / F2 * 1.732 / 1.414
-        #     iAC2 = iGenVrms[i]
-        #     iTorque[i] = 1.5 * pp * Lm * (iGenId[i] * iStatorIq[i] - iGenIq[i] * iStatorId[i])
-        #
-        #     iStatorAPower[i] = iStatorAPower[i] / 1E3
-        #     iRotorAPower[i] = iRotorAPower[i] / -1E3
-        #
-        #     iTotalAPower[i] = iStatorAPower[i] + iRotorAPower[i]
-        #     iGridrms[i] = abs(iNetIrms[i]) + abs(iStatorIrms[i])
-        #
-        # # output part
+        # output part
         # print('Torque = %f' % iTorque[-1])
         # print('iU2 %f' % iU2[-1])
         # print('iV2 %f' % iV2[-1])
         # print('ZhuanChaLv iQ2 %f' % iQ2[-1])
         # print('iW2 %f' % iW2[-1])
         # print('iX2 %f' % iX2[-1])
-        #
-        # self.m_SynsSpeed.Value = ("%.3f" % TongBuZhuanSu)
-        # self.m_ZhuanChaLv.Value = ("%.3f" % iZhuanChaLv[-1])
-        # self.m_StatorAPower.Value = ("%.0f" % iStatorAPower[-1])  # 定子有功
-        # self.m_RotorAPower.Value = ("%.0f" % iRotorAPower[-1])  # 转子有功
-        # # self.m_RotorVoltRMS.Value = ("%8.3f" % iRotorVoltRMS[-1])  # 转子电压
-        #
-        # #########################################################################机网侧电流
-        # self.m_GenId.Value = ("%.3f" % iGenId[-1])  #
-        # self.m_GenIq.Value = ("%.3f" % iGenIq[-1])  #
-        # self.m_GenIrmsGS.Value = ("%.3f" % iGenIrmsGS[-1])  #
-        # self.m_GenIrmsSJ.Value = ("%.3f" % iGenIrmsSJ[-1])  #
-        #
-        # #########################################################################定子电流
-        # self.m_StatorId.Value = ("%.3f" % iStatorId[-1])  #
-        # self.m_StatorIq.Value = ("%.3f" % iStatorIq[-1])  #
-        # self.m_StatorIrms.Value = ("%.3f" % iStatorIrms[-1])  #
-        # self.m_NetIrms.Value = ("%.3f" % iNetIrms[-1])  #
-        # self.m_NetId.Value = ("%.3f" % (iNetIrms[-1] * 1.414))  #
-        # self.m_NetIq.Value = ("%.3f" % (0))  #
-        #
-        # #########################################################################电压扭矩
-        # self.m_GenVd.Value = ("%.3f" % iGenVd[-1])  #
-        # self.m_GenVq.Value = ("%.3f" % iGenVq[-1])  #
-        # self.m_GenV.Value = ("%.3f" % iGenV[-1])  #
-        # self.m_GenVrms.Value = ("%.3f" % iGenVrms[-1])  #
-        # self.m_Torque.Value = ("%.3f" % iTorque[-1])  #
-        #
-        # self.m_Var1.Value = ("%.3f" % (iNetMaxVar[-1] / 1000))
-        # print("------------")
-        # print(iNetMaxVar[-1] / 1000)
-        #
-        # ######################################################################################
+
+        self.m_V.Value = ("%.3f" % iV2[-1])
+        self.m_W.Value = ("%.3f" % iW2[-1])
+        self.m_Q.Value = ("%.3f" % iQ2[-1])
+        self.m_R.Value = ("%.3f" % iR2[-1])
+        self.m_X.Value = ("%.3f" % iX2[-1])
+        self.m_Z.Value = ("%.3f" % iZ2[-1])
+        self.m_AB.Value = ("%.3f" % iAB2[-1])
+        self.m_AD.Value = ("%.3f" % iAD2[-1])
+        self.m_AF.Value = ("%.5f" % iAF2[-1])
+        self.m_AH.Value = ("%.3f" % iAH2[-1])
+        self.m_AJ.Value = ("%.3f" % iAJ2[-1])
+        self.m_AK.Value = ("%.3f" % iAK2[-1])
+        self.m_AL.Value = ("%.3f" % iAL2[-1])
+        self.m_AM.Value = ("%.3f" % iAM2[-1])
+
+        self.m_T.Value = ("%.3f" % iT2[-1])
+        self.m_U.Value = ("%.3f" % iU2[-1])
+        self.m_Y.Value = ("%.3f" % iY2[-1])
+        self.m_AA.Value = ("%.3f" % iAA2[-1])
+        self.m_AC.Value = ("%.3f" % iAC2[-1])
+        self.m_AE.Value = ("%.3f" % iAE2[-1])
+        self.m_AG.Value = ("%.5f" % iAG2[-1])
+        self.m_AI.Value = ("%.3f" % iAI2[-1])
+        self.m_AN.Value = ("%.3f" % iAN2[-1])
+        self.m_AO.Value = ("%.3f" % iAO2[-1])
+        self.m_AP.Value = ("%.3f" % iAP2[-1])
+        self.m_AQ.Value = ("%.3f" % iAQ2[-1])
+
+        self.m_AS.Value = ("%.3f" % iAS2[-1])
+        self.m_AT.Value = ("%.3f" % iAT2[-1])
+        self.m_AU.Value = ("%.3f" % iAU2[-1])
+        self.m_AV.Value = ("%.3f" % iAV2[-1])
+        self.m_AW.Value = ("%.3f" % iAW2[-1])
+        self.m_AX.Value = ("%.4f" % iAX2[-1])
+        self.m_AY.Value = ("%.4f" % iAY2[-1])
+
+        print("------------")
+
+
+        ######################################################################################
 
     def PlotAll(self):
         pass

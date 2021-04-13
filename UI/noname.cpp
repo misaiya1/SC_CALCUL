@@ -236,7 +236,7 @@ SC_CALCUL::SC_CALCUL( wxWindow* parent, wxWindowID id, const wxString& title, co
 	m_grid2 = new wxGrid( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, 0 );
 	
 	// Grid
-	m_grid2->CreateGrid( 3, 26 );
+	m_grid2->CreateGrid( 4, 26 );
 	m_grid2->EnableEditing( true );
 	m_grid2->EnableGridLines( true );
 	m_grid2->SetGridLineColour( wxSystemSettings::GetColour( wxSYS_COLOUR_APPWORKSPACE ) );
@@ -260,79 +260,12 @@ SC_CALCUL::SC_CALCUL( wxWindow* parent, wxWindowID id, const wxString& title, co
 	m_grid2->SetDefaultCellAlignment( wxALIGN_LEFT, wxALIGN_TOP );
 	bSizer51->Add( m_grid2, 1, wxALL|wxEXPAND, 5 );
 	
-	
-	bSizer5->Add( bSizer51, 1, wxEXPAND, 5 );
-	
-	wxBoxSizer* bSlideButtZone;
-	bSlideButtZone = new wxBoxSizer( wxVERTICAL );
-	
-	wxGridSizer* gSizer2;
-	gSizer2 = new wxGridSizer( 2, 0, 0, 0 );
-	
-	m_scrolledWindow3 = new wxScrolledWindow( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxHSCROLL|wxVSCROLL );
-	m_scrolledWindow3->SetScrollRate( 5, 5 );
-	wxBoxSizer* bSizer14;
-	bSizer14 = new wxBoxSizer( wxVERTICAL );
-	
-	wxGridSizer* gSizer31;
-	gSizer31 = new wxGridSizer( 0, 3, 0, 0 );
-	
-	m_textPPP = new wxTextCtrl( m_scrolledWindow3, wxID_ANY, wxT("1000"), wxDefaultPosition, wxDefaultSize, 0 );
-	gSizer31->Add( m_textPPP, 0, wxALL, 5 );
-	
-	m_textQQQUUU = new wxTextCtrl( m_scrolledWindow3, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
-	gSizer31->Add( m_textQQQUUU, 0, wxALL, 5 );
-	
-	m_textQQQDDD = new wxTextCtrl( m_scrolledWindow3, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
-	gSizer31->Add( m_textQQQDDD, 0, wxALL, 5 );
-	
-	m_staticText1712 = new wxStaticText( m_scrolledWindow3, wxID_ANY, wxT("输入P[kW]"), wxDefaultPosition, wxDefaultSize, wxALIGN_CENTER_HORIZONTAL );
-	m_staticText1712->Wrap( -1 );
-	gSizer31->Add( m_staticText1712, 0, wxALL, 5 );
-	
-	m_staticText17122 = new wxStaticText( m_scrolledWindow3, wxID_ANY, wxT("定子无功上限"), wxDefaultPosition, wxDefaultSize, wxALIGN_CENTER_HORIZONTAL );
-	m_staticText17122->Wrap( -1 );
-	gSizer31->Add( m_staticText17122, 0, wxALL, 5 );
-	
-	m_staticText171221 = new wxStaticText( m_scrolledWindow3, wxID_ANY, wxT("定子无功下限"), wxDefaultPosition, wxDefaultSize, wxALIGN_CENTER_HORIZONTAL );
-	m_staticText171221->Wrap( -1 );
-	gSizer31->Add( m_staticText171221, 0, wxALL, 5 );
-	
-	m_textQQQ = new wxTextCtrl( m_scrolledWindow3, wxID_ANY, wxT("1000"), wxDefaultPosition, wxDefaultSize, 0 );
-	gSizer31->Add( m_textQQQ, 0, wxALL, 5 );
-	
-	m_textPPPUUU = new wxTextCtrl( m_scrolledWindow3, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
-	gSizer31->Add( m_textPPPUUU, 0, wxALL, 5 );
-	
-	m_textPPPDDD = new wxTextCtrl( m_scrolledWindow3, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
-	gSizer31->Add( m_textPPPDDD, 0, wxALL, 5 );
-	
-	m_staticText17121 = new wxStaticText( m_scrolledWindow3, wxID_ANY, wxT("输入Q[kVar]"), wxDefaultPosition, wxDefaultSize, wxALIGN_CENTER_HORIZONTAL );
-	m_staticText17121->Wrap( -1 );
-	gSizer31->Add( m_staticText17121, 0, wxALL, 5 );
-	
-	m_staticText171211 = new wxStaticText( m_scrolledWindow3, wxID_ANY, wxT("定子有功上限"), wxDefaultPosition, wxDefaultSize, wxALIGN_CENTER_HORIZONTAL );
-	m_staticText171211->Wrap( -1 );
-	gSizer31->Add( m_staticText171211, 0, wxALL, 5 );
-	
-	m_staticText171212 = new wxStaticText( m_scrolledWindow3, wxID_ANY, wxT("定子有功下限"), wxDefaultPosition, wxDefaultSize, wxALIGN_CENTER_HORIZONTAL );
-	m_staticText171212->Wrap( -1 );
-	gSizer31->Add( m_staticText171212, 0, wxALL, 5 );
-	
-	
-	bSizer14->Add( gSizer31, 1, wxEXPAND, 5 );
-	
-	
-	m_scrolledWindow3->SetSizer( bSizer14 );
-	m_scrolledWindow3->Layout();
-	bSizer14->Fit( m_scrolledWindow3 );
-	gSizer2->Add( m_scrolledWindow3, 1, wxEXPAND | wxALL, 5 );
-	
-	wxBoxSizer* bSizer11;
-	bSizer11 = new wxBoxSizer( wxHORIZONTAL );
+	m_staticText63 = new wxStaticText( this, wxID_ANY, wxT("磁链给定说明：弱磁区间，手动给定，低速阶段根据空载开路电压计算"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticText63->Wrap( -1 );
+	bSizer51->Add( m_staticText63, 0, wxALL, 5 );
 	
 	wxGridSizer* gSizer5;
-	gSizer5 = new wxGridSizer( 2, 2, 0, 0 );
+	gSizer5 = new wxGridSizer( 1, 3, 0, 0 );
 	
 	wxBoxSizer* bSizer134;
 	bSizer134 = new wxBoxSizer( wxVERTICAL );
@@ -350,23 +283,14 @@ SC_CALCUL::SC_CALCUL( wxWindow* parent, wxWindowID id, const wxString& title, co
 	m_button = new wxButton( this, wxID_ANY, wxT("重新单点计算"), wxDefaultPosition, wxDefaultSize, 0 );
 	gSizer5->Add( m_button, 1, wxALL|wxEXPAND, 5 );
 	
-	m_button1 = new wxButton( this, wxID_ANY, wxT("有无功能力边界计算"), wxDefaultPosition, wxDefaultSize, 0 );
-	gSizer5->Add( m_button1, 1, wxALL|wxEXPAND, 5 );
-	
 	m_button2 = new wxButton( this, wxID_ANY, wxT("报告生成"), wxDefaultPosition, wxDefaultSize, 0 );
 	gSizer5->Add( m_button2, 1, wxALL|wxEXPAND, 5 );
 	
 	
-	bSizer11->Add( gSizer5, 1, wxEXPAND, 5 );
+	bSizer51->Add( gSizer5, 1, wxEXPAND, 5 );
 	
 	
-	gSizer2->Add( bSizer11, 1, wxALIGN_CENTER_HORIZONTAL|wxALL, 5 );
-	
-	
-	bSlideButtZone->Add( gSizer2, 1, wxEXPAND, 5 );
-	
-	
-	bSizer5->Add( bSlideButtZone, 0, wxEXPAND, 5 );
+	bSizer5->Add( bSizer51, 1, wxEXPAND, 5 );
 	
 	
 	gSizer3->Add( bSizer5, 1, wxEXPAND, 5 );
@@ -390,170 +314,103 @@ SC_CALCUL::SC_CALCUL( wxWindow* parent, wxWindowID id, const wxString& title, co
 	fgSizer4->SetFlexibleDirection( wxBOTH );
 	fgSizer4->SetNonFlexibleGrowMode( wxFLEX_GROWMODE_SPECIFIED );
 	
-	m_staticText311 = new wxStaticText( m_scrolledWindow1, wxID_ANY, wxT("同步转速[RPM]"), wxDefaultPosition, wxDefaultSize, 0 );
-	m_staticText311->Wrap( -1 );
-	fgSizer4->Add( m_staticText311, 0, wxALL, 5 );
+	m_staticTextV = new wxStaticText( m_scrolledWindow1, wxID_ANY, wxT("V:"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticTextV->Wrap( -1 );
+	fgSizer4->Add( m_staticTextV, 0, wxALL, 5 );
 	
-	m_SynsSpeed = new wxTextCtrl( m_scrolledWindow1, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
-	fgSizer4->Add( m_SynsSpeed, 0, wxALL, 5 );
+	m_V = new wxTextCtrl( m_scrolledWindow1, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
+	fgSizer4->Add( m_V, 0, wxALL, 5 );
 	
-	m_staticText25 = new wxStaticText( m_scrolledWindow1, wxID_ANY, wxT("转差率"), wxDefaultPosition, wxDefaultSize, 0 );
-	m_staticText25->Wrap( -1 );
-	fgSizer4->Add( m_staticText25, 0, wxALL, 5 );
+	m_staticTextW = new wxStaticText( m_scrolledWindow1, wxID_ANY, wxT("W:"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticTextW->Wrap( -1 );
+	fgSizer4->Add( m_staticTextW, 0, wxALL, 5 );
 	
-	m_ZhuanChaLv = new wxTextCtrl( m_scrolledWindow1, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
-	fgSizer4->Add( m_ZhuanChaLv, 0, wxALL, 5 );
+	m_W = new wxTextCtrl( m_scrolledWindow1, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
+	fgSizer4->Add( m_W, 0, wxALL, 5 );
 	
-	m_staticText26 = new wxStaticText( m_scrolledWindow1, wxID_ANY, wxT("定子有功功率[kW]"), wxDefaultPosition, wxDefaultSize, 0 );
-	m_staticText26->Wrap( -1 );
-	fgSizer4->Add( m_staticText26, 0, wxALL, 5 );
+	m_staticTextQ = new wxStaticText( m_scrolledWindow1, wxID_ANY, wxT("Q:"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticTextQ->Wrap( -1 );
+	fgSizer4->Add( m_staticTextQ, 0, wxALL, 5 );
 	
-	m_StatorAPower = new wxTextCtrl( m_scrolledWindow1, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
-	fgSizer4->Add( m_StatorAPower, 0, wxALL, 5 );
+	m_Q = new wxTextCtrl( m_scrolledWindow1, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
+	fgSizer4->Add( m_Q, 0, wxALL, 5 );
 	
-	m_TRotorAPower = new wxStaticText( m_scrolledWindow1, wxID_ANY, wxT("转子有功功率[kW]"), wxDefaultPosition, wxDefaultSize, 0 );
-	m_TRotorAPower->Wrap( -1 );
-	fgSizer4->Add( m_TRotorAPower, 0, wxALL, 5 );
+	m_staticTextR = new wxStaticText( m_scrolledWindow1, wxID_ANY, wxT("R:"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticTextR->Wrap( -1 );
+	fgSizer4->Add( m_staticTextR, 0, wxALL, 5 );
 	
-	m_RotorAPower = new wxTextCtrl( m_scrolledWindow1, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
-	fgSizer4->Add( m_RotorAPower, 0, wxALL, 5 );
+	m_R = new wxTextCtrl( m_scrolledWindow1, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
+	fgSizer4->Add( m_R, 0, wxALL, 5 );
 	
-	m_staticText401 = new wxStaticText( m_scrolledWindow1, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
-	m_staticText401->Wrap( -1 );
-	fgSizer4->Add( m_staticText401, 0, wxALL, 5 );
+	m_staticTextX = new wxStaticText( m_scrolledWindow1, wxID_ANY, wxT("X:"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticTextX->Wrap( -1 );
+	fgSizer4->Add( m_staticTextX, 0, wxALL, 5 );
 	
-	m_staticText41 = new wxStaticText( m_scrolledWindow1, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
-	m_staticText41->Wrap( -1 );
-	fgSizer4->Add( m_staticText41, 0, wxALL, 5 );
+	m_X = new wxTextCtrl( m_scrolledWindow1, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
+	fgSizer4->Add( m_X, 0, wxALL, 5 );
 	
-	m_staticText29 = new wxStaticText( m_scrolledWindow1, wxID_ANY, wxT("机侧变流器（电机转子）d轴电流[A]（有功  负号表示流向电网）"), wxDefaultPosition, wxDefaultSize, 0 );
-	m_staticText29->Wrap( -1 );
-	fgSizer4->Add( m_staticText29, 0, wxALL, 5 );
+	m_staticTextZ = new wxStaticText( m_scrolledWindow1, wxID_ANY, wxT("Z:"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticTextZ->Wrap( -1 );
+	fgSizer4->Add( m_staticTextZ, 0, wxALL, 5 );
 	
-	m_GenId = new wxTextCtrl( m_scrolledWindow1, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
-	fgSizer4->Add( m_GenId, 0, wxALL, 5 );
+	m_Z = new wxTextCtrl( m_scrolledWindow1, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
+	fgSizer4->Add( m_Z, 0, wxALL, 5 );
 	
-	m_staticText3111 = new wxStaticText( m_scrolledWindow1, wxID_ANY, wxT("机侧变流器（电机转子）q轴电流[A]（无功  负号表示流向电网）"), wxDefaultPosition, wxDefaultSize, 0 );
-	m_staticText3111->Wrap( -1 );
-	fgSizer4->Add( m_staticText3111, 0, wxALL, 5 );
+	m_staticTextAB = new wxStaticText( m_scrolledWindow1, wxID_ANY, wxT("AB:"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticTextAB->Wrap( -1 );
+	fgSizer4->Add( m_staticTextAB, 0, wxALL, 5 );
 	
-	m_GenIq = new wxTextCtrl( m_scrolledWindow1, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
-	fgSizer4->Add( m_GenIq, 0, wxALL, 5 );
+	m_AB = new wxTextCtrl( m_scrolledWindow1, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
+	fgSizer4->Add( m_AB, 0, wxALL, 5 );
 	
-	m_staticText30 = new wxStaticText( m_scrolledWindow1, wxID_ANY, wxT("机侧变流器（电机转子）电流[A]（有效值 归算值）"), wxDefaultPosition, wxDefaultSize, 0 );
-	m_staticText30->Wrap( -1 );
-	fgSizer4->Add( m_staticText30, 0, wxALL, 5 );
+	m_staticTextAD = new wxStaticText( m_scrolledWindow1, wxID_ANY, wxT("AD:"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticTextAD->Wrap( -1 );
+	fgSizer4->Add( m_staticTextAD, 0, wxALL, 5 );
 	
-	m_GenIrmsGS = new wxTextCtrl( m_scrolledWindow1, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
-	fgSizer4->Add( m_GenIrmsGS, 0, wxALL, 5 );
+	m_AD = new wxTextCtrl( m_scrolledWindow1, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
+	fgSizer4->Add( m_AD, 0, wxALL, 5 );
 	
-	m_staticText31 = new wxStaticText( m_scrolledWindow1, wxID_ANY, wxT("机侧变流器（电机转子）电流[A]（有效值 实际值）"), wxDefaultPosition, wxDefaultSize, 0 );
-	m_staticText31->Wrap( -1 );
-	fgSizer4->Add( m_staticText31, 0, wxALL, 5 );
+	m_staticTextAF = new wxStaticText( m_scrolledWindow1, wxID_ANY, wxT("AF:"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticTextAF->Wrap( -1 );
+	fgSizer4->Add( m_staticTextAF, 0, wxALL, 5 );
 	
-	m_GenIrmsSJ = new wxTextCtrl( m_scrolledWindow1, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
-	fgSizer4->Add( m_GenIrmsSJ, 0, wxALL, 5 );
+	m_AF = new wxTextCtrl( m_scrolledWindow1, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
+	fgSizer4->Add( m_AF, 0, wxALL, 5 );
 	
-	m_staticText421 = new wxStaticText( m_scrolledWindow1, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
-	m_staticText421->Wrap( -1 );
-	fgSizer4->Add( m_staticText421, 0, wxALL, 5 );
+	m_staticTextAH = new wxStaticText( m_scrolledWindow1, wxID_ANY, wxT("AH:"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticTextAH->Wrap( -1 );
+	fgSizer4->Add( m_staticTextAH, 0, wxALL, 5 );
 	
-	m_staticText422 = new wxStaticText( m_scrolledWindow1, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
-	m_staticText422->Wrap( -1 );
-	fgSizer4->Add( m_staticText422, 0, wxALL, 5 );
+	m_AH = new wxTextCtrl( m_scrolledWindow1, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
+	fgSizer4->Add( m_AH, 0, wxALL, 5 );
 	
-	m_NetId = new wxStaticText( m_scrolledWindow1, wxID_ANY, wxT("网侧变流器d轴电流[A]（有功  负号表示流向电网）"), wxDefaultPosition, wxDefaultSize, 0 );
-	m_NetId->Wrap( -1 );
-	fgSizer4->Add( m_NetId, 0, wxALL, 5 );
+	m_staticTextAJ = new wxStaticText( m_scrolledWindow1, wxID_ANY, wxT("AJ:"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticTextAJ->Wrap( -1 );
+	fgSizer4->Add( m_staticTextAJ, 0, wxALL, 5 );
 	
-	m_NetId = new wxTextCtrl( m_scrolledWindow1, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
-	fgSizer4->Add( m_NetId, 0, wxALL, 5 );
+	m_AJ = new wxTextCtrl( m_scrolledWindow1, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
+	fgSizer4->Add( m_AJ, 0, wxALL, 5 );
 	
-	m_NetIq = new wxStaticText( m_scrolledWindow1, wxID_ANY, wxT("网侧变流器q轴电流[A]（无功  负号表示流向电网）"), wxDefaultPosition, wxDefaultSize, 0 );
-	m_NetIq->Wrap( -1 );
-	fgSizer4->Add( m_NetIq, 0, wxALL, 5 );
+	m_staticTextAK = new wxStaticText( m_scrolledWindow1, wxID_ANY, wxT("AK:"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticTextAK->Wrap( -1 );
+	fgSizer4->Add( m_staticTextAK, 0, wxALL, 5 );
 	
-	m_NetIq = new wxTextCtrl( m_scrolledWindow1, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
-	fgSizer4->Add( m_NetIq, 0, wxALL, 5 );
+	m_AK = new wxTextCtrl( m_scrolledWindow1, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
+	fgSizer4->Add( m_AK, 0, wxALL, 5 );
 	
-	m_NetIrms1 = new wxStaticText( m_scrolledWindow1, wxID_ANY, wxT("网侧变流器电流[A]（有效值 负号表示流向电网）"), wxDefaultPosition, wxDefaultSize, 0 );
-	m_NetIrms1->Wrap( -1 );
-	fgSizer4->Add( m_NetIrms1, 0, wxALL, 5 );
+	m_staticTextAL = new wxStaticText( m_scrolledWindow1, wxID_ANY, wxT("AL:"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticTextAL->Wrap( -1 );
+	fgSizer4->Add( m_staticTextAL, 0, wxALL, 5 );
 	
-	m_NetIrms = new wxTextCtrl( m_scrolledWindow1, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
-	fgSizer4->Add( m_NetIrms, 0, wxALL, 5 );
+	m_AL = new wxTextCtrl( m_scrolledWindow1, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
+	fgSizer4->Add( m_AL, 0, wxALL, 5 );
 	
-	m_staticText42 = new wxStaticText( m_scrolledWindow1, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
-	m_staticText42->Wrap( -1 );
-	fgSizer4->Add( m_staticText42, 0, wxALL, 5 );
+	m_staticTextAM = new wxStaticText( m_scrolledWindow1, wxID_ANY, wxT("AM:"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticTextAM->Wrap( -1 );
+	fgSizer4->Add( m_staticTextAM, 0, wxALL, 5 );
 	
-	m_staticText43 = new wxStaticText( m_scrolledWindow1, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
-	m_staticText43->Wrap( -1 );
-	fgSizer4->Add( m_staticText43, 0, wxALL, 5 );
-	
-	m_staticText312 = new wxStaticText( m_scrolledWindow1, wxID_ANY, wxT("电机定子d轴电流[A]（有功）"), wxDefaultPosition, wxDefaultSize, 0 );
-	m_staticText312->Wrap( -1 );
-	fgSizer4->Add( m_staticText312, 0, wxALL, 5 );
-	
-	m_StatorId = new wxTextCtrl( m_scrolledWindow1, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
-	fgSizer4->Add( m_StatorId, 0, wxALL, 5 );
-	
-	m_staticText32 = new wxStaticText( m_scrolledWindow1, wxID_ANY, wxT("电机定子q轴电流[A]（无功）"), wxDefaultPosition, wxDefaultSize, 0 );
-	m_staticText32->Wrap( -1 );
-	fgSizer4->Add( m_staticText32, 0, wxALL, 5 );
-	
-	m_StatorIq = new wxTextCtrl( m_scrolledWindow1, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
-	fgSizer4->Add( m_StatorIq, 0, wxALL, 5 );
-	
-	m_staticText33 = new wxStaticText( m_scrolledWindow1, wxID_ANY, wxT("电机定子电流[A]（有效值 实际值）"), wxDefaultPosition, wxDefaultSize, 0 );
-	m_staticText33->Wrap( -1 );
-	fgSizer4->Add( m_staticText33, 0, wxALL, 5 );
-	
-	m_StatorIrms = new wxTextCtrl( m_scrolledWindow1, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
-	fgSizer4->Add( m_StatorIrms, 0, wxALL, 5 );
-	
-	m_staticText44 = new wxStaticText( m_scrolledWindow1, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
-	m_staticText44->Wrap( -1 );
-	fgSizer4->Add( m_staticText44, 0, wxALL, 5 );
-	
-	m_staticText45 = new wxStaticText( m_scrolledWindow1, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
-	m_staticText45->Wrap( -1 );
-	fgSizer4->Add( m_staticText45, 0, wxALL, 5 );
-	
-	m_staticText35 = new wxStaticText( m_scrolledWindow1, wxID_ANY, wxT("机侧变流器（电机转子）d轴电压[V]（归算值）"), wxDefaultPosition, wxDefaultSize, 0 );
-	m_staticText35->Wrap( -1 );
-	fgSizer4->Add( m_staticText35, 0, wxALL, 5 );
-	
-	m_GenVd = new wxTextCtrl( m_scrolledWindow1, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
-	fgSizer4->Add( m_GenVd, 0, wxALL, 5 );
-	
-	m_staticText36 = new wxStaticText( m_scrolledWindow1, wxID_ANY, wxT("机侧变流器（电机转子）q轴电压[V]（归算值）"), wxDefaultPosition, wxDefaultSize, 0 );
-	m_staticText36->Wrap( -1 );
-	fgSizer4->Add( m_staticText36, 0, wxALL, 5 );
-	
-	m_GenVq = new wxTextCtrl( m_scrolledWindow1, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
-	fgSizer4->Add( m_GenVq, 0, wxALL, 5 );
-	
-	m_staticText37 = new wxStaticText( m_scrolledWindow1, wxID_ANY, wxT("机侧变流器（电机转子）相电压[V]（相峰值 归算值）"), wxDefaultPosition, wxDefaultSize, 0 );
-	m_staticText37->Wrap( -1 );
-	fgSizer4->Add( m_staticText37, 0, wxALL, 5 );
-	
-	m_GenV = new wxTextCtrl( m_scrolledWindow1, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
-	fgSizer4->Add( m_GenV, 0, wxALL, 5 );
-	
-	m_staticText38 = new wxStaticText( m_scrolledWindow1, wxID_ANY, wxT("机侧变流器（电机转子）线电压[V]（RMS 实际值）"), wxDefaultPosition, wxDefaultSize, 0 );
-	m_staticText38->Wrap( -1 );
-	fgSizer4->Add( m_staticText38, 0, wxALL, 5 );
-	
-	m_GenVrms = new wxTextCtrl( m_scrolledWindow1, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
-	fgSizer4->Add( m_GenVrms, 0, wxALL, 5 );
-	
-	m_staticText40 = new wxStaticText( m_scrolledWindow1, wxID_ANY, wxT("电磁扭矩[Nm]"), wxDefaultPosition, wxDefaultSize, 0 );
-	m_staticText40->Wrap( -1 );
-	fgSizer4->Add( m_staticText40, 0, wxALL, 5 );
-	
-	m_Torque = new wxTextCtrl( m_scrolledWindow1, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
-	fgSizer4->Add( m_Torque, 0, wxALL, 5 );
+	m_AM = new wxTextCtrl( m_scrolledWindow1, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
+	fgSizer4->Add( m_AM, 0, wxALL, 5 );
 	
 	m_staticText441 = new wxStaticText( m_scrolledWindow1, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
 	m_staticText441->Wrap( -1 );
@@ -563,12 +420,146 @@ SC_CALCUL::SC_CALCUL( wxWindow* parent, wxWindowID id, const wxString& title, co
 	m_staticText442->Wrap( -1 );
 	fgSizer4->Add( m_staticText442, 0, wxALL, 5 );
 	
-	m_staticText402 = new wxStaticText( m_scrolledWindow1, wxID_ANY, wxT("网侧无功功率最大值[kVar]"), wxDefaultPosition, wxDefaultSize, 0 );
-	m_staticText402->Wrap( -1 );
-	fgSizer4->Add( m_staticText402, 0, wxALL, 5 );
+	m_staticTextT = new wxStaticText( m_scrolledWindow1, wxID_ANY, wxT("T:"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticTextT->Wrap( -1 );
+	fgSizer4->Add( m_staticTextT, 0, wxALL, 5 );
 	
-	m_Var1 = new wxTextCtrl( m_scrolledWindow1, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
-	fgSizer4->Add( m_Var1, 0, wxALL, 5 );
+	m_T = new wxTextCtrl( m_scrolledWindow1, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
+	fgSizer4->Add( m_T, 0, wxALL, 5 );
+	
+	m_staticTextU = new wxStaticText( m_scrolledWindow1, wxID_ANY, wxT("U:"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticTextU->Wrap( -1 );
+	fgSizer4->Add( m_staticTextU, 0, wxALL, 5 );
+	
+	m_U = new wxTextCtrl( m_scrolledWindow1, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
+	fgSizer4->Add( m_U, 0, wxALL, 5 );
+	
+	m_staticTextY = new wxStaticText( m_scrolledWindow1, wxID_ANY, wxT("Y:"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticTextY->Wrap( -1 );
+	fgSizer4->Add( m_staticTextY, 0, wxALL, 5 );
+	
+	m_Y = new wxTextCtrl( m_scrolledWindow1, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
+	fgSizer4->Add( m_Y, 0, wxALL, 5 );
+	
+	m_staticTextAA = new wxStaticText( m_scrolledWindow1, wxID_ANY, wxT("AA:"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticTextAA->Wrap( -1 );
+	fgSizer4->Add( m_staticTextAA, 0, wxALL, 5 );
+	
+	m_AA = new wxTextCtrl( m_scrolledWindow1, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
+	fgSizer4->Add( m_AA, 0, wxALL, 5 );
+	
+	m_staticTextAC = new wxStaticText( m_scrolledWindow1, wxID_ANY, wxT("AC:"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticTextAC->Wrap( -1 );
+	fgSizer4->Add( m_staticTextAC, 0, wxALL, 5 );
+	
+	m_AC = new wxTextCtrl( m_scrolledWindow1, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
+	fgSizer4->Add( m_AC, 0, wxALL, 5 );
+	
+	m_staticTextAE = new wxStaticText( m_scrolledWindow1, wxID_ANY, wxT("AE:"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticTextAE->Wrap( -1 );
+	fgSizer4->Add( m_staticTextAE, 0, wxALL, 5 );
+	
+	m_AE = new wxTextCtrl( m_scrolledWindow1, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
+	fgSizer4->Add( m_AE, 0, wxALL, 5 );
+	
+	m_staticTextAG = new wxStaticText( m_scrolledWindow1, wxID_ANY, wxT("AG:"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticTextAG->Wrap( -1 );
+	fgSizer4->Add( m_staticTextAG, 0, wxALL, 5 );
+	
+	m_AG = new wxTextCtrl( m_scrolledWindow1, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
+	fgSizer4->Add( m_AG, 0, wxALL, 5 );
+	
+	m_staticTextAI = new wxStaticText( m_scrolledWindow1, wxID_ANY, wxT("AI:"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticTextAI->Wrap( -1 );
+	fgSizer4->Add( m_staticTextAI, 0, wxALL, 5 );
+	
+	m_AI = new wxTextCtrl( m_scrolledWindow1, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
+	fgSizer4->Add( m_AI, 0, wxALL, 5 );
+	
+	m_staticTextAN = new wxStaticText( m_scrolledWindow1, wxID_ANY, wxT("AN:"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticTextAN->Wrap( -1 );
+	fgSizer4->Add( m_staticTextAN, 0, wxALL, 5 );
+	
+	m_AN = new wxTextCtrl( m_scrolledWindow1, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
+	fgSizer4->Add( m_AN, 0, wxALL, 5 );
+	
+	m_staticTextAO = new wxStaticText( m_scrolledWindow1, wxID_ANY, wxT("AO:"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticTextAO->Wrap( -1 );
+	fgSizer4->Add( m_staticTextAO, 0, wxALL, 5 );
+	
+	m_AO = new wxTextCtrl( m_scrolledWindow1, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
+	fgSizer4->Add( m_AO, 0, wxALL, 5 );
+	
+	m_staticTextAP = new wxStaticText( m_scrolledWindow1, wxID_ANY, wxT("AP:"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticTextAP->Wrap( -1 );
+	fgSizer4->Add( m_staticTextAP, 0, wxALL, 5 );
+	
+	m_AP = new wxTextCtrl( m_scrolledWindow1, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
+	fgSizer4->Add( m_AP, 0, wxALL, 5 );
+	
+	m_staticTextAQ = new wxStaticText( m_scrolledWindow1, wxID_ANY, wxT("AQ:"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticTextAQ->Wrap( -1 );
+	fgSizer4->Add( m_staticTextAQ, 0, wxALL, 5 );
+	
+	m_AQ = new wxTextCtrl( m_scrolledWindow1, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
+	fgSizer4->Add( m_AQ, 0, wxALL, 5 );
+	
+	m_staticText4412 = new wxStaticText( m_scrolledWindow1, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticText4412->Wrap( -1 );
+	fgSizer4->Add( m_staticText4412, 0, wxALL, 5 );
+	
+	m_staticText4411 = new wxStaticText( m_scrolledWindow1, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticText4411->Wrap( -1 );
+	fgSizer4->Add( m_staticText4411, 0, wxALL, 5 );
+	
+	m_staticTextAS = new wxStaticText( m_scrolledWindow1, wxID_ANY, wxT("AS:"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticTextAS->Wrap( -1 );
+	fgSizer4->Add( m_staticTextAS, 0, wxALL, 5 );
+	
+	m_AS = new wxTextCtrl( m_scrolledWindow1, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
+	fgSizer4->Add( m_AS, 0, wxALL, 5 );
+	
+	m_staticTextAT = new wxStaticText( m_scrolledWindow1, wxID_ANY, wxT("AT:"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticTextAT->Wrap( -1 );
+	fgSizer4->Add( m_staticTextAT, 0, wxALL, 5 );
+	
+	m_AT = new wxTextCtrl( m_scrolledWindow1, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
+	fgSizer4->Add( m_AT, 0, wxALL, 5 );
+	
+	m_staticTextAU = new wxStaticText( m_scrolledWindow1, wxID_ANY, wxT("AU:"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticTextAU->Wrap( -1 );
+	fgSizer4->Add( m_staticTextAU, 0, wxALL, 5 );
+	
+	m_AU = new wxTextCtrl( m_scrolledWindow1, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
+	fgSizer4->Add( m_AU, 0, wxALL, 5 );
+	
+	m_staticTextAV = new wxStaticText( m_scrolledWindow1, wxID_ANY, wxT("AV:"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticTextAV->Wrap( -1 );
+	fgSizer4->Add( m_staticTextAV, 0, wxALL, 5 );
+	
+	m_AV = new wxTextCtrl( m_scrolledWindow1, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
+	fgSizer4->Add( m_AV, 0, wxALL, 5 );
+	
+	m_staticTextAW = new wxStaticText( m_scrolledWindow1, wxID_ANY, wxT("AW:"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticTextAW->Wrap( -1 );
+	fgSizer4->Add( m_staticTextAW, 0, wxALL, 5 );
+	
+	m_AW = new wxTextCtrl( m_scrolledWindow1, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
+	fgSizer4->Add( m_AW, 0, wxALL, 5 );
+	
+	m_staticTextAX = new wxStaticText( m_scrolledWindow1, wxID_ANY, wxT("AX:"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticTextAX->Wrap( -1 );
+	fgSizer4->Add( m_staticTextAX, 0, wxALL, 5 );
+	
+	m_AX = new wxTextCtrl( m_scrolledWindow1, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
+	fgSizer4->Add( m_AX, 0, wxALL, 5 );
+	
+	m_staticTextAY = new wxStaticText( m_scrolledWindow1, wxID_ANY, wxT("AY:"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticTextAY->Wrap( -1 );
+	fgSizer4->Add( m_staticTextAY, 0, wxALL, 5 );
+	
+	m_AY = new wxTextCtrl( m_scrolledWindow1, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
+	fgSizer4->Add( m_AY, 0, wxALL, 5 );
 	
 	
 	bSizer71->Add( fgSizer4, 1, wxEXPAND, 5 );
@@ -605,7 +596,6 @@ SC_CALCUL::SC_CALCUL( wxWindow* parent, wxWindowID id, const wxString& title, co
 	// Connect Events
 	m_checkBox1->Connect( wxEVT_COMMAND_CHECKBOX_CLICKED, wxCommandEventHandler( SC_CALCUL::OnCheck ), NULL, this );
 	m_button->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( SC_CALCUL::m_buttonOnButtonClick ), NULL, this );
-	m_button1->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( SC_CALCUL::m_buttonOnButtonClick3 ), NULL, this );
 	m_button2->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( SC_CALCUL::m_buttonOnButtonClick2 ), NULL, this );
 	m_menu5->Bind(wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler( SC_CALCUL::mOnMenuSelection2 ), this, m_menuItem2->GetId());
 	m_menu5->Bind(wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler( SC_CALCUL::mOnMenuSelection1 ), this, m_menuItem3->GetId());
@@ -616,7 +606,6 @@ SC_CALCUL::~SC_CALCUL()
 	// Disconnect Events
 	m_checkBox1->Disconnect( wxEVT_COMMAND_CHECKBOX_CLICKED, wxCommandEventHandler( SC_CALCUL::OnCheck ), NULL, this );
 	m_button->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( SC_CALCUL::m_buttonOnButtonClick ), NULL, this );
-	m_button1->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( SC_CALCUL::m_buttonOnButtonClick3 ), NULL, this );
 	m_button2->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( SC_CALCUL::m_buttonOnButtonClick2 ), NULL, this );
 	
 }
