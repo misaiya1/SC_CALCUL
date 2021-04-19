@@ -326,7 +326,7 @@ class SC_CALCUL ( wx.Frame ):
 		fgSizer4.SetFlexibleDirection( wx.BOTH )
 		fgSizer4.SetNonFlexibleGrowMode( wx.FLEX_GROWMODE_SPECIFIED )
 		
-		self.m_staticTextV = wx.StaticText( self.m_scrolledWindow1, wx.ID_ANY, u"V:", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.m_staticTextV = wx.StaticText( self.m_scrolledWindow1, wx.ID_ANY, u"V:磁链给定", wx.DefaultPosition, wx.DefaultSize, 0 )
 		self.m_staticTextV.Wrap( -1 )
 		
 		fgSizer4.Add( self.m_staticTextV, 0, wx.ALL, 5 )
@@ -334,7 +334,7 @@ class SC_CALCUL ( wx.Frame ):
 		self.m_V = wx.TextCtrl( self.m_scrolledWindow1, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0 )
 		fgSizer4.Add( self.m_V, 0, wx.ALL, 5 )
 		
-		self.m_staticTextW = wx.StaticText( self.m_scrolledWindow1, wx.ID_ANY, u"W:", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.m_staticTextW = wx.StaticText( self.m_scrolledWindow1, wx.ID_ANY, u"W:定子励磁电流isd0 [A] 峰值", wx.DefaultPosition, wx.DefaultSize, 0 )
 		self.m_staticTextW.Wrap( -1 )
 		
 		fgSizer4.Add( self.m_staticTextW, 0, wx.ALL, 5 )
@@ -342,7 +342,7 @@ class SC_CALCUL ( wx.Frame ):
 		self.m_W = wx.TextCtrl( self.m_scrolledWindow1, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0 )
 		fgSizer4.Add( self.m_W, 0, wx.ALL, 5 )
 		
-		self.m_staticTextQ = wx.StaticText( self.m_scrolledWindow1, wx.ID_ANY, u"Q:", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.m_staticTextQ = wx.StaticText( self.m_scrolledWindow1, wx.ID_ANY, u"Q:发电机轴功率（长期）[kW]", wx.DefaultPosition, wx.DefaultSize, 0 )
 		self.m_staticTextQ.Wrap( -1 )
 		
 		fgSizer4.Add( self.m_staticTextQ, 0, wx.ALL, 5 )
@@ -350,7 +350,7 @@ class SC_CALCUL ( wx.Frame ):
 		self.m_Q = wx.TextCtrl( self.m_scrolledWindow1, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0 )
 		fgSizer4.Add( self.m_Q, 0, wx.ALL, 5 )
 		
-		self.m_staticTextR = wx.StaticText( self.m_scrolledWindow1, wx.ID_ANY, u"R:", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.m_staticTextR = wx.StaticText( self.m_scrolledWindow1, wx.ID_ANY, u"R:发电机电磁功率（长期）[kW]", wx.DefaultPosition, wx.DefaultSize, 0 )
 		self.m_staticTextR.Wrap( -1 )
 		
 		fgSizer4.Add( self.m_staticTextR, 0, wx.ALL, 5 )
@@ -358,7 +358,7 @@ class SC_CALCUL ( wx.Frame ):
 		self.m_R = wx.TextCtrl( self.m_scrolledWindow1, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0 )
 		fgSizer4.Add( self.m_R, 0, wx.ALL, 5 )
 		
-		self.m_staticTextX = wx.StaticText( self.m_scrolledWindow1, wx.ID_ANY, u"X:", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.m_staticTextX = wx.StaticText( self.m_scrolledWindow1, wx.ID_ANY, u"X:定子有功电流isq [A] 峰值（长期）", wx.DefaultPosition, wx.DefaultSize, 0 )
 		self.m_staticTextX.Wrap( -1 )
 		
 		fgSizer4.Add( self.m_staticTextX, 0, wx.ALL, 5 )
@@ -366,7 +366,7 @@ class SC_CALCUL ( wx.Frame ):
 		self.m_X = wx.TextCtrl( self.m_scrolledWindow1, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0 )
 		fgSizer4.Add( self.m_X, 0, wx.ALL, 5 )
 		
-		self.m_staticTextZ = wx.StaticText( self.m_scrolledWindow1, wx.ID_ANY, u"Z:", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.m_staticTextZ = wx.StaticText( self.m_scrolledWindow1, wx.ID_ANY, u"Z:转子有功电流irq [A] 峰值（长期）", wx.DefaultPosition, wx.DefaultSize, 0 )
 		self.m_staticTextZ.Wrap( -1 )
 		
 		fgSizer4.Add( self.m_staticTextZ, 0, wx.ALL, 5 )
@@ -374,7 +374,7 @@ class SC_CALCUL ( wx.Frame ):
 		self.m_Z = wx.TextCtrl( self.m_scrolledWindow1, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0 )
 		fgSizer4.Add( self.m_Z, 0, wx.ALL, 5 )
 		
-		self.m_staticTextAB = wx.StaticText( self.m_scrolledWindow1, wx.ID_ANY, u"AB:", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.m_staticTextAB = wx.StaticText( self.m_scrolledWindow1, wx.ID_ANY, u"AB:转差角频率 [rad/s]", wx.DefaultPosition, wx.DefaultSize, 0 )
 		self.m_staticTextAB.Wrap( -1 )
 		
 		fgSizer4.Add( self.m_staticTextAB, 0, wx.ALL, 5 )
@@ -382,7 +382,7 @@ class SC_CALCUL ( wx.Frame ):
 		self.m_AB = wx.TextCtrl( self.m_scrolledWindow1, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0 )
 		fgSizer4.Add( self.m_AB, 0, wx.ALL, 5 )
 		
-		self.m_staticTextAD = wx.StaticText( self.m_scrolledWindow1, wx.ID_ANY, u"AD:", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.m_staticTextAD = wx.StaticText( self.m_scrolledWindow1, wx.ID_ANY, u"AD:机侧变流器电角频率 [rad/s]（长期）", wx.DefaultPosition, wx.DefaultSize, 0 )
 		self.m_staticTextAD.Wrap( -1 )
 		
 		fgSizer4.Add( self.m_staticTextAD, 0, wx.ALL, 5 )
@@ -390,7 +390,7 @@ class SC_CALCUL ( wx.Frame ):
 		self.m_AD = wx.TextCtrl( self.m_scrolledWindow1, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0 )
 		fgSizer4.Add( self.m_AD, 0, wx.ALL, 5 )
 		
-		self.m_staticTextAF = wx.StaticText( self.m_scrolledWindow1, wx.ID_ANY, u"AF:", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.m_staticTextAF = wx.StaticText( self.m_scrolledWindow1, wx.ID_ANY, u"AF:转差率（长期）", wx.DefaultPosition, wx.DefaultSize, 0 )
 		self.m_staticTextAF.Wrap( -1 )
 		
 		fgSizer4.Add( self.m_staticTextAF, 0, wx.ALL, 5 )
@@ -398,7 +398,7 @@ class SC_CALCUL ( wx.Frame ):
 		self.m_AF = wx.TextCtrl( self.m_scrolledWindow1, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0 )
 		fgSizer4.Add( self.m_AF, 0, wx.ALL, 5 )
 		
-		self.m_staticTextAH = wx.StaticText( self.m_scrolledWindow1, wx.ID_ANY, u"AH:", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.m_staticTextAH = wx.StaticText( self.m_scrolledWindow1, wx.ID_ANY, u"AH:机侧变流器电角频率 [Hz]（长期）", wx.DefaultPosition, wx.DefaultSize, 0 )
 		self.m_staticTextAH.Wrap( -1 )
 		
 		fgSizer4.Add( self.m_staticTextAH, 0, wx.ALL, 5 )
@@ -406,7 +406,7 @@ class SC_CALCUL ( wx.Frame ):
 		self.m_AH = wx.TextCtrl( self.m_scrolledWindow1, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0 )
 		fgSizer4.Add( self.m_AH, 0, wx.ALL, 5 )
 		
-		self.m_staticTextAJ = wx.StaticText( self.m_scrolledWindow1, wx.ID_ANY, u"AJ:", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.m_staticTextAJ = wx.StaticText( self.m_scrolledWindow1, wx.ID_ANY, u"AJ:机侧变流器电压usd 峰值（长期）", wx.DefaultPosition, wx.DefaultSize, 0 )
 		self.m_staticTextAJ.Wrap( -1 )
 		
 		fgSizer4.Add( self.m_staticTextAJ, 0, wx.ALL, 5 )
@@ -414,7 +414,7 @@ class SC_CALCUL ( wx.Frame ):
 		self.m_AJ = wx.TextCtrl( self.m_scrolledWindow1, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0 )
 		fgSizer4.Add( self.m_AJ, 0, wx.ALL, 5 )
 		
-		self.m_staticTextAK = wx.StaticText( self.m_scrolledWindow1, wx.ID_ANY, u"AK:", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.m_staticTextAK = wx.StaticText( self.m_scrolledWindow1, wx.ID_ANY, u"AK:机侧变流器电压usq 峰值（长期）", wx.DefaultPosition, wx.DefaultSize, 0 )
 		self.m_staticTextAK.Wrap( -1 )
 		
 		fgSizer4.Add( self.m_staticTextAK, 0, wx.ALL, 5 )
@@ -422,7 +422,7 @@ class SC_CALCUL ( wx.Frame ):
 		self.m_AK = wx.TextCtrl( self.m_scrolledWindow1, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0 )
 		fgSizer4.Add( self.m_AK, 0, wx.ALL, 5 )
 		
-		self.m_staticTextAL = wx.StaticText( self.m_scrolledWindow1, wx.ID_ANY, u"AL:", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.m_staticTextAL = wx.StaticText( self.m_scrolledWindow1, wx.ID_ANY, u"AL:机侧变流器相电压有效值[Vrms]（长期）", wx.DefaultPosition, wx.DefaultSize, 0 )
 		self.m_staticTextAL.Wrap( -1 )
 		
 		fgSizer4.Add( self.m_staticTextAL, 0, wx.ALL, 5 )
@@ -430,7 +430,7 @@ class SC_CALCUL ( wx.Frame ):
 		self.m_AL = wx.TextCtrl( self.m_scrolledWindow1, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0 )
 		fgSizer4.Add( self.m_AL, 0, wx.ALL, 5 )
 		
-		self.m_staticTextAM = wx.StaticText( self.m_scrolledWindow1, wx.ID_ANY, u"AM:", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.m_staticTextAM = wx.StaticText( self.m_scrolledWindow1, wx.ID_ANY, u"AM:变流器的电压能力满足？（长期）", wx.DefaultPosition, wx.DefaultSize, 0 )
 		self.m_staticTextAM.Wrap( -1 )
 		
 		fgSizer4.Add( self.m_staticTextAM, 0, wx.ALL, 5 )
@@ -448,7 +448,7 @@ class SC_CALCUL ( wx.Frame ):
 		
 		fgSizer4.Add( self.m_staticText442, 0, wx.ALL, 5 )
 		
-		self.m_staticTextT = wx.StaticText( self.m_scrolledWindow1, wx.ID_ANY, u"T:", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.m_staticTextT = wx.StaticText( self.m_scrolledWindow1, wx.ID_ANY, u"T:发电机轴功率（短时）[W]", wx.DefaultPosition, wx.DefaultSize, 0 )
 		self.m_staticTextT.Wrap( -1 )
 		
 		fgSizer4.Add( self.m_staticTextT, 0, wx.ALL, 5 )
@@ -456,7 +456,7 @@ class SC_CALCUL ( wx.Frame ):
 		self.m_T = wx.TextCtrl( self.m_scrolledWindow1, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0 )
 		fgSizer4.Add( self.m_T, 0, wx.ALL, 5 )
 		
-		self.m_staticTextU = wx.StaticText( self.m_scrolledWindow1, wx.ID_ANY, u"U:", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.m_staticTextU = wx.StaticText( self.m_scrolledWindow1, wx.ID_ANY, u"U:发电机电磁功率（短时）[W]", wx.DefaultPosition, wx.DefaultSize, 0 )
 		self.m_staticTextU.Wrap( -1 )
 		
 		fgSizer4.Add( self.m_staticTextU, 0, wx.ALL, 5 )
@@ -464,7 +464,7 @@ class SC_CALCUL ( wx.Frame ):
 		self.m_U = wx.TextCtrl( self.m_scrolledWindow1, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0 )
 		fgSizer4.Add( self.m_U, 0, wx.ALL, 5 )
 		
-		self.m_staticTextY = wx.StaticText( self.m_scrolledWindow1, wx.ID_ANY, u"Y:", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.m_staticTextY = wx.StaticText( self.m_scrolledWindow1, wx.ID_ANY, u"Y:定子有功电流isq [A] 峰值（短时）", wx.DefaultPosition, wx.DefaultSize, 0 )
 		self.m_staticTextY.Wrap( -1 )
 		
 		fgSizer4.Add( self.m_staticTextY, 0, wx.ALL, 5 )
@@ -472,7 +472,7 @@ class SC_CALCUL ( wx.Frame ):
 		self.m_Y = wx.TextCtrl( self.m_scrolledWindow1, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0 )
 		fgSizer4.Add( self.m_Y, 0, wx.ALL, 5 )
 		
-		self.m_staticTextAA = wx.StaticText( self.m_scrolledWindow1, wx.ID_ANY, u"AA:", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.m_staticTextAA = wx.StaticText( self.m_scrolledWindow1, wx.ID_ANY, u"AA:转子有功电流irq [A] 峰值（短时）", wx.DefaultPosition, wx.DefaultSize, 0 )
 		self.m_staticTextAA.Wrap( -1 )
 		
 		fgSizer4.Add( self.m_staticTextAA, 0, wx.ALL, 5 )
@@ -480,7 +480,7 @@ class SC_CALCUL ( wx.Frame ):
 		self.m_AA = wx.TextCtrl( self.m_scrolledWindow1, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0 )
 		fgSizer4.Add( self.m_AA, 0, wx.ALL, 5 )
 		
-		self.m_staticTextAC = wx.StaticText( self.m_scrolledWindow1, wx.ID_ANY, u"AC:", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.m_staticTextAC = wx.StaticText( self.m_scrolledWindow1, wx.ID_ANY, u"AC:转差角频率 [rad/s]（短时）", wx.DefaultPosition, wx.DefaultSize, 0 )
 		self.m_staticTextAC.Wrap( -1 )
 		
 		fgSizer4.Add( self.m_staticTextAC, 0, wx.ALL, 5 )
@@ -488,7 +488,7 @@ class SC_CALCUL ( wx.Frame ):
 		self.m_AC = wx.TextCtrl( self.m_scrolledWindow1, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0 )
 		fgSizer4.Add( self.m_AC, 0, wx.ALL, 5 )
 		
-		self.m_staticTextAE = wx.StaticText( self.m_scrolledWindow1, wx.ID_ANY, u"AE:", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.m_staticTextAE = wx.StaticText( self.m_scrolledWindow1, wx.ID_ANY, u"AE:机侧变流器电角频率 [rad/s]（短时）", wx.DefaultPosition, wx.DefaultSize, 0 )
 		self.m_staticTextAE.Wrap( -1 )
 		
 		fgSizer4.Add( self.m_staticTextAE, 0, wx.ALL, 5 )
@@ -496,7 +496,7 @@ class SC_CALCUL ( wx.Frame ):
 		self.m_AE = wx.TextCtrl( self.m_scrolledWindow1, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0 )
 		fgSizer4.Add( self.m_AE, 0, wx.ALL, 5 )
 		
-		self.m_staticTextAG = wx.StaticText( self.m_scrolledWindow1, wx.ID_ANY, u"AG:", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.m_staticTextAG = wx.StaticText( self.m_scrolledWindow1, wx.ID_ANY, u"AG:转差率（短时）", wx.DefaultPosition, wx.DefaultSize, 0 )
 		self.m_staticTextAG.Wrap( -1 )
 		
 		fgSizer4.Add( self.m_staticTextAG, 0, wx.ALL, 5 )
@@ -504,7 +504,7 @@ class SC_CALCUL ( wx.Frame ):
 		self.m_AG = wx.TextCtrl( self.m_scrolledWindow1, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0 )
 		fgSizer4.Add( self.m_AG, 0, wx.ALL, 5 )
 		
-		self.m_staticTextAI = wx.StaticText( self.m_scrolledWindow1, wx.ID_ANY, u"AI:", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.m_staticTextAI = wx.StaticText( self.m_scrolledWindow1, wx.ID_ANY, u"AI:机侧变流器电角频率 [Hz]（短时）", wx.DefaultPosition, wx.DefaultSize, 0 )
 		self.m_staticTextAI.Wrap( -1 )
 		
 		fgSizer4.Add( self.m_staticTextAI, 0, wx.ALL, 5 )
@@ -512,7 +512,7 @@ class SC_CALCUL ( wx.Frame ):
 		self.m_AI = wx.TextCtrl( self.m_scrolledWindow1, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0 )
 		fgSizer4.Add( self.m_AI, 0, wx.ALL, 5 )
 		
-		self.m_staticTextAN = wx.StaticText( self.m_scrolledWindow1, wx.ID_ANY, u"AN:", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.m_staticTextAN = wx.StaticText( self.m_scrolledWindow1, wx.ID_ANY, u"AN:机侧变流器电压usd 峰值（短时）", wx.DefaultPosition, wx.DefaultSize, 0 )
 		self.m_staticTextAN.Wrap( -1 )
 		
 		fgSizer4.Add( self.m_staticTextAN, 0, wx.ALL, 5 )
@@ -520,7 +520,7 @@ class SC_CALCUL ( wx.Frame ):
 		self.m_AN = wx.TextCtrl( self.m_scrolledWindow1, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0 )
 		fgSizer4.Add( self.m_AN, 0, wx.ALL, 5 )
 		
-		self.m_staticTextAO = wx.StaticText( self.m_scrolledWindow1, wx.ID_ANY, u"AO:", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.m_staticTextAO = wx.StaticText( self.m_scrolledWindow1, wx.ID_ANY, u"AO:机侧变流器电压usq 峰值（短时）", wx.DefaultPosition, wx.DefaultSize, 0 )
 		self.m_staticTextAO.Wrap( -1 )
 		
 		fgSizer4.Add( self.m_staticTextAO, 0, wx.ALL, 5 )
@@ -528,7 +528,7 @@ class SC_CALCUL ( wx.Frame ):
 		self.m_AO = wx.TextCtrl( self.m_scrolledWindow1, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0 )
 		fgSizer4.Add( self.m_AO, 0, wx.ALL, 5 )
 		
-		self.m_staticTextAP = wx.StaticText( self.m_scrolledWindow1, wx.ID_ANY, u"AP:", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.m_staticTextAP = wx.StaticText( self.m_scrolledWindow1, wx.ID_ANY, u"AP:机侧变流器相电压有效值[Vrms]（短时）", wx.DefaultPosition, wx.DefaultSize, 0 )
 		self.m_staticTextAP.Wrap( -1 )
 		
 		fgSizer4.Add( self.m_staticTextAP, 0, wx.ALL, 5 )
@@ -536,7 +536,7 @@ class SC_CALCUL ( wx.Frame ):
 		self.m_AP = wx.TextCtrl( self.m_scrolledWindow1, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0 )
 		fgSizer4.Add( self.m_AP, 0, wx.ALL, 5 )
 		
-		self.m_staticTextAQ = wx.StaticText( self.m_scrolledWindow1, wx.ID_ANY, u"AQ:", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.m_staticTextAQ = wx.StaticText( self.m_scrolledWindow1, wx.ID_ANY, u"AQ:是否超过变流器的电压能力满足？（短时）", wx.DefaultPosition, wx.DefaultSize, 0 )
 		self.m_staticTextAQ.Wrap( -1 )
 		
 		fgSizer4.Add( self.m_staticTextAQ, 0, wx.ALL, 5 )
@@ -554,7 +554,7 @@ class SC_CALCUL ( wx.Frame ):
 		
 		fgSizer4.Add( self.m_staticText4411, 0, wx.ALL, 5 )
 		
-		self.m_staticTextAS = wx.StaticText( self.m_scrolledWindow1, wx.ID_ANY, u"AS:", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.m_staticTextAS = wx.StaticText( self.m_scrolledWindow1, wx.ID_ANY, u"AS:功率验证（长期）", wx.DefaultPosition, wx.DefaultSize, 0 )
 		self.m_staticTextAS.Wrap( -1 )
 		
 		fgSizer4.Add( self.m_staticTextAS, 0, wx.ALL, 5 )
@@ -562,7 +562,7 @@ class SC_CALCUL ( wx.Frame ):
 		self.m_AS = wx.TextCtrl( self.m_scrolledWindow1, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0 )
 		fgSizer4.Add( self.m_AS, 0, wx.ALL, 5 )
 		
-		self.m_staticTextAT = wx.StaticText( self.m_scrolledWindow1, wx.ID_ANY, u"AT:", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.m_staticTextAT = wx.StaticText( self.m_scrolledWindow1, wx.ID_ANY, u"AT:功率偏差（长期）", wx.DefaultPosition, wx.DefaultSize, 0 )
 		self.m_staticTextAT.Wrap( -1 )
 		
 		fgSizer4.Add( self.m_staticTextAT, 0, wx.ALL, 5 )
@@ -570,7 +570,7 @@ class SC_CALCUL ( wx.Frame ):
 		self.m_AT = wx.TextCtrl( self.m_scrolledWindow1, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0 )
 		fgSizer4.Add( self.m_AT, 0, wx.ALL, 5 )
 		
-		self.m_staticTextAU = wx.StaticText( self.m_scrolledWindow1, wx.ID_ANY, u"AU:", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.m_staticTextAU = wx.StaticText( self.m_scrolledWindow1, wx.ID_ANY, u"AU:定子铜耗（电流计算方法）", wx.DefaultPosition, wx.DefaultSize, 0 )
 		self.m_staticTextAU.Wrap( -1 )
 		
 		fgSizer4.Add( self.m_staticTextAU, 0, wx.ALL, 5 )
@@ -578,7 +578,7 @@ class SC_CALCUL ( wx.Frame ):
 		self.m_AU = wx.TextCtrl( self.m_scrolledWindow1, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0 )
 		fgSizer4.Add( self.m_AU, 0, wx.ALL, 5 )
 		
-		self.m_staticTextAV = wx.StaticText( self.m_scrolledWindow1, wx.ID_ANY, u"AV:", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.m_staticTextAV = wx.StaticText( self.m_scrolledWindow1, wx.ID_ANY, u"AV:转差功率(转子铜耗）", wx.DefaultPosition, wx.DefaultSize, 0 )
 		self.m_staticTextAV.Wrap( -1 )
 		
 		fgSizer4.Add( self.m_staticTextAV, 0, wx.ALL, 5 )
@@ -586,7 +586,7 @@ class SC_CALCUL ( wx.Frame ):
 		self.m_AV = wx.TextCtrl( self.m_scrolledWindow1, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0 )
 		fgSizer4.Add( self.m_AV, 0, wx.ALL, 5 )
 		
-		self.m_staticTextAW = wx.StaticText( self.m_scrolledWindow1, wx.ID_ANY, u"AW:", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.m_staticTextAW = wx.StaticText( self.m_scrolledWindow1, wx.ID_ANY, u"AW:转差功率(转子铜耗-电流计算方法）", wx.DefaultPosition, wx.DefaultSize, 0 )
 		self.m_staticTextAW.Wrap( -1 )
 		
 		fgSizer4.Add( self.m_staticTextAW, 0, wx.ALL, 5 )
@@ -594,7 +594,7 @@ class SC_CALCUL ( wx.Frame ):
 		self.m_AW = wx.TextCtrl( self.m_scrolledWindow1, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0 )
 		fgSizer4.Add( self.m_AW, 0, wx.ALL, 5 )
 		
-		self.m_staticTextAX = wx.StaticText( self.m_scrolledWindow1, wx.ID_ANY, u"AX:", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.m_staticTextAX = wx.StaticText( self.m_scrolledWindow1, wx.ID_ANY, u"AX:电机效率（不计机械损耗和铁耗）", wx.DefaultPosition, wx.DefaultSize, 0 )
 		self.m_staticTextAX.Wrap( -1 )
 		
 		fgSizer4.Add( self.m_staticTextAX, 0, wx.ALL, 5 )
@@ -602,7 +602,7 @@ class SC_CALCUL ( wx.Frame ):
 		self.m_AX = wx.TextCtrl( self.m_scrolledWindow1, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0 )
 		fgSizer4.Add( self.m_AX, 0, wx.ALL, 5 )
 		
-		self.m_staticTextAY = wx.StaticText( self.m_scrolledWindow1, wx.ID_ANY, u"AY:", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.m_staticTextAY = wx.StaticText( self.m_scrolledWindow1, wx.ID_ANY, u"AY:电机功率因数", wx.DefaultPosition, wx.DefaultSize, 0 )
 		self.m_staticTextAY.Wrap( -1 )
 		
 		fgSizer4.Add( self.m_staticTextAY, 0, wx.ALL, 5 )

@@ -189,7 +189,6 @@ class MyFrame(SC_CALCUL):
     def m_buttonOnButtonClick(self, event):
         print("press button1")
         self.DoWork(1)
-        # self.Plot_Var_Abili(1)
         self.PlotAll()
 
     def m_buttonOnButtonClick2(self, event):
@@ -482,6 +481,8 @@ class MyFrame(SC_CALCUL):
 
         n = n + 1
         ##########################################################################作图
+        global iO2, iP2, iQ2, iR2, iS2, iT2, iU2, iV2, iW2, iX2, iY2, iZ2
+        global iAZ2, iBA2,iAX2, iAY2#, iS2, iT2, iU2, iV2, iW2, iX2, iY2, iZ2
 
         iO2 = [0 for i in range(n)]
         iO2 = iGenRpm
@@ -524,6 +525,8 @@ class MyFrame(SC_CALCUL):
         iAX2 = [0 for i in range(n)]
         iAY2 = [0 for i in range(n)]
         iAZ2 = [0 for i in range(n)]
+        iBA2 = [0 for i in range(n)]
+
         # O:RPM-- P:Long-- Q:Pmlong-- R:PeLongAD--- S:Short--  T:Pmshort--  U:PeShortAE---  V:psi--  W:isd0--  X:isqLong--  Y:isqShort--  Z:irqLong--
         # AA:isqShort--  AB:zcjplLong--  AC:zcjplShort--  AD:WgenLong--  AE:WgenShort--  AF:zclLong--  AG:zclShort--  AH:GenHzLong--  AI:GenHzShort--
         # AJ:usdLong--  AK:usqLong--  AL:usLong--  AM:pj1  AN:usdShort--  AO:usqShort--  AP:usShort--  AQ:pj2  AR:--
@@ -562,7 +565,7 @@ class MyFrame(SC_CALCUL):
             iAK2[i] = Rs * iX2[i] + iAD2[i] * Lss * iW2[i]
             iAL2[i] = (iAJ2[i] ** 2 + iAK2[i] ** 2) ** 0.5 / 1.414
 
-            iAN2[i] = Rs * iX2[i] - iAE2[i] * (Lss * iY2[i] + Lm * iAA2[i])  # 歧义
+            iAN2[i] = Rs * iW2[i] - iAE2[i] * (Lss * iY2[i] + Lm * iAA2[i])  # 歧义
             iAO2[i] = Rs * iY2[i] + iAE2[i] * Lss * iW2[i]
             iAP2[i] = (iAN2[i] ** 2 + iAO2[i] ** 2) ** 0.5 / 1.414
 
@@ -577,6 +580,17 @@ class MyFrame(SC_CALCUL):
             iAX2[i] = 1 - (iAU2[i] + iAW2[i]) / abs(iQ2[i])
             iAY2[i] = abs(iAS2[i]) / ((iW2[i] ** 2 + iX2[i] ** 2) ** 0.5 / 1.414 * iAL2[i] * 3)
 
+            iAZ2[i] = (iW2[i]**2 + iX2[i]**2)**0.5 / 1.414
+            iBA2[i] = (iW2[i] ** 2 + iY2[i] ** 2) ** 0.5 / 1.414
+
+
+            iQ2[i] = iQ2[i] * 1E-3
+            iR2[i] = iR2[i] * 1E-3
+            iT2[i] = iT2[i] * 1E-3
+            iU2[i] = iU2[i] * 1E-3
+
+
+
         # output part
         # print('Torque = %f' % iTorque[-1])
         # print('iU2 %f' % iU2[-1])
@@ -587,8 +601,8 @@ class MyFrame(SC_CALCUL):
 
         self.m_V.Value = ("%.3f" % iV2[-1])
         self.m_W.Value = ("%.3f" % iW2[-1])
-        self.m_Q.Value = ("%.3f" % iQ2[-1])
-        self.m_R.Value = ("%.3f" % iR2[-1])
+        self.m_Q.Value = ("%.3f" % (iQ2[-1] * 1E0))
+        self.m_R.Value = ("%.3f" % (iR2[-1] * 1E0))
         self.m_X.Value = ("%.3f" % iX2[-1])
         self.m_Z.Value = ("%.3f" % iZ2[-1])
         self.m_AB.Value = ("%.3f" % iAB2[-1])
@@ -600,8 +614,8 @@ class MyFrame(SC_CALCUL):
         self.m_AL.Value = ("%.3f" % iAL2[-1])
         self.m_AM.Value = ("%.3f" % iAM2[-1])
 
-        self.m_T.Value = ("%.3f" % iT2[-1])
-        self.m_U.Value = ("%.3f" % iU2[-1])
+        self.m_T.Value = ("%.3f" % (iT2[-1] * 1E0))
+        self.m_U.Value = ("%.3f" % (iU2[-1] * 1E0))
         self.m_Y.Value = ("%.3f" % iY2[-1])
         self.m_AA.Value = ("%.3f" % iAA2[-1])
         self.m_AC.Value = ("%.3f" % iAC2[-1])
@@ -613,11 +627,11 @@ class MyFrame(SC_CALCUL):
         self.m_AP.Value = ("%.3f" % iAP2[-1])
         self.m_AQ.Value = ("%.3f" % iAQ2[-1])
 
-        self.m_AS.Value = ("%.3f" % iAS2[-1])
-        self.m_AT.Value = ("%.3f" % iAT2[-1])
-        self.m_AU.Value = ("%.3f" % iAU2[-1])
-        self.m_AV.Value = ("%.3f" % iAV2[-1])
-        self.m_AW.Value = ("%.3f" % iAW2[-1])
+        self.m_AS.Value = ("%.3f" % (iAS2[-1] * 1E0))
+        self.m_AT.Value = ("%.3f" % (iAT2[-1] * 1E0))
+        self.m_AU.Value = ("%.3f" % (iAU2[-1] * 1E0))
+        self.m_AV.Value = ("%.3f" % (iAV2[-1] * 1E0))
+        self.m_AW.Value = ("%.3f" % (iAW2[-1] * 1E0))
         self.m_AX.Value = ("%.4f" % iAX2[-1])
         self.m_AY.Value = ("%.4f" % iAY2[-1])
 
@@ -627,125 +641,129 @@ class MyFrame(SC_CALCUL):
         ######################################################################################
 
     def PlotAll(self):
-        pass
-        # plt.figure(5)
-        # gongLvTu = plt.subplot(2, 2, 1)  # 功率图
-        # gongLvTu.grid(linestyle='-.', which='major')
-        # gongLvTu.set_title('Scope - Power')
-        #
-        # miloc = plt.MultipleLocator(50)
-        # maloc = plt.MultipleLocator(100)
-        # gongLvTu.xaxis.set_minor_locator(miloc)
-        # gongLvTu.yaxis.set_minor_locator(maloc)
-        # gongLvTu.grid(linestyle='-.', which='minor', linewidth=0.3, alpha=0.9)
-        #
-        # iGenRpm_1 = iGenRpm[0:-1]
-        # iStatorAPower_1 = iStatorAPower[0:-1]
-        # iRotorAPower_1 = iRotorAPower[0:-1]
-        # iTotalAPower_1 = iTotalAPower[0:-1]
-        #
-        # plt.plot(iGenRpm_1, iStatorAPower_1, color="red", linewidth=1.5, linestyle="-", label="Stator Active Power")
-        # plt.plot(iGenRpm_1, iRotorAPower_1, color="blue", linewidth=1.5, linestyle="-.", label="Rotor Active Power")
-        # plt.plot(iGenRpm_1, iTotalAPower_1, color="gray", linewidth=1.5, linestyle="--", label="Total Active Power")
-        #
-        # plt.xlim(tempMin - 50, tempMax + 50)
-        # gongLvTu.set_xlabel('generetor speed[rpm]')
-        # gongLvTu.set_ylabel('[kW]')
-        # gongLvTu.legend()
-        # print(iGenRpm_1)
-        # print(iTotalAPower_1)
-        # print("tempMax = %s" %tempMax)
-        # # 标注额定点
-        # for i in range(n - 1):
-        #     gongLvTu.scatter(iGenRpm_1[i], (iStatorAPower_1[i]), s=30, color='gray')
-        #     gongLvTu.scatter(iGenRpm_1[i], (iRotorAPower_1[i]), s=30, color='gray')
-        #     gongLvTu.scatter(iGenRpm_1[i], (iTotalAPower_1[i]), s=30, color='gray')
-        #
+
+        plt.figure(5)
+        gongLvTu = plt.subplot(2, 2, 1)  # 功率图
+        gongLvTu.grid(linestyle='-.', which='major')
+        gongLvTu.set_title('Scope - Power')
+
+        miloc = plt.MultipleLocator(50)
+        maloc = plt.MultipleLocator(100)
+        gongLvTu.xaxis.set_minor_locator(miloc)
+        gongLvTu.yaxis.set_minor_locator(maloc)
+        gongLvTu.grid(linestyle='-.', which='minor', linewidth=0.3, alpha=0.9)
+
+        iGenRpm_1 = iGenRpm[0:-1]
+        iQ2_1 = iQ2[0:-1]   #轴功率长期
+        iR2_1 = iR2[0:-1]   #电磁功率长期
+        iT2_1 = iT2[0:-1]
+        iU2_1 = iU2[0:-1]
+
+        plt.plot(iGenRpm_1, iQ2_1, color="red", linewidth=1.5, linestyle="-", label="Shaft Power Long Time")
+        plt.plot(iGenRpm_1, iR2_1, color="gray", linewidth=1.5, linestyle=":", label="Elec. Power Long Time")
+        plt.plot(iGenRpm_1, iT2_1, color="blue", linewidth=1.5, linestyle="-", label="Shaft Power Short Time")
+        plt.plot(iGenRpm_1, iU2_1, color="gray", linewidth=1.5, linestyle=":", label="Elec. Power Short Time")
+
+        plt.xlim(tempMin - 50, tempMax + 50)
+        #gongLvTu.set_xlabel('generetor speed[rpm]')
+        gongLvTu.set_ylabel('[kW]')
+        gongLvTu.legend()
+        print(iGenRpm_1)
+        print("tempMin = %s" %tempMin)
+        print("tempMax = %s" %tempMax)
+        # 标注额定点
+        for i in range(n - 1):
+            gongLvTu.scatter(iGenRpm_1[i], (iQ2_1[i]), s=30, color='gray')
+            gongLvTu.scatter(iGenRpm_1[i], (iR2_1[i]), s=30, color='gray')
+            gongLvTu.scatter(iGenRpm_1[i], (iT2_1[i]), s=30, color='gray')
+            gongLvTu.scatter(iGenRpm_1[i], (iU2_1[i]), s=30, color='gray')
+
+
         # ######################################################################################
-        # dianLiuTu = plt.subplot(2, 2, 2)  # 电流图
-        # dianLiuTu.set_title('Scope - Current')
-        # dianLiuTu.grid(linestyle='-.', which='major')
-        #
-        # miloc = plt.MultipleLocator(50)
-        # maloc = plt.MultipleLocator(100)
-        # dianLiuTu.xaxis.set_minor_locator(miloc)
-        # dianLiuTu.yaxis.set_minor_locator(maloc)
-        # dianLiuTu.grid(linestyle='-.', which='minor', linewidth=0.3, alpha=0.9)
-        #
-        # iStatorIrms_1 = iStatorIrms[0:-1]
-        # iGenIrmsSJ_1 = iGenIrmsSJ[0:-1]
-        # iNetIrms_1 = iNetIrms[0:-1]
-        # iGridrms_1 = iGridrms[0:-1]
-        #
-        # plt.plot(iGenRpm_1, iStatorIrms_1, color="red", linewidth=1.5, linestyle="-", label="Istator RMS")  # 定子电流
-        # plt.plot(iGenRpm_1, iGenIrmsSJ_1, color="blue", linewidth=1.5, linestyle="--", label="Irotor RMS")  # 机侧电流
-        # plt.plot(iGenRpm_1, iNetIrms_1, color="gray", linewidth=1.5, linestyle="-.", label="Ipfc RMS")  # 网侧电流
-        # plt.plot(iGenRpm_1, iGridrms_1, color="green", linewidth=1.5, linestyle=":", label="Igrid_total RMS")  # 上网电流
-        #
-        # plt.xlim(tempMin - 50, tempMax + 50)
-        # dianLiuTu.set_xlabel('generetor speed[rpm]')
-        # dianLiuTu.set_ylabel('[A]')
-        # plt.legend()
-        # # 标注额定点
-        # for i in range(n - 1):
-        #     dianLiuTu.scatter(iGenRpm_1[i], (iStatorIrms_1[i]), s=30, color='gray')
-        #     dianLiuTu.scatter(iGenRpm_1[i], (iGenIrmsSJ_1[i]), s=30, color='gray')
-        #     dianLiuTu.scatter(iGenRpm_1[i], (iNetIrms_1[i]), s=30, color='gray')
-        #     dianLiuTu.scatter(iGenRpm_1[i], (iGridrms_1[i]), s=30, color='gray')
-        #
+        dianLiuTu = plt.subplot(2, 2, 2)  # 电流图
+        dianLiuTu.set_title('Scope - Current')
+        dianLiuTu.grid(linestyle='-.', which='major')
+
+        miloc = plt.MultipleLocator(50)
+        maloc = plt.MultipleLocator(100)
+        dianLiuTu.xaxis.set_minor_locator(miloc)
+        dianLiuTu.yaxis.set_minor_locator(maloc)
+        dianLiuTu.grid(linestyle='-.', which='minor', linewidth=0.3, alpha=0.9)
+
+        iAZ_1 = iAZ2[0:-1]
+        iBA2_1 = iBA2[0:-1]
+
+        plt.plot(iGenRpm_1, iAZ_1, color="red", linewidth=1.5, linestyle="-", label="Istator RMS Long Time")  # 定子电流
+        plt.plot(iGenRpm_1, iBA2_1, color="blue", linewidth=1.5, linestyle="--", label="Istator RMS Short TIme")  # 机侧电流
+
+
+        plt.xlim(tempMin - 50, tempMax + 50)
+        #dianLiuTu.set_xlabel('generetor speed[rpm]')
+        dianLiuTu.set_ylabel('[A]')
+        plt.legend()
+        # 标注额定点
+        for i in range(n - 1):
+            dianLiuTu.scatter(iGenRpm_1[i], (iAZ_1[i]), s=30, color='gray')
+            dianLiuTu.scatter(iGenRpm_1[i], (iBA2[i]), s=30, color='gray')
+
+
         # ######################################################################################
-        # zhuanJuTu = plt.subplot(2, 2, 3)  # 转矩图
-        # zhuanJuTu.set_title('Scope - Torque')
-        # zhuanJuTu.grid(linestyle='-.', which='major')
-        #
-        # miloc = plt.MultipleLocator(50)
-        # maloc = plt.MultipleLocator(1000)
-        # zhuanJuTu.xaxis.set_minor_locator(miloc)
-        # zhuanJuTu.yaxis.set_minor_locator(maloc)
-        # zhuanJuTu.grid(linestyle='-.', which='minor', linewidth=0.3, alpha=0.9)
-        #
-        # iTorque_1 = iTorque[0:-1]
-        #
-        # plt.plot(iGenRpm_1, iTorque_1, color="red", linewidth=1.5, linestyle="-", label="Te")  # 电磁转矩
-        #
-        # plt.xlim(tempMin - 50, tempMax + 50)
-        # zhuanJuTu.set_xlabel('generetor speed[rpm]')
-        # zhuanJuTu.set_ylabel('[N.m]')
-        # plt.legend()
-        # # 标注额定点
-        # for i in range(n - 1):
-        #     zhuanJuTu.scatter(iGenRpm_1[i], (iTorque_1[i]), s=30, color='gray')
-        #
+        zhuanJuTu = plt.subplot(2, 2, 3)  #
+        zhuanJuTu.set_title('Scope - Torque')
+        zhuanJuTu.grid(linestyle='-.', which='major')
+
+        miloc = plt.MultipleLocator(50)
+        maloc = plt.MultipleLocator(1000)
+        zhuanJuTu.xaxis.set_minor_locator(miloc)
+        zhuanJuTu.yaxis.set_minor_locator(maloc)
+        zhuanJuTu.grid(linestyle='-.', which='minor', linewidth=0.3, alpha=0.9)
+
+        iP2_1 = iP2[0:-1]
+        iS2_1 = iS2[0:-1]
+
+        plt.plot(iGenRpm_1, iP2_1, color="red", linewidth=1.5, linestyle="-", label="Torque Require Long Time")  # 长期
+        plt.plot(iGenRpm_1, iS2_1, color="blue", linewidth=1.5, linestyle="-.", label="Torque Require Short Time")  # 期
+
+
+        plt.xlim(tempMin - 50, tempMax + 50)
+        zhuanJuTu.set_xlabel('generetor speed[rpm]')
+        zhuanJuTu.set_ylabel('[N.m]')
+        plt.legend()
+        # 标注额定点
+        for i in range(n - 1):
+            zhuanJuTu.scatter(iGenRpm_1[i], (iP2_1[i]), s=30, color='gray')
+            zhuanJuTu.scatter(iGenRpm_1[i], (iS2_1[i]), s=30, color='gray')
+
         # ######################################################################################
-        # dianYaTu = plt.subplot(2, 2, 4)  # 电压图
-        # dianYaTu.set_title('Scope - Rotor Voltage')
-        # dianYaTu.grid(linestyle='-.', which='major')
-        #
-        # miloc = plt.MultipleLocator(50)
-        # maloc = plt.MultipleLocator(100)
-        # dianYaTu.xaxis.set_minor_locator(miloc)
-        # dianYaTu.yaxis.set_minor_locator(maloc)
-        # dianYaTu.grid(linestyle='-.', which='minor', linewidth=0.3, alpha=0.9)
-        #
-        # iRotorVoltRMS_1 = iRotorVoltRMS[0:-1]
-        # iGenVrms_1 = iGenVrms[0:-1]
-        #
-        # # plt.plot(iGenRpm, iRotorVoltRMS, color="red", linewidth=1.5, linestyle="-", label="Vr RMS (estimate)")  # 定子电流
-        # plt.plot(iGenRpm_1, iGenVrms_1, color="red", linewidth=1.5, linestyle="-", label="Vinv RMS")  # 定子电流
-        #
-        # plt.xlim(tempMin - 50, tempMax + 50)
-        # dianYaTu.set_xlabel('generetor speed[rpm]')
-        # dianYaTu.set_ylabel('[V]')
-        # plt.legend()
-        # # 标注额定点
-        # for i in range(n - 1):
-        #     # dianYaTu.scatter(iGenRpm[i], (iRotorVoltRMS[i]), s=30, color='gray')
-        #     dianYaTu.scatter(iGenRpm_1[i], (iGenVrms_1[i]), s=30, color='gray')
-        #
-        # plt.tight_layout()
-        # # plt.savefig("fig1_4" + ".png", dpi=1000)
-        # plt.show()
-        # plt.close('all')
+        dianYaTu = plt.subplot(2, 2, 4)  # 效率图
+        dianYaTu.set_title('Scope - Efficiency & Power Factor')
+        dianYaTu.grid(linestyle='-.', which='major')
+
+        miloc = plt.MultipleLocator(50)
+        maloc = plt.MultipleLocator(100)
+        dianYaTu.xaxis.set_minor_locator(miloc)
+        dianYaTu.yaxis.set_minor_locator(maloc)
+        dianYaTu.grid(linestyle='-.', which='minor', linewidth=0.3, alpha=0.9)
+
+        iAX2_1 = iAX2[0:-1]
+        iAY2_1 = iAY2[0:-1]
+
+        plt.plot(iGenRpm_1, iAX2_1, color="red", linewidth=1.5, linestyle="-", label="Gen Effic.")  # 电机效率
+        plt.plot(iGenRpm_1, iAY2_1, color="blue", linewidth=1.5, linestyle="-", label="Power Factor")  # 电机效率
+
+        plt.xlim(tempMin - 50, tempMax + 50)
+        dianYaTu.set_xlabel('generetor speed[rpm]')
+        dianYaTu.set_ylabel('[V]')
+        plt.legend()
+        # 标注额定点
+        for i in range(n - 1):
+            dianYaTu.scatter(iGenRpm[i], (iAX2_1[i]), s=30, color='gray')
+            dianYaTu.scatter(iGenRpm_1[i], (iAY2_1[i]), s=30, color='gray')
+
+        plt.tight_layout()
+        plt.savefig("fig1_4" + ".png", dpi=1000)
+        plt.show()
+        plt.close('all')
 
     def Plot1(self):
         pass
