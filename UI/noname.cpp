@@ -91,6 +91,13 @@ SC_CALCUL::SC_CALCUL( wxWindow* parent, wxWindowID id, const wxString& title, co
 	m_GridVRMS = new wxTextCtrl( m_scrolledWindow2, wxID_ANY, wxT("690"), wxDefaultPosition, wxDefaultSize, 0 );
 	fgSizer3->Add( m_GridVRMS, 0, wxALL, 5 );
 	
+	m_staticText211 = new wxStaticText( m_scrolledWindow2, wxID_ANY, wxT("上网功率因数"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticText211->Wrap( -1 );
+	fgSizer3->Add( m_staticText211, 0, wxALL, 5 );
+	
+	m_NewPF = new wxTextCtrl( m_scrolledWindow2, wxID_ANY, wxT("-0.95"), wxDefaultPosition, wxDefaultSize, 0 );
+	fgSizer3->Add( m_NewPF, 0, wxALL, 5 );
+	
 	m_Vdc2111 = new wxStaticText( m_scrolledWindow2, wxID_ANY, wxT("(选填)发电机额定电流[A]"), wxDefaultPosition, wxDefaultSize, 0 );
 	m_Vdc2111->Wrap( -1 );
 	fgSizer3->Add( m_Vdc2111, 0, wxALL, 5 );
@@ -321,14 +328,14 @@ SC_CALCUL::SC_CALCUL( wxWindow* parent, wxWindowID id, const wxString& title, co
 	m_W = new wxTextCtrl( m_scrolledWindow1, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
 	fgSizer4->Add( m_W, 0, wxALL, 5 );
 	
-	m_staticTextQ = new wxStaticText( m_scrolledWindow1, wxID_ANY, wxT("Q:发电机轴功率（长期）[kW]"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticTextQ = new wxStaticText( m_scrolledWindow1, wxID_ANY, wxT("Q:发电机轴功率[kW]（长期）"), wxDefaultPosition, wxDefaultSize, 0 );
 	m_staticTextQ->Wrap( -1 );
 	fgSizer4->Add( m_staticTextQ, 0, wxALL, 5 );
 	
 	m_Q = new wxTextCtrl( m_scrolledWindow1, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
 	fgSizer4->Add( m_Q, 0, wxALL, 5 );
 	
-	m_staticTextR = new wxStaticText( m_scrolledWindow1, wxID_ANY, wxT("R:发电机电磁功率（长期）[kW]"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticTextR = new wxStaticText( m_scrolledWindow1, wxID_ANY, wxT("R:发电机电磁功率[kW]（长期）"), wxDefaultPosition, wxDefaultSize, 0 );
 	m_staticTextR->Wrap( -1 );
 	fgSizer4->Add( m_staticTextR, 0, wxALL, 5 );
 	
@@ -405,6 +412,34 @@ SC_CALCUL::SC_CALCUL( wxWindow* parent, wxWindowID id, const wxString& title, co
 	m_AM = new wxTextCtrl( m_scrolledWindow1, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
 	fgSizer4->Add( m_AM, 0, wxALL, 5 );
 	
+	m_staticTextAZ = new wxStaticText( m_scrolledWindow1, wxID_ANY, wxT("AZ:定子电流[Arms]（长期）"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticTextAZ->Wrap( -1 );
+	fgSizer4->Add( m_staticTextAZ, 0, wxALL, 5 );
+	
+	m_AZ = new wxTextCtrl( m_scrolledWindow1, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
+	fgSizer4->Add( m_AZ, 0, wxALL, 5 );
+	
+	m_staticTextBB = new wxStaticText( m_scrolledWindow1, wxID_ANY, wxT("BB:上网有功电流[Arms]（长期）"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticTextBB->Wrap( -1 );
+	fgSizer4->Add( m_staticTextBB, 0, wxALL, 5 );
+	
+	m_BB = new wxTextCtrl( m_scrolledWindow1, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
+	fgSizer4->Add( m_BB, 0, wxALL, 5 );
+	
+	m_staticTextBC = new wxStaticText( m_scrolledWindow1, wxID_ANY, wxT("BC:上网总电流[Arms]（长期）"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticTextBC->Wrap( -1 );
+	fgSizer4->Add( m_staticTextBC, 0, wxALL, 5 );
+	
+	m_BC = new wxTextCtrl( m_scrolledWindow1, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
+	fgSizer4->Add( m_BC, 0, wxALL, 5 );
+	
+	m_staticTextBD = new wxStaticText( m_scrolledWindow1, wxID_ANY, wxT("BD:上网无功功率[kVar]（长期）"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticTextBD->Wrap( -1 );
+	fgSizer4->Add( m_staticTextBD, 0, wxALL, 5 );
+	
+	m_BD = new wxTextCtrl( m_scrolledWindow1, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
+	fgSizer4->Add( m_BD, 0, wxALL, 5 );
+	
 	m_staticText441 = new wxStaticText( m_scrolledWindow1, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
 	m_staticText441->Wrap( -1 );
 	fgSizer4->Add( m_staticText441, 0, wxALL, 5 );
@@ -413,14 +448,14 @@ SC_CALCUL::SC_CALCUL( wxWindow* parent, wxWindowID id, const wxString& title, co
 	m_staticText442->Wrap( -1 );
 	fgSizer4->Add( m_staticText442, 0, wxALL, 5 );
 	
-	m_staticTextT = new wxStaticText( m_scrolledWindow1, wxID_ANY, wxT("T:发电机轴功率（短时）[W]"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticTextT = new wxStaticText( m_scrolledWindow1, wxID_ANY, wxT("T:发电机轴功率[kW]（短时）"), wxDefaultPosition, wxDefaultSize, 0 );
 	m_staticTextT->Wrap( -1 );
 	fgSizer4->Add( m_staticTextT, 0, wxALL, 5 );
 	
 	m_T = new wxTextCtrl( m_scrolledWindow1, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
 	fgSizer4->Add( m_T, 0, wxALL, 5 );
 	
-	m_staticTextU = new wxStaticText( m_scrolledWindow1, wxID_ANY, wxT("U:发电机电磁功率（短时）[W]"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticTextU = new wxStaticText( m_scrolledWindow1, wxID_ANY, wxT("U:发电机电磁功率[kW]（短时）"), wxDefaultPosition, wxDefaultSize, 0 );
 	m_staticTextU->Wrap( -1 );
 	fgSizer4->Add( m_staticTextU, 0, wxALL, 5 );
 	
@@ -505,35 +540,35 @@ SC_CALCUL::SC_CALCUL( wxWindow* parent, wxWindowID id, const wxString& title, co
 	m_staticText4411->Wrap( -1 );
 	fgSizer4->Add( m_staticText4411, 0, wxALL, 5 );
 	
-	m_staticTextAS = new wxStaticText( m_scrolledWindow1, wxID_ANY, wxT("AS:功率验证（长期）"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticTextAS = new wxStaticText( m_scrolledWindow1, wxID_ANY, wxT("AS:功率验证[W]（长期）"), wxDefaultPosition, wxDefaultSize, 0 );
 	m_staticTextAS->Wrap( -1 );
 	fgSizer4->Add( m_staticTextAS, 0, wxALL, 5 );
 	
 	m_AS = new wxTextCtrl( m_scrolledWindow1, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
 	fgSizer4->Add( m_AS, 0, wxALL, 5 );
 	
-	m_staticTextAT = new wxStaticText( m_scrolledWindow1, wxID_ANY, wxT("AT:功率偏差（长期）"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticTextAT = new wxStaticText( m_scrolledWindow1, wxID_ANY, wxT("AT:功率偏差[W]（长期）"), wxDefaultPosition, wxDefaultSize, 0 );
 	m_staticTextAT->Wrap( -1 );
 	fgSizer4->Add( m_staticTextAT, 0, wxALL, 5 );
 	
 	m_AT = new wxTextCtrl( m_scrolledWindow1, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
 	fgSizer4->Add( m_AT, 0, wxALL, 5 );
 	
-	m_staticTextAU = new wxStaticText( m_scrolledWindow1, wxID_ANY, wxT("AU:定子铜耗（电流计算方法）"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticTextAU = new wxStaticText( m_scrolledWindow1, wxID_ANY, wxT("AU:定子铜耗（电流计算方法）[W]"), wxDefaultPosition, wxDefaultSize, 0 );
 	m_staticTextAU->Wrap( -1 );
 	fgSizer4->Add( m_staticTextAU, 0, wxALL, 5 );
 	
 	m_AU = new wxTextCtrl( m_scrolledWindow1, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
 	fgSizer4->Add( m_AU, 0, wxALL, 5 );
 	
-	m_staticTextAV = new wxStaticText( m_scrolledWindow1, wxID_ANY, wxT("AV:转差功率(转子铜耗）"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticTextAV = new wxStaticText( m_scrolledWindow1, wxID_ANY, wxT("AV:转差功率(转子铜耗）[W]"), wxDefaultPosition, wxDefaultSize, 0 );
 	m_staticTextAV->Wrap( -1 );
 	fgSizer4->Add( m_staticTextAV, 0, wxALL, 5 );
 	
 	m_AV = new wxTextCtrl( m_scrolledWindow1, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
 	fgSizer4->Add( m_AV, 0, wxALL, 5 );
 	
-	m_staticTextAW = new wxStaticText( m_scrolledWindow1, wxID_ANY, wxT("AW:转差功率(转子铜耗-电流计算方法）"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticTextAW = new wxStaticText( m_scrolledWindow1, wxID_ANY, wxT("AW:转差功率(转子铜耗-电流计算方法）[W]"), wxDefaultPosition, wxDefaultSize, 0 );
 	m_staticTextAW->Wrap( -1 );
 	fgSizer4->Add( m_staticTextAW, 0, wxALL, 5 );
 	

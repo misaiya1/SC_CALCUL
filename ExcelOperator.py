@@ -144,7 +144,6 @@ class MyFrame(SC_CALCUL):
         self.m_grid2.SetCellValue(2, 17, '-21300')
         self.m_grid2.SetCellValue(2, 18, '-20250')
 
-
         self.m_grid2.SetCellValue(3, 10, '1.90')
         self.m_grid2.SetCellValue(3, 11, '1.80')
         self.m_grid2.SetCellValue(3, 12, '1.70')
@@ -154,7 +153,6 @@ class MyFrame(SC_CALCUL):
         self.m_grid2.SetCellValue(3, 16, '1.35')
         self.m_grid2.SetCellValue(3, 17, '1.25')
         self.m_grid2.SetCellValue(3, 18, '1.20')
-
 
         self.statusbar = self.CreateStatusBar()
         self.Centre()
@@ -192,40 +190,39 @@ class MyFrame(SC_CALCUL):
         self.PlotAll()
 
     def m_buttonOnButtonClick2(self, event):
-        print("press button2")   #报告生成
+        print("press button2")  # 报告生成
         self.DoWork(1)
         self.Plot1()
         self.Plot2()
         self.Plot3()
-        self.Plot_Var_Abili(0)
+
         ###################################################################报错
-        # self.Docu()
-        # self.statusbar.SetStatusText('Report Generate at , %s ' % wx.Now())
-        # dlg = wx.MessageDialog(None, u"报告已生成，请确认", u"完成",
-        #                        wx.YES_DEFAULT | wx.ICON_QUESTION)
-        # if dlg.ShowModal() == wx.ID_YES:
-        #     self.Close(True)
-        # dlg.Destroy()
+        self.DocuReport()
+        self.statusbar.SetStatusText('Report Generate at , %s ' % wx.Now())
+        dlg = wx.MessageDialog(None, u"报告已生成，请确认", u"完成",
+                               wx.YES_DEFAULT | wx.ICON_QUESTION)
+        if dlg.ShowModal() == wx.ID_YES:
+            self.Close(True)
+        dlg.Destroy()
         ###################################################################不报错
 
-        try:
-            self.Docu()
-            self.statusbar.SetStatusText('Report Generate at , %s ' % wx.Now())
-            dlg = wx.MessageDialog(None, u"报告已生成，请确认", u"完成", wx.YES_DEFAULT | wx.ICON_QUESTION)
-            if dlg.ShowModal() == wx.ID_YES:
-                self.Close(True)
-            dlg.Destroy()
-        except:
-            dlg = wx.MessageDialog(None, u"请先关闭生成物", u"完成", wx.YES_DEFAULT | wx.ICON_QUESTION)
-            if dlg.ShowModal() == wx.ID_YES:
-                self.Close(True)
-            dlg.Destroy()
+        # try:
+        #     self.DocuReport()
+        #     self.statusbar.SetStatusText('Report Generate at , %s ' % wx.Now())
+        #     dlg = wx.MessageDialog(None, u"报告已生成，请确认", u"完成", wx.YES_DEFAULT | wx.ICON_QUESTION)
+        #     if dlg.ShowModal() == wx.ID_YES:
+        #         self.Close(True)
+        #     dlg.Destroy()
+        # except:
+        #     dlg = wx.MessageDialog(None, u"请先关闭生成物", u"完成", wx.YES_DEFAULT | wx.ICON_QUESTION)
+        #     if dlg.ShowModal() == wx.ID_YES:
+        #         self.Close(True)
+        #     dlg.Destroy()
 
     def m_buttonOnButtonClick3(self, event):
         print("press button3")  # 无功边界
         self.DoWork(1)
 
-        self.Plot_Var_Abili(1)
 
     def mOnMenuSelection2(self, event):
         dlg = wx.MessageDialog(None,
@@ -259,7 +256,7 @@ class MyFrame(SC_CALCUL):
 
         # input part
         global pp, NetFreq, TongBuZhuanSu, StatorRePower, RotorOpenVoltage, GenRpm, XiaoLv, GridVRMS
-        global Xm, Xs, Xr, Rs, Rr, Vpp, Xm__Xss
+        global Xm, Xs, Xr, Rs, Rr, Vpp, Xm__Xss, NetPF
 
         pp = float(self.m_pp.GetValue())  # pp
         A2 = pp
@@ -275,6 +272,8 @@ class MyFrame(SC_CALCUL):
 
         GridVRMS = float(self.m_GridVRMS.GetValue()) * netVotGain  # 电网电压
         D5 = GridVRMS
+
+        NetPF = float(self.m_NewPF.GetValue())  # 电网电压
 
         RateGenCurrent = float(self.m_RateGenCurrent.GetValue())  # 发电机额定电流A
         E2 = RateGenCurrent
@@ -329,7 +328,7 @@ class MyFrame(SC_CALCUL):
         print('Lm  %f' % Lm)
         print('======================================')
         ############################################################################
-        XiaoLv = float(self.m_XiaoLv.GetValue())  # 效率
+        XiaoLv = float(self.m_XiaoLv.GetValue())  # 变流器效率
         M2 = XiaoLv
 
         NetFreq = float(self.m_hz.GetValue())  # 电网频率
@@ -365,7 +364,7 @@ class MyFrame(SC_CALCUL):
 
         ###########################################################################
 
-        global iGenRpm, iTorqueLongTime, iTorqueShortTime,iPsi, tempMin, tempMax, n
+        global iGenRpm, iTorqueLongTime, iTorqueShortTime, iPsi, tempMin, tempMax, n
         tempMin = 1e6
         tempMax = 0
         tempLeft = 0
@@ -396,7 +395,7 @@ class MyFrame(SC_CALCUL):
         iTorqueShortTime = []
         iPsi = []
         for i in range(m):
-            if (self.m_grid2.GetCellValue(0, i) == '') :
+            if (self.m_grid2.GetCellValue(0, i) == ''):
                 pass
                 # print('empty %s' % i)
             else:
@@ -427,7 +426,7 @@ class MyFrame(SC_CALCUL):
                     tempLeft = temp1  # 刷新最小值
                     tempLeft1 = temp2
                     tempLeft2 = temp3
-                    tempLeft3  = temp4
+                    tempLeft3 = temp4
 
                 if temp1 > GenRpm and temp1 <= tempRight:
                     tempRight = temp1  # 刷新最大值
@@ -482,7 +481,7 @@ class MyFrame(SC_CALCUL):
         n = n + 1
         ##########################################################################作图
         global iO2, iP2, iQ2, iR2, iS2, iT2, iU2, iV2, iW2, iX2, iY2, iZ2
-        global iAZ2, iBA2,iAX2, iAY2#, iS2, iT2, iU2, iV2, iW2, iX2, iY2, iZ2
+        global iAX2, iAY2, iAZ2, iBA2, iBB2, iBC2, iBD2
 
         iO2 = [0 for i in range(n)]
         iO2 = iGenRpm
@@ -526,6 +525,9 @@ class MyFrame(SC_CALCUL):
         iAY2 = [0 for i in range(n)]
         iAZ2 = [0 for i in range(n)]
         iBA2 = [0 for i in range(n)]
+        iBB2 = [0 for i in range(n)]
+        iBC2 = [0 for i in range(n)]
+        iBD2 = [0 for i in range(n)]
 
         # O:RPM-- P:Long-- Q:Pmlong-- R:PeLongAD--- S:Short--  T:Pmshort--  U:PeShortAE---  V:psi--  W:isd0--  X:isqLong--  Y:isqShort--  Z:irqLong--
         # AA:isqShort--  AB:zcjplLong--  AC:zcjplShort--  AD:WgenLong--  AE:WgenShort--  AF:zclLong--  AG:zclShort--  AH:GenHzLong--  AI:GenHzShort--
@@ -536,11 +538,9 @@ class MyFrame(SC_CALCUL):
             iQ2[i] = iO2[i] * 2 * 3.14 / 60 * iP2[i]
             iT2[i] = iO2[i] * 2 * 3.14 / 60 * iS2[i]
 
-
             iV2[i] = D2 / 1.732 * 1.414 / 2 / pi / B2
             if iPsi[i] != 0:
                 iV2[i] = iPsi[i]
-
 
             iW2[i] = iV2[i] / Lm
             iX2[i] = 2 * iP2[i] * Lrr / 3 / pp / Lm / iV2[i]
@@ -580,24 +580,22 @@ class MyFrame(SC_CALCUL):
             iAX2[i] = 1 - (iAU2[i] + iAW2[i]) / abs(iQ2[i])
             iAY2[i] = abs(iAS2[i]) / ((iW2[i] ** 2 + iX2[i] ** 2) ** 0.5 / 1.414 * iAL2[i] * 3)
 
-            iAZ2[i] = (iW2[i]**2 + iX2[i]**2)**0.5 / 1.414
+            iAZ2[i] = (iW2[i] ** 2 + iX2[i] ** 2) ** 0.5 / 1.414
             iBA2[i] = (iW2[i] ** 2 + iY2[i] ** 2) ** 0.5 / 1.414
 
+            CVTeffi = XiaoLv
+            Ug = GridVRMS
+
+            iBB2[i] = abs((iR2[i] * CVTeffi) / Ug / 1.732)
+            iBC2[i] = abs(iBB2[i] / NetPF)
+            iBD2[i] = (1 - NetPF ** 2) ** 0.5 / NetPF * iR2[i]
 
             iQ2[i] = iQ2[i] * 1E-3
             iR2[i] = iR2[i] * 1E-3
             iT2[i] = iT2[i] * 1E-3
             iU2[i] = iU2[i] * 1E-3
 
-
-
-        # output part
-        # print('Torque = %f' % iTorque[-1])
-        # print('iU2 %f' % iU2[-1])
-        # print('iV2 %f' % iV2[-1])
-        # print('ZhuanChaLv iQ2 %f' % iQ2[-1])
-        # print('iW2 %f' % iW2[-1])
-        # print('iX2 %f' % iX2[-1])
+            iBD2[i] = iBD2[i] * 1E-3
 
         self.m_V.Value = ("%.3f" % iV2[-1])
         self.m_W.Value = ("%.3f" % iW2[-1])
@@ -634,9 +632,13 @@ class MyFrame(SC_CALCUL):
         self.m_AW.Value = ("%.3f" % (iAW2[-1] * 1E0))
         self.m_AX.Value = ("%.4f" % iAX2[-1])
         self.m_AY.Value = ("%.4f" % iAY2[-1])
+        self.m_AZ.Value = ("%.4f" % iAZ2[-1])
+
+        self.m_BB.Value = ("%.4f" % iBB2[-1])
+        self.m_BC.Value = ("%.4f" % iBC2[-1])
+        self.m_BD.Value = ("%.4f" % iBD2[-1])
 
         print("------------")
-
 
         ######################################################################################
 
@@ -654,8 +656,8 @@ class MyFrame(SC_CALCUL):
         gongLvTu.grid(linestyle='-.', which='minor', linewidth=0.3, alpha=0.9)
 
         iGenRpm_1 = iGenRpm[0:-1]
-        iQ2_1 = iQ2[0:-1]   #轴功率长期
-        iR2_1 = iR2[0:-1]   #电磁功率长期
+        iQ2_1 = iQ2[0:-1]  # 轴功率长期
+        iR2_1 = iR2[0:-1]  # 电磁功率长期
         iT2_1 = iT2[0:-1]
         iU2_1 = iU2[0:-1]
 
@@ -665,19 +667,18 @@ class MyFrame(SC_CALCUL):
         plt.plot(iGenRpm_1, iU2_1, color="gray", linewidth=1.5, linestyle=":", label="Elec. Power Short Time")
 
         plt.xlim(tempMin - 50, tempMax + 50)
-        #gongLvTu.set_xlabel('generetor speed[rpm]')
+        # gongLvTu.set_xlabel('generetor speed[rpm]')
         gongLvTu.set_ylabel('[kW]')
         gongLvTu.legend()
         print(iGenRpm_1)
-        print("tempMin = %s" %tempMin)
-        print("tempMax = %s" %tempMax)
+        print("tempMin = %s" % tempMin)
+        print("tempMax = %s" % tempMax)
         # 标注额定点
         for i in range(n - 1):
             gongLvTu.scatter(iGenRpm_1[i], (iQ2_1[i]), s=30, color='gray')
             gongLvTu.scatter(iGenRpm_1[i], (iR2_1[i]), s=30, color='gray')
             gongLvTu.scatter(iGenRpm_1[i], (iT2_1[i]), s=30, color='gray')
             gongLvTu.scatter(iGenRpm_1[i], (iU2_1[i]), s=30, color='gray')
-
 
         # ######################################################################################
         dianLiuTu = plt.subplot(2, 2, 2)  # 电流图
@@ -692,20 +693,21 @@ class MyFrame(SC_CALCUL):
 
         iAZ_1 = iAZ2[0:-1]
         iBA2_1 = iBA2[0:-1]
+        iBC2_1 = iBC2[0:-1]
 
         plt.plot(iGenRpm_1, iAZ_1, color="red", linewidth=1.5, linestyle="-", label="Istator RMS Long Time")  # 定子电流
-        plt.plot(iGenRpm_1, iBA2_1, color="blue", linewidth=1.5, linestyle="--", label="Istator RMS Short TIme")  # 机侧电流
-
+        plt.plot(iGenRpm_1, iBA2_1, color="blue", linewidth=1.5, linestyle="--", label="Istator RMS Short TIme")
+        plt.plot(iGenRpm_1, iBC2_1, color="pink", linewidth=1.5, linestyle="-.", label="Igrid RMS")
 
         plt.xlim(tempMin - 50, tempMax + 50)
-        #dianLiuTu.set_xlabel('generetor speed[rpm]')
+        # dianLiuTu.set_xlabel('generetor speed[rpm]')
         dianLiuTu.set_ylabel('[A]')
         plt.legend()
         # 标注额定点
         for i in range(n - 1):
             dianLiuTu.scatter(iGenRpm_1[i], (iAZ_1[i]), s=30, color='gray')
             dianLiuTu.scatter(iGenRpm_1[i], (iBA2[i]), s=30, color='gray')
-
+            dianLiuTu.scatter(iGenRpm_1[i], (iBC2[i]), s=30, color='gray')
 
         # ######################################################################################
         zhuanJuTu = plt.subplot(2, 2, 3)  #
@@ -723,7 +725,6 @@ class MyFrame(SC_CALCUL):
 
         plt.plot(iGenRpm_1, iP2_1, color="red", linewidth=1.5, linestyle="-", label="Torque Require Long Time")  # 长期
         plt.plot(iGenRpm_1, iS2_1, color="blue", linewidth=1.5, linestyle="-.", label="Torque Require Short Time")  # 期
-
 
         plt.xlim(tempMin - 50, tempMax + 50)
         zhuanJuTu.set_xlabel('generetor speed[rpm]')
@@ -753,7 +754,7 @@ class MyFrame(SC_CALCUL):
 
         plt.xlim(tempMin - 50, tempMax + 50)
         dianYaTu.set_xlabel('generetor speed[rpm]')
-        dianYaTu.set_ylabel('[V]')
+        dianYaTu.set_ylabel('[%]')
         plt.legend()
         # 标注额定点
         for i in range(n - 1):
@@ -875,175 +876,10 @@ class MyFrame(SC_CALCUL):
         # plt.savefig(outputFolderName + r"\fig_Current.png", dpi=1000)
         # plt.close(3)
 
-    def Plot_Var_Abili(self, show):  # 阴影
-        pass
-        # font = {'family': 'SimHei',
-        #         'weight': 'bold',
-        #         'size': '10'}
-        # plt.rc('font', **font)  # 步骤一（设置字体的更多属性）
-        # plt.rc('axes', unicode_minus=False)  # 步骤二（解决坐标轴负数的负号显示问题）
-        #
-        # fig, ax = plt.subplots()  # 无功图
-        #
-        # """:type:HTTPResponse"""
-        #
-        # global es, er, tempJWJX, data, Pmax, Qmax, Puplim, Quplim, Ppoint, Qpoint
-        # Ppoint = float(self.m_textPPP.GetValue()) * 1000
-        # Qpoint = float(self.m_textQQQ.GetValue()) * 1000
-        #
-        # xss = Xs + Xm  # 定子电抗
-        # print("xss = %.3f" % xss)
-        # # tempJWJX = -Us**2 / xss (Vpp 为相电压峰值)
-        # tempJWJX = -3 * ((Vpp / 1.414) ** 2) / xss  # Q = 3 * Urms * Urms / R
-        #
-        # es = 3 * Vpp / 1.414 * float(self.m_SetSatMaxI.GetValue())  # 定子电流极限圆半径
-        # er = 3 * Vpp / 1.414 * (
-        #         float(self.m_SetGenCurMax1.GetValue()) * RotorOpenVoltage / GridVRMS) * Xm__Xss  # 转子电流极限圆半径
-        # print("es = %.3f" % es)
-        # print("er = %.3f" % er)
-        #
-        # # 输入无功求有功最大值
-        # Puplim = min(np.sqrt(es ** 2 - Qpoint ** 2), np.sqrt(er ** 2 - (Qpoint - tempJWJX) ** 2))
-        # # 输入有功求无功最大值
-        # Quplim = min(np.sqrt(es ** 2 - Ppoint ** 2), np.sqrt(er ** 2 - Ppoint ** 2) + tempJWJX)
-        #
-        # print("PQUP = ")
-        # print(Puplim, Quplim)
-        #
-        # # x轴
-        # x = np.linspace(-max(es, er) - abs(tempJWJX) - 0, max(es, er) + abs(tempJWJX) + 0, 20000)  # x 轴范围
-        #
-        # ys = func_cycle(x, es, 0, 0)
-        # yr = func_cycle(x, er, tempJWJX, 0)
-        #
-        # liney = np.linspace(0, er, 200)
-        # linex = ref = np.ones(200) * tempJWJX
-        #
-        # ax.plot(x, ys, color="red", linewidth=1.5, linestyle="-.", label="定子电流极限")
-        # ax.plot(x, yr, color="blue", linewidth=1.5, linestyle="-.", label="转子电流极限")
-        # ax.plot(linex, liney, color="green", linewidth=1.5, linestyle="-.", label="静态稳定极限")
-        # tempStr = "Qmin = "
-        # tempStr = tempStr + "%.3f" % (tempJWJX / 1000)
-        # tempStr = tempStr + "[kVar]"
-        #
-        # ax.annotate(tempStr, xy=(tempJWJX, 0 + er * 0.8), xytext=(tempJWJX * 5, -tempJWJX / 2 + er), color='g',
-        #             arrowprops=dict(facecolor='green', arrowstyle="->", connectionstyle="arc3,rad=.2"),
-        #             )
-        #
-        # # tempStr = "Pmax = "
-        # # tempStr = tempStr + "%.3f" % (Puplim / 1000)
-        # # tempStr = tempStr + "[kW]\n"
-        # # tempStr = tempStr+ "When Q = %.0f [kVar]"% (Qpoint / 1000)
-        # #
-        # # ax.annotate(tempStr, xy=(Qpoint, Puplim), xytext=(Qpoint-3E6, Puplim + 0), color='g',
-        # #             arrowprops=dict(facecolor='green', arrowstyle="->", connectionstyle="arc3,rad=.2"),
-        # #             )
-        # #
-        # # tempStr = "Qmax = "
-        # # tempStr = tempStr + "%.3f" % (Quplim / 1000)
-        # # tempStr = tempStr + "[kVar]\n"
-        # # tempStr = tempStr+ "When P = %.0f [kW]"% (Ppoint / 1000)
-        # # ax.annotate(tempStr, xy=(Quplim, Ppoint), xytext=(Quplim + 0.2E6, 0), color='g',
-        # #             arrowprops=dict(facecolor='green', arrowstyle="->", connectionstyle="arc3,rad=.2"),
-        # #             )
-        #
-        # self.m_textQQQUUU.Value = ("%.3f" % (Quplim / 1000))
-        # self.m_textQQQDDD.Value = ("%.3f" % (tempJWJX / 1000))  #
-        #
-        # self.m_textPPPUUU.Value = ("%.3f" % (Puplim / 1000))
-        # self.m_textPPPDDD.Value = ("%.3f" % 0)  #
-        #
-        # plt.legend()
-        # ##########################################################
-        #
-        # # 显示x y
-        # font = {'family': 'SimHei',
-        #         'weight': 'bold',
-        #         'size': '16'}
-        # plt.rc('font', **font)  # 步骤一（设置字体的更多属性）
-        # plt.rc('axes', unicode_minus=False)  # 步骤二（解决坐标轴负数的负号显示问题）
-        # plt.figtext(0.9, 0.03, '$Q$')
-        # plt.figtext(0.1, 0.9, '$P$')
-        # font = {'family': 'SimHei',
-        #         'weight': 'bold',
-        #         'size': '10'}
-        # plt.rc('font', **font)  # 步骤一（设置字体的更多属性）
-        # plt.rc('axes', unicode_minus=False)  # 步骤二（解决坐标轴负数的负号显示问题）
-        #
-        # # 设置x轴上的显示
-        #
-        # ixy = []
-        # Pmax = 0
-        # Qmax = 0
-        # # 将x y转为坐标对
-        # for i in range(len(x)):
-        #     if (np.isnan(ys[i])) or (np.isnan(yr[i])):
-        #         pass
-        #     else:
-        #         if x[i] > tempJWJX:
-        #             ixy.append([x[i], min(ys[i], yr[i])])
-        #             Pmax = max(Pmax, min(ys[i], yr[i]))
-        #             Qmax = max(Qmax, x[i])
-        #
-        # # ixy = zip(ix, iy)
-        #
-        # # 生成阴影区域的坐标对
-        # data = ixy
-        # print(data[0])
-        # data[0][0] = tempJWJX
-        # data[0][1] = 0
-        #
-        # data.append([min((er + tempJWJX), es), 0])
-        #
-        # # 寻找data列表Y值最高点。
-        #
-        # # 生成阴影部分 其实是多边形
-        # poly = Polygon(data, facecolor='0.9', edgecolor='0.1', label="定子电流极限")
-        #
-        # ax.add_patch(poly)
-        # # ax.text(0, 30, r"$\int_a^b f(x)\mathrm{d}x$",
-        # #         horizontalalignment='center', fontsize=10)
-        # ax.text(er / 2 + tempJWJX, er / 5, r"定子有无功能力范围",
-        #         horizontalalignment='center', fontsize=16)
-        #
-        # Pmax2 = data
-        # Qmax2 = data
-        #
-        # Qmax2 = (sorted(ixy, key=lambda x: x[0]))[-1]
-        # Pmax2 = (sorted(ixy, key=lambda x: x[1]))[-1]
-        #
-        # ax.annotate('Pmax = %.1f' % Pmax2[1], xy=Pmax2, xytext=np.sum([Pmax2, [0, -5E5]], axis=0), color='g',
-        #             arrowprops=dict(facecolor='green', arrowstyle="->", connectionstyle="arc3,rad=.2"),
-        #             )
-        # ax.annotate('Qmax = %.1f' % Qmax2[0], xy=Qmax2, xytext=np.sum([Qmax2, [-1E6, -3E5]], axis=0), color='g',
-        #             arrowprops=dict(facecolor='green', arrowstyle="->", connectionstyle="arc3,rad=.2"),
-        #             )
-        #
-        # #
-        # # # 显示函数
-        # # x_math = (a + b) / 2
-        # # y_math = 50
-        # #
-        # # # horizontalalignment水平对齐
-        # # plt.text(x_math, y_math, r'$-(x-2)*(x+3)+70$', fontsize=10, horizontalalignment='center')
-        # #
-        # # 使用显示风格
-        #
-        # ax.set_xlabel('定子输出无功功率[Var]')
-        # ax.set_ylabel('定子输出有功功率[W]')
-        #
-        # plt.style.use('seaborn-paper')
-        # plt.grid(True)
-        # plt.axis("equal")
-        # plt.tight_layout()
-        # plt.savefig(outputFolderName + r"\fig_VarAbi.png", dpi=1000)
-        # if show == 1:
-        #     plt.show()
-        #
-        # plt.close('all')
 
-    def Docu(self):
-        pass
+
+    def DocuReport(self):
+
         # '''save %0 data'''
         # iTotalAPower100 = iTotalAPower
         # iStatorAPower100 = iStatorAPower
@@ -1074,87 +910,93 @@ class MyFrame(SC_CALCUL):
         # iGridrms90 = list(map(abs, iGridrms))
         # iGenVrms90 = iGenVrms
         #
-        # self.DoWork(1)
-        # #####################################################################创建PPT,修改文本框
-        # print('ppt start')
-        # pptx = Presentation()
-        # for slide in pptx.slides:
-        #     # 遍历幻灯片页的所有形状
-        #     print("slide found")
-        #     for shape in slide.shapes:
-        #         print("shape found")
-        #         # 判断形状是否含有文本框，如果含有则顺序运行代码
-        #         if shape.has_text_frame:
-        #
-        #             # 获取文本框
-        #             text_frame = shape.text_frame
-        #             # 遍历文本框中的所有段落
-        #             for paragraph in text_frame.paragraphs:
-        #                 paragraph.text = paragraph.text.replace('X1', str(format(Xs, '.5f')) + '[ohm]')
-        #                 paragraph.text = paragraph.text.replace('X2', str(format(Xr, '.5f')) + '[ohm]')
-        #                 paragraph.text = paragraph.text.replace('R1', str(format(Rs, '.5f')) + '[ohm]')
-        #                 paragraph.text = paragraph.text.replace('R2', str(format(Rr, '.5f')) + '[ohm]')
-        #
-        #                 paragraph.text = paragraph.text.replace('XNN', str(format(Xm, '.5f')) + '[ohm]')
-        #                 paragraph.font.size = Pt(22)
-        #
-        # #####################################################################保存PPT,另存为png
-        # save_ppt = outputFolderName + r'\fig_x.pptx'
-        # pptx.save(save_ppt)
-        #
-        # utils.save_pptx_as_png(outputFolderName, save_ppt, overwrite_folder=True)
-        # fig_x_dir = outputFolderName + r'\幻灯片1.PNG'
-        # print('ppt end')
-        # #####################################################################创建word
-        # document = Document()
-        # # print(dir(document))
-        #
-        # document.styles['Normal'].font.name = '楷体'
-        #
-        # document.styles['Normal']._element.rPr.rFonts.set(qn('w:eastAsia'), u'楷体')
-        # # document.styles['Normal'].font.size = Pt(12)
-        # document.add_heading('鼠笼风电机组电驱系统设计计算报告', 0)
-        #
-        # p = document.add_paragraph('生成时间   ' + datetime.datetime.now().strftime('%Y.%m.%d  %H:%M'))
-        # # p.add_run('bold').bold = True
-        # # p.add_run(' and some ')
-        # # p.add_run('italic.').italic = True
-        #
-        # document.add_heading('输入-电机参数', level=1)
-        # # document.add_paragraph(
-        # #      '极对数', style='List Number'
-        # #  )
-        # ###################参数表######################
-        # table_para = document.add_table(rows=12, cols=2)
-        # # print(dir(table_para))
-        # hdr_cells = table_para.columns[0].cells
-        #
-        # hdr_cells[0].text = ''
-        # hdr_cells[1].text = '极对数'
-        # hdr_cells[2].text = '转子开口电压[Vrms]'
-        # hdr_cells[3].text = '电网电压[Vrms]'
-        # hdr_cells[4].text = '电网频率[Hz]'
-        # hdr_cells[5].text = '定子无功功率[kW]'
-        # hdr_cells[6].text = '变流器效率'
-        # hdr_cells[7].text = '直流母线电压[V]'
-        # hdr_cells[8].text = '网侧变流器最大电流[A]'
-        # hdr_cells[9].text = '机侧变流器最大电流[A]'
-        # hdr_cells[10].text = '发电机定子最大电流[A]'
-        # hdr_cells[11].text = '变流器容量[kW]'
-        #
-        # para_cells = table_para.columns[1].cells
-        # para_cells[0].text = ''
-        # para_cells[1].text = self.m_pp.GetValue()
-        # para_cells[2].text = self.m_RotorOpen.GetValue()
-        # para_cells[3].text = self.m_GridVRMS.GetValue()
-        # para_cells[4].text = self.m_hz.GetValue()
-        # para_cells[5].text = self.m_StatorRePower.GetValue()
-        # para_cells[6].text = self.m_XiaoLv.GetValue()
-        # para_cells[7].text = self.m_Vdc.GetValue()
-        # para_cells[8].text = self.m_SetNetCurMax.GetValue()
-        # para_cells[9].text = self.m_SetGenCurMax1.GetValue()
-        # para_cells[10].text = self.m_SetSatMaxI.GetValue()
-        # para_cells[11].text = self.m_GoNetPower.GetValue()
+        self.DoWork(1)
+        #####################################################################创建PPT,修改文本框
+        print('ppt start')
+        pptx = Presentation('abcd.pptx')
+        for slide in pptx.slides:
+            # 遍历幻灯片页的所有形状
+            print("slide found")
+            for shape in slide.shapes:
+                print("shape found")
+                # 判断形状是否含有文本框，如果含有则顺序运行代码
+                if shape.has_text_frame:
+
+                    # 获取文本框
+                    text_frame = shape.text_frame
+                    # 遍历文本框中的所有段落
+                    for paragraph in text_frame.paragraphs:
+                        paragraph.text = paragraph.text.replace('X1', str(format(Xs, '.5f')) + '[ohm]')
+                        paragraph.text = paragraph.text.replace('X2', str(format(Xr, '.5f')) + '[ohm]')
+                        paragraph.text = paragraph.text.replace('R1', str(format(Rs, '.5f')) + '[ohm]')
+                        paragraph.text = paragraph.text.replace('R2', str(format(Rr, '.5f')) + '[ohm]')
+
+                        paragraph.text = paragraph.text.replace('XNN', str(format(Xm, '.5f')) + '[ohm]')
+                        paragraph.font.size = Pt(22)
+
+        #####################################################################保存PPT,另存为png
+        save_ppt = outputFolderName + r'\fig_x.pptx'
+        pptx.save(save_ppt)
+
+        utils.save_pptx_as_png(outputFolderName, save_ppt, overwrite_folder=True)
+        fig_x_dir = outputFolderName + r'\幻灯片1.PNG'
+        print('ppt end')
+        #####################################################################创建word
+        document = Document()
+        # print(dir(document))
+
+        document.styles['Normal'].font.name = '楷体'
+
+        document.styles['Normal']._element.rPr.rFonts.set(qn('w:eastAsia'), u'楷体')
+        # document.styles['Normal'].font.size = Pt(12)
+        document.add_heading('鼠笼风电机组电驱系统设计计算报告', 0)
+
+        p = document.add_paragraph('生成时间   ' + datetime.datetime.now().strftime('%Y.%m.%d  %H:%M'))
+
+        document.add_heading('输入-电机参数', level=1)
+
+        ###################参数表######################
+        table_para = document.add_table(rows=17, cols=2)
+        # print(dir(table_para))
+        hdr_cells = table_para.columns[0].cells
+
+        hdr_cells[0].text = ''
+        hdr_cells[1].text = '极对数'
+        hdr_cells[2].text = '发电机额定功率[kW]'
+        hdr_cells[3].text = '电网频率[Hz]'
+        hdr_cells[4].text = '额定频率[Hz]'
+        hdr_cells[5].text = '变流器效率'
+        hdr_cells[6].text = '电机效率'
+        hdr_cells[7].text = '发电机额定电压[V]'
+        hdr_cells[8].text = '电网电压[V]'
+        hdr_cells[9].text = '上网功率因数'
+        hdr_cells[10].text = '(选填)发电机额定电流[A]'
+        hdr_cells[11].text = '(选填)额定直流母线电压[V]'
+        hdr_cells[12].text = '(选填)网侧变流器额定电流[A]'
+        hdr_cells[13].text = '(选填)网侧变流器极限电流[A]'
+        hdr_cells[14].text = '(选填)机侧变流器额定电流[A]'
+        hdr_cells[15].text = '(选填)机侧变流器极限电流[A]'
+        hdr_cells[16].text = '(选填)发电机定子极限电流[A]'
+
+
+        para_cells = table_para.columns[1].cells
+        para_cells[0].text = ''
+        para_cells[1].text = self.m_pp.GetValue()
+        para_cells[2].text = self.m_GenPower.GetValue()
+        para_cells[3].text = self.m_hz.GetValue()
+        para_cells[4].text = self.m_edhz.GetValue()
+        para_cells[5].text = self.m_XiaoLv.GetValue()
+        para_cells[6].text = self.m_XiaoLvGen.GetValue()
+        para_cells[7].text = self.m_RateVolt.GetValue()
+        para_cells[8].text = self.m_GridVRMS.GetValue()
+        para_cells[9].text = self.m_NewPF.GetValue()
+        para_cells[10].text = self.m_RateGenCurrent.GetValue()
+        para_cells[11].text = self.m_Vdc.GetValue()
+        para_cells[12].text = self.m_SetNetCurRate.GetValue()
+        para_cells[13].text = self.m_SetNetCurMax.GetValue()
+        para_cells[14].text = self.m_SetGenCurRate.GetValue()
+        para_cells[15].text = self.m_SetGenCurMax.GetValue()
+        para_cells[16].text = self.m_SetSatMaxI.GetValue()
         #
         # ###################电机表######################
         # table_para = document.add_table(rows=5, cols=2)
@@ -1375,11 +1217,9 @@ class MyFrame(SC_CALCUL):
         #     paragraph = document.add_paragraph(r'结论:设计参数 %d项校验不通过！' % TF.count(False))
         #     # paragraph.style.font.color.rgb = RGBColor(250,0,0)
         #
-        # document.add_page_break()
-        # document.save('双馈风电机组电驱系统设计计算报告.docx')
-        # print(TF.count(False))
-        # print(TF)
-        #
+        document.add_page_break()
+        document.save('鼠笼风电机组电驱系统设计计算报告.docx')
+
         # ##############################################test
 
 

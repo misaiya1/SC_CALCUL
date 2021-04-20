@@ -57,6 +57,8 @@ class SC_CALCUL : public wxFrame
 		wxTextCtrl* m_RateVolt;
 		wxStaticText* m_staticText21;
 		wxTextCtrl* m_GridVRMS;
+		wxStaticText* m_staticText211;
+		wxTextCtrl* m_NewPF;
 		wxStaticText* m_Vdc2111;
 		wxTextCtrl* m_RateGenCurrent;
 		wxStaticText* m_Vdc211;
@@ -119,6 +121,14 @@ class SC_CALCUL : public wxFrame
 		wxTextCtrl* m_AL;
 		wxStaticText* m_staticTextAM;
 		wxTextCtrl* m_AM;
+		wxStaticText* m_staticTextAZ;
+		wxTextCtrl* m_AZ;
+		wxStaticText* m_staticTextBB;
+		wxTextCtrl* m_BB;
+		wxStaticText* m_staticTextBC;
+		wxTextCtrl* m_BC;
+		wxStaticText* m_staticTextBD;
+		wxTextCtrl* m_BD;
 		wxStaticText* m_staticText441;
 		wxStaticText* m_staticText442;
 		wxStaticText* m_staticTextT;
