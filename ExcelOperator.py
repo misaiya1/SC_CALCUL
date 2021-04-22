@@ -697,7 +697,7 @@ class MyFrame(SC_CALCUL):
 
         plt.plot(iGenRpm_1, iAZ_1, color="red", linewidth=1.5, linestyle="-", label="Istator RMS Long Time")  # 定子电流
         plt.plot(iGenRpm_1, iBA2_1, color="blue", linewidth=1.5, linestyle="--", label="Istator RMS Short TIme")
-        plt.plot(iGenRpm_1, iBC2_1, color="pink", linewidth=1.5, linestyle="-.", label="Igrid RMS")
+        plt.plot(iGenRpm_1, iBC2_1, color="pink", linewidth=1.5, linestyle="-.", label="Igrid RMS Long Time")
 
         plt.xlim(tempMin - 50, tempMax + 50)
         # dianLiuTu.set_xlabel('generetor speed[rpm]')
@@ -767,75 +767,83 @@ class MyFrame(SC_CALCUL):
         plt.close('all')
 
     def Plot1(self):
-        pass
-        # iGenRpm_1 = iGenRpm[0:-1]
-        # plt.figure(1)
-        # gongLvTu = plt.subplot(1, 1, 1)  # 功率图
-        # gongLvTu.grid(linestyle='-.', which='major')
-        # gongLvTu.set_title('Scope - Power')
-        #
-        # miloc = plt.MultipleLocator(50)
-        # maloc = plt.MultipleLocator(100)
-        # gongLvTu.xaxis.set_minor_locator(miloc)
-        # gongLvTu.yaxis.set_minor_locator(maloc)
-        # gongLvTu.grid(linestyle='-.', which='minor', linewidth=0.3, alpha=0.9)
-        #
-        # iStatorAPower_1 = iStatorAPower[0:-1]
-        # iRotorAPower_1 = iRotorAPower[0:-1]
-        # iTotalAPower_1 = iTotalAPower[0:-1]
-        #
-        # plt.plot(iGenRpm_1, iStatorAPower_1, color="red", linewidth=1.5, linestyle="-", label="Stator Active Power")
-        # plt.plot(iGenRpm_1, iRotorAPower_1, color="blue", linewidth=1.5, linestyle="-.", label="Rotor Active Power")
-        # plt.plot(iGenRpm_1, iTotalAPower_1, color="gray", linewidth=1.5, linestyle="--", label="Total Active Power")
-        #
-        # plt.xlim(tempMin - 50, tempMax + 50)
+
+        iGenRpm_1 = iGenRpm[0:-1]
+        plt.figure(1)
+        gongLvTu = plt.subplot(1, 1, 1)  # 功率图
+        gongLvTu.grid(linestyle='-.', which='major')
+        gongLvTu.set_title('Scope - Power')
+
+
+        miloc = plt.MultipleLocator(50)
+        maloc = plt.MultipleLocator(100)
+        gongLvTu.xaxis.set_minor_locator(miloc)
+        gongLvTu.yaxis.set_minor_locator(maloc)
+        gongLvTu.grid(linestyle='-.', which='minor', linewidth=0.3, alpha=0.9)
+
+        iQ2_1 = iQ2[0:-1]  # 轴功率长期
+        iR2_1 = iR2[0:-1]  # 电磁功率长期
+        iT2_1 = iT2[0:-1]
+        iU2_1 = iU2[0:-1]
+
+        plt.plot(iGenRpm_1, iQ2_1, color="red", linewidth=1.5, linestyle="-", label="Shaft Power Long Time")
+        plt.plot(iGenRpm_1, iR2_1, color="gray", linewidth=1.5, linestyle=":", label="Elec. Power Long Time")
+        plt.plot(iGenRpm_1, iT2_1, color="blue", linewidth=1.5, linestyle="-", label="Shaft Power Short Time")
+        plt.plot(iGenRpm_1, iU2_1, color="gray", linewidth=1.5, linestyle=":", label="Elec. Power Short Time")
+
+        plt.xlim(tempMin - 50, tempMax + 50)
         # gongLvTu.set_xlabel('generetor speed[rpm]')
-        # gongLvTu.set_ylabel('[kW]')
-        # gongLvTu.legend()
-        #
-        # # 标注额定点
-        # for i in range(n - 1):
-        #     gongLvTu.scatter(iGenRpm_1[i], (iStatorAPower_1[i]), s=30, color='gray')
-        #     gongLvTu.scatter(iGenRpm_1[i], (iRotorAPower_1[i]), s=30, color='gray')
-        #     gongLvTu.scatter(iGenRpm_1[i], (iTotalAPower_1[i]), s=30, color='gray')
-        #
-        # plt.tight_layout()
-        #
-        # plt.savefig(outputFolderName + r"\fig_power.png", dpi=1000)
-        # plt.close(1)
+        gongLvTu.set_ylabel('[kW]')
+        gongLvTu.legend()
+        print(iGenRpm_1)
+        print("tempMin = %s" % tempMin)
+        print("tempMax = %s" % tempMax)
+        # 标注额定点
+        for i in range(n - 1):
+            gongLvTu.scatter(iGenRpm_1[i], (iQ2_1[i]), s=30, color='gray')
+            gongLvTu.scatter(iGenRpm_1[i], (iR2_1[i]), s=30, color='gray')
+            gongLvTu.scatter(iGenRpm_1[i], (iT2_1[i]), s=30, color='gray')
+            gongLvTu.scatter(iGenRpm_1[i], (iU2_1[i]), s=30, color='gray')
+
+        plt.tight_layout()
+
+        plt.savefig(outputFolderName + r"\fig_power.png", dpi=1000)
+        plt.close(1)
 
     def Plot2(self):
-        pass
-        # iGenRpm_1 = iGenRpm[0:-1]
-        # plt.figure(2)
-        # dianYaTu = plt.subplot(1, 1, 1)  # 电压图
-        # dianYaTu.set_title('Scope - Rotor Voltage')
-        # dianYaTu.grid(linestyle='-.', which='major')
-        #
-        # miloc = plt.MultipleLocator(50)
-        # maloc = plt.MultipleLocator(100)
-        # dianYaTu.xaxis.set_minor_locator(miloc)
-        # dianYaTu.yaxis.set_minor_locator(maloc)
-        # dianYaTu.grid(linestyle='-.', which='minor', linewidth=0.3, alpha=0.9)
-        #
-        # iRotorVoltRMS_1 = iRotorVoltRMS[0:-1]
-        # iGenVrms_1 = iGenVrms[0:-1]
-        #
-        # # plt.plot(iGenRpm, iRotorVoltRMS, color="red", linewidth=1.5, linestyle="-", label="Vr RMS (estimate)")  # 定子电流
-        # plt.plot(iGenRpm_1, iGenVrms_1, color="red", linewidth=1.5, linestyle="-", label="Vinv RMS")  # 定子电流
-        #
-        # plt.xlim(tempMin - 50, tempMax + 50)
-        # dianYaTu.set_xlabel('generetor speed[rpm]')
-        # dianYaTu.set_ylabel('[V]')
-        # plt.legend()
-        # # 标注额定点
-        # for i in range(n - 1):
-        #     # dianYaTu.scatter(iGenRpm[i], (iRotorVoltRMS[i]), s=30, color='gray')
-        #     dianYaTu.scatter(iGenRpm_1[i], (iGenVrms_1[i]), s=30, color='gray')
-        #
-        # plt.tight_layout()
-        # plt.savefig(outputFolderName + r"\fig_voltageR.png", dpi=1000)
-        # plt.close(2)
+        iGenRpm_1 = iGenRpm[0:-1]
+        plt.figure(2)
+        dianLiuTu = plt.subplot(1, 1, 1)  # 电流图
+        dianLiuTu.set_title('Scope - Current')
+        dianLiuTu.grid(linestyle='-.', which='major')
+
+        miloc = plt.MultipleLocator(50)
+        maloc = plt.MultipleLocator(100)
+        dianLiuTu.xaxis.set_minor_locator(miloc)
+        dianLiuTu.yaxis.set_minor_locator(maloc)
+        dianLiuTu.grid(linestyle='-.', which='minor', linewidth=0.3, alpha=0.9)
+
+        iAZ_1 = iAZ2[0:-1]
+        iBA2_1 = iBA2[0:-1]
+        iBC2_1 = iBC2[0:-1]
+
+        plt.plot(iGenRpm_1, iAZ_1, color="red", linewidth=1.5, linestyle="-", label="Istator RMS Long Time")  # 定子电流
+        plt.plot(iGenRpm_1, iBA2_1, color="blue", linewidth=1.5, linestyle="--", label="Istator RMS Short TIme")
+        plt.plot(iGenRpm_1, iBC2_1, color="pink", linewidth=1.5, linestyle="-.", label="Igrid RMS Long Time")
+
+        plt.xlim(tempMin - 50, tempMax + 50)
+        # dianLiuTu.set_xlabel('generetor speed[rpm]')
+        dianLiuTu.set_ylabel('[A]')
+        plt.legend()
+        # 标注额定点
+        for i in range(n - 1):
+            dianLiuTu.scatter(iGenRpm_1[i], (iAZ_1[i]), s=30, color='gray')
+            dianLiuTu.scatter(iGenRpm_1[i], (iBA2[i]), s=30, color='gray')
+            dianLiuTu.scatter(iGenRpm_1[i], (iBC2[i]), s=30, color='gray')
+
+        plt.tight_layout()
+        plt.savefig(outputFolderName + r"\fig_Current.png", dpi=1000)
+        plt.close(2)
 
     def Plot3(self):
         pass
@@ -997,90 +1005,88 @@ class MyFrame(SC_CALCUL):
         para_cells[14].text = self.m_SetGenCurRate.GetValue()
         para_cells[15].text = self.m_SetGenCurMax.GetValue()
         para_cells[16].text = self.m_SetSatMaxI.GetValue()
-        #
-        # ###################电机表######################
-        # table_para = document.add_table(rows=5, cols=2)
-        # # print(dir(table_para))
-        # hdr_cells = table_para.columns[0].cells
-        #
-        # # self.m_Lksss.SetLabel(u"定子漏抗[ohm]")
-        # # self.m_Lkrrr.SetLabel(u"转子漏抗[ohm]")
-        # # self.m_staticText22.SetLabel(u"激磁电抗[ohm]")
-        #
-        # hdr_cells[0].text = self.m_staticText22.GetLabel()
-        # hdr_cells[1].text = '定子电组[ohm]'
-        # hdr_cells[2].text = '转子电阻[ohm]'
-        # hdr_cells[3].text = self.m_Lksss.GetLabel()
-        # hdr_cells[4].text = self.m_Lkrrr.GetLabel()
-        #
-        # para_cells = table_para.columns[1].cells
-        # para_cells[0].text = self.m_Lm.GetValue()
-        # para_cells[1].text = self.m_Rs.GetValue()
-        # para_cells[2].text = self.m_Rr.GetValue()
-        # para_cells[3].text = self.m_Lks.GetValue()
-        # para_cells[4].text = self.m_Lkr.GetValue()
-        #
-        # ########等效电路图
-        # try:
-        #     paragraph = document.add_paragraph()
-        #     paragraph.alignment = WD_PARAGRAPH_ALIGNMENT.CENTER
-        #     run = paragraph.add_run("")
-        #     run.add_picture(r'.\fig_save\幻灯片1.PNG', width=Inches(5.25))
-        #
-        #     run = document.add_paragraph('图1. 鼠笼/发电机等效电路图')
-        #     run.alignment = WD_PARAGRAPH_ALIGNMENT.CENTER
-        #
-        # except:
-        #     pass
-        #
-        # ########功率表
-        # document.add_heading('输入-功率曲线', level=1)
-        # n = len(iGenRpm) - 1
-        # table = document.add_table(rows=1, cols=3)
-        # hdr_cells = table.rows[0].cells
-        # hdr_cells[0].text = '转速[rpm]'
-        # hdr_cells[1].text = '上网功率[kW]'
-        # hdr_cells[2].text = ' '
-        #
-        # for i in range(n):
-        #     row_cells = table.add_row().cells
-        #     row_cells[0].text = str(iGenRpm[i])
-        #
-        #     row_cells[1].text = str(format(iTorqueLongTime[i] * 0.001, '.2f'))
-        #     row_cells[2].text = ' '
-        #
-        # ########输出功率
-        # document.add_heading('输出-功率计算', level=1)
-        #
-        # paragraph = document.add_paragraph()
-        # paragraph.alignment = WD_PARAGRAPH_ALIGNMENT.CENTER
-        # run = paragraph.add_run("")
-        # run.add_picture(r'.\fig_save\fig_power.png', width=Inches(5.25))
-        #
-        # run = document.add_paragraph('图2. 定子/转子/总上网功率')
-        # run.alignment = WD_PARAGRAPH_ALIGNMENT.CENTER
-        # run = document.add_paragraph('')
+
+        ###################电机表######################
+        table_para = document.add_table(rows=5, cols=2)
+        # print(dir(table_para))
+        hdr_cells = table_para.columns[0].cells
+
+        # self.m_Lksss.SetLabel(u"定子漏抗[ohm]")
+        # self.m_Lkrrr.SetLabel(u"转子漏抗[ohm]")
+        # self.m_staticText22.SetLabel(u"激磁电抗[ohm]")
+
+        hdr_cells[0].text = self.m_staticText22.GetLabel()
+        hdr_cells[1].text = '定子电组[ohm]'
+        hdr_cells[2].text = '转子电阻[ohm]'
+        hdr_cells[3].text = self.m_Lksss.GetLabel()
+        hdr_cells[4].text = self.m_Lkrrr.GetLabel()
+
+        para_cells = table_para.columns[1].cells
+        para_cells[0].text = self.m_Lm.GetValue()
+        para_cells[1].text = self.m_Rs.GetValue()
+        para_cells[2].text = self.m_Rr.GetValue()
+        para_cells[3].text = self.m_Lks.GetValue()
+        para_cells[4].text = self.m_Lkr.GetValue()
+
+        #######等效电路图
+        try:
+            paragraph = document.add_paragraph()
+            paragraph.alignment = WD_PARAGRAPH_ALIGNMENT.CENTER
+            run = paragraph.add_run("")
+            run.add_picture(r'.\fig_save\幻灯片1.PNG', width=Inches(5.25))
+
+            run = document.add_paragraph('图1. 鼠笼发电机等效电路图')
+            run.alignment = WD_PARAGRAPH_ALIGNMENT.CENTER
+
+        except:
+            pass
+
+        ########功率表
+        document.add_heading('输入-载荷需求转矩曲线', level=1)
+        n = len(iGenRpm) - 1
+        table = document.add_table(rows=1, cols=4)
+        hdr_cells = table.rows[0].cells
+        hdr_cells[0].text = '转速[rpm]'
+        hdr_cells[1].text = '载荷需求转矩（长期）[Nm]'
+        hdr_cells[2].text = '载荷需求转矩（短时）[Nm]'
+        hdr_cells[3].text = '磁链给定（0代表根据开路电压计算）'
+
+        for i in range(n):
+            row_cells = table.add_row().cells
+            row_cells[0].text = str(iGenRpm[i])
+            row_cells[1].text = str(format(iTorqueLongTime[i] , '.1f'))
+            row_cells[2].text = str(format(iTorqueShortTime[i] , '.1f'))
+            row_cells[3].text = str(format(iPsi[i], '.1f'))
+
+        ########输出功率
+        document.add_heading('输出-功率计算', level=1)
+
+        paragraph = document.add_paragraph()
+        paragraph.alignment = WD_PARAGRAPH_ALIGNMENT.CENTER
+        run = paragraph.add_run("")
+        run.add_picture(r'.\fig_save\fig_power.png', width=Inches(5.25))
+
+        run = document.add_paragraph('图2. 轴功率/电磁功率（长期、短时）')
+        run.alignment = WD_PARAGRAPH_ALIGNMENT.CENTER
+        run = document.add_paragraph('')
         # run.add_run(r'"*注：对于转子功率(Rotor Active Power)，负值表示从电网获取功率"').italic = True
-        # document.add_paragraph('总上网功率最大值为：\t%8.3f [kW]' % (max(iTotalAPower100)))
-        # document.add_paragraph('定子功率最大值为：  \t%8.3f [kW]' % (max(iStatorAPower100)))
-        # document.add_paragraph('转子功率最大值为：  \t%8.3f [kW]' % (max(iRotorAPower100)))
-        # document.add_paragraph('转子功率最小值为：  \t%8.3f [kW]' % (min(iRotorAPower100)))
-        # document.add_page_break()
-        #
-        # ########输出电流
-        # document.add_heading('输出-电流', level=1)
-        #
-        # paragraph = document.add_paragraph()
-        # paragraph.alignment = WD_PARAGRAPH_ALIGNMENT.CENTER
-        # run = paragraph.add_run("")
-        # run.add_picture(r'.\fig_save\fig_Current.png', width=Inches(5.25))
-        #
-        # run = document.add_paragraph('图3. 定子/转子/变流器网侧/总上网电流')
-        # run.alignment = WD_PARAGRAPH_ALIGNMENT.CENTER
-        # run = document.add_paragraph('')
-        # run.add_run(r'"*注：对于变流器网侧电流(Ipfc)，负值表示流向电网"').italic = True
-        # run.add_run('\n').italic = True
-        # run.add_run(r'"*注：转子电流、变流器网侧电流均为实际值，而非归算值"').italic = True
+        document.add_paragraph('长期轴功率最大绝对值为：\t%8.3f [kW]' % (max(np.abs(iQ2))))
+        document.add_paragraph('短期轴功率最大绝对值为：\t%8.3f [kW]' % (max(np.abs(iT2))))
+
+        #document.add_page_break()
+
+        ########输出电流
+        document.add_heading('输出-电流', level=1)
+
+        paragraph = document.add_paragraph()
+        paragraph.alignment = WD_PARAGRAPH_ALIGNMENT.CENTER
+        run = paragraph.add_run("")
+        run.add_picture(r'.\fig_save\fig_Current.png', width=Inches(5.25))
+
+        run = document.add_paragraph('图3. 定子长期/定子短时/网侧长期电流')
+        run.alignment = WD_PARAGRAPH_ALIGNMENT.CENTER
+        run = document.add_paragraph('')
+
         #
         # document.add_paragraph(r'以下三个数据分别表示工况（正常电网电压）（电网90%低电压）（电网110%高电压）')
         # document.add_paragraph('定子电流最大值为：      \t%8.3f [A],   %8.3f [A],   %8.3f [A]' % (
@@ -1093,8 +1099,8 @@ class MyFrame(SC_CALCUL):
         # document.add_paragraph(
         #     '总上网电流最大值为：    \t%8.3f [A],   %8.3f [A],   %8.3f [A]' % (
         #         max(iGridrms100), max(iGridrms90), max(iGridrms110)))
-        # document.add_page_break()
-        #
+        document.add_page_break()
+
         # ########输出转子电压
         # document.add_heading('输出-转子电压', level=1)
         #
