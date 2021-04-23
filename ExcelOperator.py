@@ -32,6 +32,13 @@ TWOPI = 2 * pi
 ''' 函数：返回变量是否被定义过 '''
 
 
+def resource_path(relative_path):
+    if getattr(sys, 'frozen', False): #是否Bundle Resource
+        base_path = sys._MEIPASS
+    else:
+        base_path = os.path.abspath(".")
+    return os.path.join(base_path, relative_path)
+
 def isset(v):
     try:
         type(eval(v))
@@ -195,29 +202,30 @@ class MyFrame(SC_CALCUL):
         self.Plot1()
         self.Plot2()
         self.Plot3()
+        self.Plot4()
 
         ###################################################################报错
-        self.DocuReport()
-        self.statusbar.SetStatusText('Report Generate at , %s ' % wx.Now())
-        dlg = wx.MessageDialog(None, u"报告已生成，请确认", u"完成",
-                               wx.YES_DEFAULT | wx.ICON_QUESTION)
-        if dlg.ShowModal() == wx.ID_YES:
-            self.Close(True)
-        dlg.Destroy()
+        # self.DocuReport()
+        # self.statusbar.SetStatusText('Report Generate at , %s ' % wx.Now())
+        # dlg = wx.MessageDialog(None, u"报告已生成，请确认", u"完成",
+        #                        wx.YES_DEFAULT | wx.ICON_QUESTION)
+        # if dlg.ShowModal() == wx.ID_YES:
+        #     self.Close(True)
+        # dlg.Destroy()
         ###################################################################不报错
 
-        # try:
-        #     self.DocuReport()
-        #     self.statusbar.SetStatusText('Report Generate at , %s ' % wx.Now())
-        #     dlg = wx.MessageDialog(None, u"报告已生成，请确认", u"完成", wx.YES_DEFAULT | wx.ICON_QUESTION)
-        #     if dlg.ShowModal() == wx.ID_YES:
-        #         self.Close(True)
-        #     dlg.Destroy()
-        # except:
-        #     dlg = wx.MessageDialog(None, u"请先关闭生成物", u"完成", wx.YES_DEFAULT | wx.ICON_QUESTION)
-        #     if dlg.ShowModal() == wx.ID_YES:
-        #         self.Close(True)
-        #     dlg.Destroy()
+        try:
+            self.DocuReport()
+            self.statusbar.SetStatusText('Report Generate at , %s ' % wx.Now())
+            dlg = wx.MessageDialog(None, u"报告已生成，请确认", u"完成", wx.YES_DEFAULT | wx.ICON_QUESTION)
+            if dlg.ShowModal() == wx.ID_YES:
+                self.Close(True)
+            dlg.Destroy()
+        except:
+            dlg = wx.MessageDialog(None, u"请先关闭生成物", u"完成", wx.YES_DEFAULT | wx.ICON_QUESTION)
+            if dlg.ShowModal() == wx.ID_YES:
+                self.Close(True)
+            dlg.Destroy()
 
     def m_buttonOnButtonClick3(self, event):
         print("press button3")  # 无功边界
@@ -481,7 +489,7 @@ class MyFrame(SC_CALCUL):
         n = n + 1
         ##########################################################################作图
         global iO2, iP2, iQ2, iR2, iS2, iT2, iU2, iV2, iW2, iX2, iY2, iZ2
-        global iAX2, iAY2, iAZ2, iBA2, iBB2, iBC2, iBD2
+        global iAX2, iAY2, iAZ2, iBA2, iBB2, iBC2, iBD2, iAM2, iAQ2
 
         iO2 = [0 for i in range(n)]
         iO2 = iGenRpm
@@ -750,7 +758,7 @@ class MyFrame(SC_CALCUL):
         iAY2_1 = iAY2[0:-1]
 
         plt.plot(iGenRpm_1, iAX2_1, color="red", linewidth=1.5, linestyle="-", label="Gen Effic.")  # 电机效率
-        plt.plot(iGenRpm_1, iAY2_1, color="blue", linewidth=1.5, linestyle="-", label="Power Factor")  # 电机效率
+        plt.plot(iGenRpm_1, iAY2_1, color="blue", linewidth=1.5, linestyle="-", label="Gen P.F.")  # 电机效率
 
         plt.xlim(tempMin - 50, tempMax + 50)
         dianYaTu.set_xlabel('generetor speed[rpm]')
@@ -762,11 +770,12 @@ class MyFrame(SC_CALCUL):
             dianYaTu.scatter(iGenRpm_1[i], (iAY2_1[i]), s=30, color='gray')
 
         plt.tight_layout()
-        plt.savefig("fig1_4" + ".png", dpi=1000)
+        plt.savefig(outputFolderName + r"\fig1_4.png", dpi=1000)
+        #plt.savefig("fig1_4" + ".png", dpi=1000)
         plt.show()
         plt.close('all')
 
-    def Plot1(self):
+    def Plot1(self):  #功率
 
         iGenRpm_1 = iGenRpm[0:-1]
         plt.figure(1)
@@ -792,7 +801,7 @@ class MyFrame(SC_CALCUL):
         plt.plot(iGenRpm_1, iU2_1, color="gray", linewidth=1.5, linestyle=":", label="Elec. Power Short Time")
 
         plt.xlim(tempMin - 50, tempMax + 50)
-        # gongLvTu.set_xlabel('generetor speed[rpm]')
+        gongLvTu.set_xlabel('generetor speed[rpm]')
         gongLvTu.set_ylabel('[kW]')
         gongLvTu.legend()
         print(iGenRpm_1)
@@ -810,7 +819,7 @@ class MyFrame(SC_CALCUL):
         plt.savefig(outputFolderName + r"\fig_power.png", dpi=1000)
         plt.close(1)
 
-    def Plot2(self):
+    def Plot2(self):  #电流
         iGenRpm_1 = iGenRpm[0:-1]
         plt.figure(2)
         dianLiuTu = plt.subplot(1, 1, 1)  # 电流图
@@ -832,7 +841,7 @@ class MyFrame(SC_CALCUL):
         plt.plot(iGenRpm_1, iBC2_1, color="pink", linewidth=1.5, linestyle="-.", label="Igrid RMS Long Time")
 
         plt.xlim(tempMin - 50, tempMax + 50)
-        # dianLiuTu.set_xlabel('generetor speed[rpm]')
+        dianLiuTu.set_xlabel('generetor speed[rpm]')
         dianLiuTu.set_ylabel('[A]')
         plt.legend()
         # 标注额定点
@@ -845,46 +854,74 @@ class MyFrame(SC_CALCUL):
         plt.savefig(outputFolderName + r"\fig_Current.png", dpi=1000)
         plt.close(2)
 
-    def Plot3(self):
-        pass
-        # iGenRpm_1 = iGenRpm[0:-1]
-        # plt.figure(3)
-        # dianLiuTu = plt.subplot(1, 1, 1)  # 电流
-        # dianLiuTu.set_title('Scope - Current')
-        # dianLiuTu.grid(linestyle='-.', which='major')
-        #
-        # miloc = plt.MultipleLocator(50)
-        # maloc = plt.MultipleLocator(100)
-        # dianLiuTu.xaxis.set_minor_locator(miloc)
-        # dianLiuTu.yaxis.set_minor_locator(maloc)
-        # dianLiuTu.grid(linestyle='-.', which='minor', linewidth=0.3, alpha=0.9)
-        #
-        # iStatorIrms_1 = iStatorIrms[0:-1]
-        # iGenIrmsSJ_1 = iGenIrmsSJ[0:-1]
-        # iNetIrms_1 = iNetIrms[0:-1]
-        # iGridrms_1 = iGridrms[0:-1]
-        #
-        # plt.plot(iGenRpm_1, iStatorIrms_1, color="red", linewidth=1.5, linestyle="-", label="Istator RMS")  # 定子电流
-        # plt.plot(iGenRpm_1, iGenIrmsSJ_1, color="blue", linewidth=1.5, linestyle="--", label="Irotor RMS")  # 机侧电流
-        # plt.plot(iGenRpm_1, iNetIrms_1, color="gray", linewidth=1.5, linestyle="-.", label="Ipfc RMS")  # 网侧电流
-        # plt.plot(iGenRpm_1, iGridrms_1, color="green", linewidth=1.5, linestyle=":", label="Igrid_total RMS")  # 上网电流
-        #
-        # plt.xlim(tempMin - 50, tempMax + 50)
-        # dianLiuTu.set_xlabel('generetor speed[rpm]')
-        # dianLiuTu.set_ylabel('[A]')
-        # plt.legend()
-        # # 标注额定点
-        # for i in range(n - 1):
-        #     dianLiuTu.scatter(iGenRpm_1[i], (iStatorIrms_1[i]), s=30, color='gray')
-        #     dianLiuTu.scatter(iGenRpm_1[i], (iGenIrmsSJ_1[i]), s=30, color='gray')
-        #     dianLiuTu.scatter(iGenRpm_1[i], (iNetIrms_1[i]), s=30, color='gray')
-        #     dianLiuTu.scatter(iGenRpm_1[i], (iGridrms_1[i]), s=30, color='gray')
-        #
-        # plt.tight_layout()
-        # plt.savefig(outputFolderName + r"\fig_Current.png", dpi=1000)
-        # plt.close(3)
+    def Plot3(self):  #转矩
+
+        iGenRpm_1 = iGenRpm[0:-1]
+        plt.figure(3)
+        zhuanJuTu = plt.subplot(1, 1, 1)  # 转矩
+
+        zhuanJuTu.set_title('Scope - Torque')
+        zhuanJuTu.grid(linestyle='-.', which='major')
+
+        miloc = plt.MultipleLocator(50)
+        maloc = plt.MultipleLocator(1000)
+        zhuanJuTu.xaxis.set_minor_locator(miloc)
+        zhuanJuTu.yaxis.set_minor_locator(maloc)
+        zhuanJuTu.grid(linestyle='-.', which='minor', linewidth=0.3, alpha=0.9)
+
+        iP2_1 = iP2[0:-1]
+        iS2_1 = iS2[0:-1]
+
+        plt.plot(iGenRpm_1, iP2_1, color="red", linewidth=1.5, linestyle="-", label="Torque Require Long Time")  # 长期
+        plt.plot(iGenRpm_1, iS2_1, color="blue", linewidth=1.5, linestyle="-.", label="Torque Require Short Time")  # 期
+
+        plt.xlim(tempMin - 50, tempMax + 50)
+        zhuanJuTu.set_xlabel('generetor speed[rpm]')
+        zhuanJuTu.set_ylabel('[N.m]')
+        plt.legend()
+        # 标注额定点
+        for i in range(n - 1):
+            zhuanJuTu.scatter(iGenRpm_1[i], (iP2_1[i]), s=30, color='gray')
+            zhuanJuTu.scatter(iGenRpm_1[i], (iS2_1[i]), s=30, color='gray')
 
 
+        plt.tight_layout()
+        plt.savefig(outputFolderName + r"\fig_Torque.png", dpi=1000)
+        plt.close(3)
+
+    def Plot4(self):  #效率
+
+        iGenRpm_1 = iGenRpm[0:-1]
+        plt.figure(4)
+        xiaolvtu = plt.subplot(1, 1, 1)  # 效率
+
+        xiaolvtu.set_title('Scope - Torque')
+        xiaolvtu.grid(linestyle='-.', which='major')
+
+        miloc = plt.MultipleLocator(50)
+        maloc = plt.MultipleLocator(100)
+        xiaolvtu.xaxis.set_minor_locator(miloc)
+        xiaolvtu.yaxis.set_minor_locator(maloc)
+        xiaolvtu.grid(linestyle='-.', which='minor', linewidth=0.3, alpha=0.9)
+
+        iAX2_1 = iAX2[0:-1]
+        iAY2_1 = iAY2[0:-1]
+
+        plt.plot(iGenRpm_1, iAX2_1, color="red", linewidth=1.5, linestyle="-", label="Gen Effic.")  # 电机效率
+        plt.plot(iGenRpm_1, iAY2_1, color="blue", linewidth=1.5, linestyle="-", label="Gen P.F.")  # 电机效率
+
+        plt.xlim(tempMin - 50, tempMax + 50)
+        xiaolvtu.set_xlabel('generetor speed[rpm]')
+        xiaolvtu.set_ylabel('[%]')
+        plt.legend()
+        # 标注额定点
+        for i in range(n - 1):
+            xiaolvtu.scatter(iGenRpm[i], (iAX2_1[i]), s=30, color='gray')
+            xiaolvtu.scatter(iGenRpm_1[i], (iAY2_1[i]), s=30, color='gray')
+
+        plt.tight_layout()
+        plt.savefig(outputFolderName + r"\fig_PF.png", dpi=1000)
+        plt.close(4)
 
     def DocuReport(self):
 
@@ -921,7 +958,8 @@ class MyFrame(SC_CALCUL):
         self.DoWork(1)
         #####################################################################创建PPT,修改文本框
         print('ppt start')
-        pptx = Presentation('abcd.pptx')
+        filename = resource_path(os.path.join("pptx", "abcd.pptx"))
+        pptx = Presentation(filename)
         for slide in pptx.slides:
             # 遍历幻灯片页的所有形状
             print("slide found")
@@ -1101,35 +1139,35 @@ class MyFrame(SC_CALCUL):
         #         max(iGridrms100), max(iGridrms90), max(iGridrms110)))
         document.add_page_break()
 
-        # ########输出转子电压
-        # document.add_heading('输出-转子电压', level=1)
-        #
-        # paragraph = document.add_paragraph()
-        # paragraph.alignment = WD_PARAGRAPH_ALIGNMENT.CENTER
-        # run = paragraph.add_run("")
-        # run.add_picture(r'.\fig_save\fig_voltageR.png', width=Inches(5.25))
-        #
-        # run = document.add_paragraph('图4. 转子线电压')
-        # run.alignment = WD_PARAGRAPH_ALIGNMENT.CENTER
+        ########输出转子电压
+        document.add_heading('输出-转矩', level=1)
+
+        paragraph = document.add_paragraph()
+        paragraph.alignment = WD_PARAGRAPH_ALIGNMENT.CENTER
+        run = paragraph.add_run("")
+        run.add_picture(r'.\fig_save\fig_Torque.png', width=Inches(5.25))
+
+        run = document.add_paragraph('图4. 转矩需求（长期、短时）')
+        run.alignment = WD_PARAGRAPH_ALIGNMENT.CENTER
         #
         # document.add_paragraph(r'以下三个数据分别表示工况（正常电网电压）（电网90%低电压）（电网110%高电压）')
         # document.add_paragraph(
         #     '转子线电压最大值为： \t%8.3f [V],   %8.3f [V],   %8.3f [V]' % (max(iGenVrms100), max(iGenVrms90), max(iGenVrms110)))
         # document.add_page_break()
         #
-        # ######## 能力边界
-        # document.add_heading('有功、无功能力边界', level=1)
+        ######## 效率与功率因数
+        document.add_heading('输出-电机效率与功率因数', level=1)
         # paragraph = document.add_paragraph('定子有无功能力范围：')
         # run = paragraph.add_run("")
         # run = paragraph.add_run("根据用户界面输入的“（选填）机侧变流器最大电流”与“（选填）发电机定子最大电流”等参数，计算发电机定子侧的无功功率约束关系。")
-        #
-        # paragraph = document.add_paragraph()
-        # paragraph.alignment = WD_PARAGRAPH_ALIGNMENT.CENTER
-        # run = paragraph.add_run("")
-        # run.add_picture(r'.\fig_save\fig_VarAbi.png', width=Inches(5.25))
-        #
-        # run = document.add_paragraph('图5. 定子有无功能力边界')
-        # run.alignment = WD_PARAGRAPH_ALIGNMENT.CENTER
+
+        paragraph = document.add_paragraph()
+        paragraph.alignment = WD_PARAGRAPH_ALIGNMENT.CENTER
+        run = paragraph.add_run("")
+        run.add_picture(r'.\fig_save\fig_PF.png', width=Inches(5.25))
+
+        run = document.add_paragraph('图5. 电机效率与功率因数')
+        run.alignment = WD_PARAGRAPH_ALIGNMENT.CENTER
         #
         # document.add_paragraph('根据指定的定子无功功率值，计算有功输出最大值。')
         #
@@ -1166,33 +1204,32 @@ class MyFrame(SC_CALCUL):
         # # tempStr = tempStr+ "When P = %.0f [kW]"% (Ppoint / 1000)
         # # ax.annotate(tempStr, xy=(Quplim, Ppoint), xytext=(Quplim + 0.2E6, 0), color='g',
         #
-        # ########结论
-        # document.add_heading('结论', level=1)
-        # paragraph = document.add_paragraph('根据用户在界面上输入的选填内容，进行设计合理性判断。')
-        #
-        #
-        # table_para = document.add_table(rows=5, cols=3, style='Table Grid')
-        #
-        # hdr_cells = table_para.columns[0].cells
-        #
-        # hdr_cells[0].text = '判定项'
-        # hdr_cells[1].text = '发电机转子电压'
-        # hdr_cells[2].text = '网侧变流器电流'
-        # hdr_cells[3].text = '机侧变流器电流'
-        # hdr_cells[4].text = '发电机定子电流'
-        #
-        # para_cells1 = table_para.columns[1].cells
-        # para_cells1[0].text = '判定标准'
-        #
-        # TF = [True for i in range(4)]
-        # para_cells1[1].text = str(format(max(max(iGenVrms90), max(iGenVrms100), max(iGenVrms110)),
-        #                                  '.2f')) + ' < ' + self.m_Vdc.GetValue() + '/1.414'
-        # TF[0] = max(max(iGenVrms90), max(iGenVrms100), max(iGenVrms110)) < float(self.m_Vdc.GetValue()) / 1.414
-        #
-        # para_cells1[2].text = str(format(max(max(iNetIrms90), max(iNetIrms100), max(iNetIrms110)),
-        #                                  '.2f')) + ' < ' + self.m_SetNetCurMax.GetValue()
-        # TF[1] = max(max(iNetIrms90), max(iNetIrms100), max(iNetIrms110)) < float(self.m_SetNetCurMax.GetValue())
-        #
+        ########结论
+        document.add_heading('结论', level=1)
+        paragraph = document.add_paragraph('根据用户在界面上输入的选填内容，进行设计合理性判断。')
+
+
+        table_para = document.add_table(rows=3, cols=3, style='Table Grid')
+
+        hdr_cells = table_para.columns[0].cells
+
+        hdr_cells[0].text = '判定项'
+        hdr_cells[1].text = '变流器电压能力（长期）'
+        hdr_cells[2].text = '变流器电压能力（短时）'
+
+
+        para_cells1 = table_para.columns[1].cells
+        para_cells1[0].text = '判定标准'
+
+        TF = [True for i in range(4)]
+        para_cells1[1].text = '机侧线电压RMS < Vdc/1.414'
+        TF[0] = min(iAM2)
+        print(min(iAM2))
+        print(min(iAQ2))
+
+        para_cells1[2].text = '机侧线电压RMS < Vdc/1.414'
+        TF[1] = min(iAQ2)
+
         # para_cells1[3].text = str(format(max(max(iGenIrmsSJ90), max(iGenIrmsSJ100), max(iGenIrmsSJ110)),
         #                                  '.2f')) + ' < ' + self.m_SetGenCurMax1.GetValue()
         # TF[2] = max(max(iGenIrmsSJ90), max(iGenIrmsSJ100), max(iGenIrmsSJ110)) < float(self.m_SetGenCurMax1.GetValue())
@@ -1201,28 +1238,24 @@ class MyFrame(SC_CALCUL):
         #                                  '.2f')) + ' < ' + self.m_SetSatMaxI.GetValue()
         # TF[3] = max(max(iStatorIrms90), max(iStatorIrms100), max(iStatorIrms110)) < float(self.m_SetSatMaxI.GetValue())
         #
-        # para_cells2 = table_para.columns[2].cells
-        # para_cells2[0].text = '是否通过'
-        #
-        # # 1,2,3,4行
-        # for i in range(4):
-        #     p = para_cells2[i + 1].paragraphs.pop()
-        #     # print(dir(para_cells2[i + 1].paragraphs))
-        #     # print(dir(p.style))
-        #     # print(len(p))
-        #     # p.style.font.color.rgb = RGBColor(250, 0, 0)
-        #     run = p.add_run(str(TF[i]))
-        #     if TF[i] is False:
-        #         run.font.color.rgb = RGBColor(250, 0, 0)
-        #
-        # document.add_paragraph(r'')
-        #
-        # if all(i == True for i in TF):
-        #     document.add_paragraph(r'结论:设计参数校验通过。')
-        # else:
-        #     paragraph = document.add_paragraph(r'结论:设计参数 %d项校验不通过！' % TF.count(False))
-        #     # paragraph.style.font.color.rgb = RGBColor(250,0,0)
-        #
+        para_cells2 = table_para.columns[2].cells
+        para_cells2[0].text = '是否通过'
+
+        # 1,2行
+        for i in range(2):
+            p = para_cells2[i + 1].paragraphs.pop()
+
+            run = p.add_run(str(TF[i]))
+            if TF[i] is False:
+                run.font.color.rgb = RGBColor(250, 0, 0)
+
+        document.add_paragraph(r'')
+
+        if all(i == True for i in TF):
+            document.add_paragraph(r'结论:设计参数校验通过。')
+        else:
+            paragraph = document.add_paragraph(r'结论:设计参数 %d项校验不通过！' % TF.count(False))
+
         document.add_page_break()
         document.save('鼠笼风电机组电驱系统设计计算报告.docx')
 

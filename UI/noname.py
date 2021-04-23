@@ -576,7 +576,7 @@ class SC_CALCUL ( wx.Frame ):
 		self.m_AP = wx.TextCtrl( self.m_scrolledWindow1, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0 )
 		fgSizer4.Add( self.m_AP, 0, wx.ALL, 5 )
 		
-		self.m_staticTextAQ = wx.StaticText( self.m_scrolledWindow1, wx.ID_ANY, u"AQ:是否超过变流器的电压能力满足？（短时）", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.m_staticTextAQ = wx.StaticText( self.m_scrolledWindow1, wx.ID_ANY, u"AQ:变流器的电压能力满足？（短时）", wx.DefaultPosition, wx.DefaultSize, 0 )
 		self.m_staticTextAQ.Wrap( -1 )
 		
 		fgSizer4.Add( self.m_staticTextAQ, 0, wx.ALL, 5 )
