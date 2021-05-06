@@ -719,7 +719,7 @@ class MyFrame(SC_CALCUL):
 
         # ######################################################################################
         zhuanJuTu = plt.subplot(2, 2, 3)  #
-        zhuanJuTu.set_title('Scope - Torque')
+        zhuanJuTu.set_title('Scope - Torque(abs)')
         zhuanJuTu.grid(linestyle='-.', which='major')
 
         miloc = plt.MultipleLocator(50)
@@ -728,8 +728,8 @@ class MyFrame(SC_CALCUL):
         zhuanJuTu.yaxis.set_minor_locator(maloc)
         zhuanJuTu.grid(linestyle='-.', which='minor', linewidth=0.3, alpha=0.9)
 
-        iP2_1 = iP2[0:-1]
-        iS2_1 = iS2[0:-1]
+        iP2_1 = iP2[0:-1] * -1
+        iS2_1 = iS2[0:-1] * -1
 
         plt.plot(iGenRpm_1, iP2_1, color="red", linewidth=1.5, linestyle="-", label="Torque Require Long Time")  # 长期
         plt.plot(iGenRpm_1, iS2_1, color="blue", linewidth=1.5, linestyle="-.", label="Torque Require Short Time")  # 期
@@ -860,7 +860,7 @@ class MyFrame(SC_CALCUL):
         plt.figure(3)
         zhuanJuTu = plt.subplot(1, 1, 1)  # 转矩
 
-        zhuanJuTu.set_title('Scope - Torque')
+        zhuanJuTu.set_title('Scope - Torque(abs)')
         zhuanJuTu.grid(linestyle='-.', which='major')
 
         miloc = plt.MultipleLocator(50)
@@ -869,8 +869,8 @@ class MyFrame(SC_CALCUL):
         zhuanJuTu.yaxis.set_minor_locator(maloc)
         zhuanJuTu.grid(linestyle='-.', which='minor', linewidth=0.3, alpha=0.9)
 
-        iP2_1 = iP2[0:-1]
-        iS2_1 = iS2[0:-1]
+        iP2_1 = iP2[0:-1] * -1
+        iS2_1 = iS2[0:-1] * -1
 
         plt.plot(iGenRpm_1, iP2_1, color="red", linewidth=1.5, linestyle="-", label="Torque Require Long Time")  # 长期
         plt.plot(iGenRpm_1, iS2_1, color="blue", linewidth=1.5, linestyle="-.", label="Torque Require Short Time")  # 期
@@ -1140,7 +1140,7 @@ class MyFrame(SC_CALCUL):
         document.add_page_break()
 
         ########输出转子电压
-        document.add_heading('输出-转矩', level=1)
+        document.add_heading('输出-转矩（绝对值）', level=1)
 
         paragraph = document.add_paragraph()
         paragraph.alignment = WD_PARAGRAPH_ALIGNMENT.CENTER
