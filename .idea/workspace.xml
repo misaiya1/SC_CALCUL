@@ -25,9 +25,12 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7f01fa80-4494-4cec-bcae-4b2b510e2dff" name="Default Changelist" comment="0414-14:04">
+    <list default="true" id="7f01fa80-4494-4cec-bcae-4b2b510e2dff" name="Default Changelist" comment="0506 打包成一个exe">
+      <change afterPath="$PROJECT_DIR$/main_D.spec" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ExcelOperator.py" beforeDir="false" afterPath="$PROJECT_DIR$/ExcelOperator.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UI/noname.py" beforeDir="false" afterPath="$PROJECT_DIR$/UI/noname.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/main/Analysis-00.toc" beforeDir="false" afterPath="$PROJECT_DIR$/build/main/Analysis-00.toc" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/main/EXE-00.toc" beforeDir="false" afterPath="$PROJECT_DIR$/build/main/EXE-00.toc" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/main/PKG-00.pkg" beforeDir="false" afterPath="$PROJECT_DIR$/build/main/PKG-00.pkg" afterDir="false" />
@@ -36,7 +39,24 @@
       <change beforePath="$PROJECT_DIR$/build/main/PYZ-00.toc" beforeDir="false" afterPath="$PROJECT_DIR$/build/main/PYZ-00.toc" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/main/warn-main.txt" beforeDir="false" afterPath="$PROJECT_DIR$/build/main/warn-main.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/main/xref-main.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/main/xref-main.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/数字化项目/电气部件的数字化辅助设计与测试 _数字化专项项目立项评审.pptx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.spec" beforeDir="false" afterPath="$PROJECT_DIR$/main.spec" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/数字化项目/FYI--PLM平台建设项目一期_数字化专项项目立项评审 .pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/数字化项目/SharePoint.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/数字化项目/X_X_数字化专项项目立项评审PPT模版.rar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/数字化项目/temp/04181024电气部件的数字化辅助设计与测试 _数字化专项项目立项评审.pptx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/数字化项目/temp/04190837电气部件的数字化辅助设计与测试 _数字化专项项目立项评审.pptx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/数字化项目/temp/04190917电气部件的数字化辅助设计与测试 _数字化专项项目立项评审.pptx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/数字化项目/temp/04201006电气部件的数字化辅助设计与测试 _数字化专项项目立项评审.pptx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/数字化项目/temp电气部件的数字化辅助设计与测试 _数字化专项项目立项评审.pptx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/数字化项目/双馈风电机组电驱系统设计工具_V1.3软件使用说明书.docx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/数字化项目/电气CoE-2021年数字化规划.pptx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/数字化项目/电气部件的数字化辅助设计与测试 _数字化专项项目立项评审-发电机.pptx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/数字化项目/电气部件的数字化辅助设计与测试 _数字化专项项目立项评审-发电机.rar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/数字化项目/电气部件的数字化辅助设计与测试_数字化专项项目立项评审--电气一次二次部分.pptx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/数字化项目/电气部件的数字化辅助设计与测试_数字化专项项目立项评审--电气一次二次部分.rar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/数字化项目/转发 技术部数字化专项立项评审.msg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/数字化项目/选型需求整理.xlsx" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,10 +90,11 @@
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Personal\Desktop\skxxgj\SCSG\py\SC_CALCUL" />
       <recent name="D:\Personal\Desktop\skxxgj\py\DF_CALCUL" />
     </key>
-    <key name="CopyFile.RECENT_KEYS">
+    <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\Personal\Desktop\skxxgj\py\DF_CALCUL" />
     </key>
   </component>
@@ -433,7 +454,14 @@
       <option name="project" value="LOCAL" />
       <updated>1619160543467</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="0506 打包成一个exe">
+      <created>1620282997642</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1620282997642</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -490,21 +518,14 @@
     <MESSAGE value="0422 report" />
     <MESSAGE value="0423 第一个邮件" />
     <MESSAGE value="0414-14:04" />
-    <option name="LAST_COMMIT_MESSAGE" value="0414-14:04" />
+    <MESSAGE value="0506 打包成一个exe" />
+    <option name="LAST_COMMIT_MESSAGE" value="0506 打包成一个exe" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="2012" y="92" width="1736" height="856" key="DiffContextDialog" timestamp="1612680613627">
-      <screen x="1920" y="0" width="1920" height="1040" />
-    </state>
-    <state x="2012" y="92" width="1736" height="856" key="DiffContextDialog/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1612680613627" />
     <state x="2188" y="241" key="FileChooserDialogImpl" timestamp="1618900799895">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state x="2188" y="241" key="FileChooserDialogImpl/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1618900799895" />
-    <state x="2691" y="438" key="Github.CreateGistDialog" timestamp="1611907784368">
-      <screen x="1920" y="0" width="1920" height="1040" />
-    </state>
-    <state x="2691" y="438" key="Github.CreateGistDialog/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1611907784368" />
     <state x="2746" y="417" width="642" height="247" key="Github.ShareDialog" timestamp="1618207666948">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
@@ -513,29 +534,29 @@
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state x="2649" y="222" width="461" height="755" key="Github.UntrackedFilesDialog/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1618207694356" />
-    <state width="1899" height="370" key="GridCell.Tab.0.bottom" timestamp="1620281966221">
+    <state width="1899" height="237" key="GridCell.Tab.0.bottom" timestamp="1623907799971">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="1259" height="187" key="GridCell.Tab.0.bottom/0.0.1280.680/1920.0.1920.1040@0.0.1280.680" timestamp="1614925177698" />
-    <state width="1899" height="370" key="GridCell.Tab.0.bottom/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1620281966221" />
+    <state width="1259" height="57" key="GridCell.Tab.0.bottom/0.0.1280.680/1920.0.1920.1040@0.0.1280.680" timestamp="1622191586689" />
+    <state width="1899" height="237" key="GridCell.Tab.0.bottom/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1623907799971" />
     <state width="1259" height="218" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1619511059365" />
-    <state width="1899" height="370" key="GridCell.Tab.0.center" timestamp="1620281966220">
+    <state width="1899" height="237" key="GridCell.Tab.0.center" timestamp="1623907799971">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="1259" height="187" key="GridCell.Tab.0.center/0.0.1280.680/1920.0.1920.1040@0.0.1280.680" timestamp="1614925177698" />
-    <state width="1899" height="370" key="GridCell.Tab.0.center/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1620281966220" />
+    <state width="1259" height="57" key="GridCell.Tab.0.center/0.0.1280.680/1920.0.1920.1040@0.0.1280.680" timestamp="1622191586689" />
+    <state width="1899" height="237" key="GridCell.Tab.0.center/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1623907799971" />
     <state width="1259" height="218" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1619511059364" />
-    <state width="1899" height="370" key="GridCell.Tab.0.left" timestamp="1620281966220">
+    <state width="1899" height="237" key="GridCell.Tab.0.left" timestamp="1623907799971">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="1259" height="187" key="GridCell.Tab.0.left/0.0.1280.680/1920.0.1920.1040@0.0.1280.680" timestamp="1614925177697" />
-    <state width="1899" height="370" key="GridCell.Tab.0.left/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1620281966220" />
+    <state width="1259" height="57" key="GridCell.Tab.0.left/0.0.1280.680/1920.0.1920.1040@0.0.1280.680" timestamp="1622191586689" />
+    <state width="1899" height="237" key="GridCell.Tab.0.left/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1623907799971" />
     <state width="1259" height="218" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1619511059364" />
-    <state width="1899" height="370" key="GridCell.Tab.0.right" timestamp="1620281966220">
+    <state width="1899" height="237" key="GridCell.Tab.0.right" timestamp="1623907799971">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="1259" height="187" key="GridCell.Tab.0.right/0.0.1280.680/1920.0.1920.1040@0.0.1280.680" timestamp="1614925177698" />
-    <state width="1899" height="370" key="GridCell.Tab.0.right/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1620281966220" />
+    <state width="1259" height="57" key="GridCell.Tab.0.right/0.0.1280.680/1920.0.1920.1040@0.0.1280.680" timestamp="1622191586689" />
+    <state width="1899" height="237" key="GridCell.Tab.0.right/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1623907799971" />
     <state width="1259" height="218" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1619511059365" />
     <state width="1899" height="404" key="GridCell.Tab.1.bottom" timestamp="1618293073090">
       <screen x="1920" y="0" width="1920" height="1040" />
@@ -563,33 +584,29 @@
     <state x="197" y="0" key="SettingsEditor/0.0.1280.680/1920.0.1920.1040@0.0.1280.680" timestamp="1620265529800" />
     <state x="2372" y="122" width="1257" height="712" key="SettingsEditor/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1619168500275" />
     <state x="197" y="0" key="SettingsEditor/0.0.1280.680@0.0.1280.680" timestamp="1619511055321" />
-    <state x="2783" y="86" key="Vcs.Push.Dialog.v2" timestamp="1619160557598">
+    <state x="2783" y="86" key="Vcs.Push.Dialog.v2" timestamp="1620283652094">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="2783" y="86" key="Vcs.Push.Dialog.v2/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1619160557598" />
-    <state x="2652" y="253" key="VcsDiffUtil.ChangesDialog" timestamp="1612680375292">
+    <state x="2783" y="86" key="Vcs.Push.Dialog.v2/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1620283652094" />
+    <state x="2683" y="432" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1623894704752">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="2652" y="253" key="VcsDiffUtil.ChangesDialog/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1612680375292" />
-    <state x="2012" y="92" width="1736" height="856" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1614046778309">
-      <screen x="1920" y="0" width="1920" height="1040" />
-    </state>
-    <state x="2012" y="92" width="1736" height="856" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1614046778309" />
-    <state x="2683" y="432" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1612680292140">
-      <screen x="1920" y="0" width="1920" height="1040" />
-    </state>
-    <state x="2683" y="432" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1612680292140" />
-    <state x="2578" y="75" width="1294" height="680" maximized="true" key="dock-window-1" timestamp="1615167187726">
-      <screen x="1920" y="0" width="1920" height="1040" />
-    </state>
-    <state x="2578" y="75" width="1294" height="680" maximized="true" key="dock-window-1/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1615167187726" />
+    <state x="2683" y="432" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1623894704752" />
     <state x="2543" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1618898332694">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="415" y="147" width="672" height="444" key="search.everywhere.popup/0.0.1280.680/1920.0.1920.1040@0.0.1280.680" timestamp="1614920496945" />
     <state x="2543" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1618898332694" />
   </component>
   <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/ExcelOperator.py</url>
+          <line>925</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
     <watches-manager>
       <configuration name="PythonConfigurationType">
         <watch expression="checked" />

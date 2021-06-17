@@ -241,7 +241,7 @@ class MyFrame(SC_CALCUL):
         dlg.Destroy()
 
     def mOnMenuSelection1(self, event):
-        dlg = wx.MessageDialog(None, u"版本:V0.0", u"确认", wx.YES_DEFAULT | wx.ICON_QUESTION)
+        dlg = wx.MessageDialog(None, u"版本:V1.0", u"确认", wx.YES_DEFAULT | wx.ICON_QUESTION)
         if dlg.ShowModal() == wx.ID_YES:
             self.Close(True)
         dlg.Destroy()
@@ -669,10 +669,10 @@ class MyFrame(SC_CALCUL):
         iT2_1 = iT2[0:-1]
         iU2_1 = iU2[0:-1]
 
-        plt.plot(iGenRpm_1, iQ2_1, color="red", linewidth=1.5, linestyle="-", label="Shaft Power Long Time")
-        plt.plot(iGenRpm_1, iR2_1, color="gray", linewidth=1.5, linestyle=":", label="Elec. Power Long Time")
-        plt.plot(iGenRpm_1, iT2_1, color="blue", linewidth=1.5, linestyle="-", label="Shaft Power Short Time")
-        plt.plot(iGenRpm_1, iU2_1, color="gray", linewidth=1.5, linestyle=":", label="Elec. Power Short Time")
+        plt.plot(iGenRpm_1, np.dot(iQ2_1,-1), color="red", linewidth=1.5, linestyle="-", label="Shaft Power Long Time")
+        plt.plot(iGenRpm_1, np.dot(iR2_1,-1), color="gray", linewidth=1.5, linestyle=":", label="Elec. Power Long Time")
+        plt.plot(iGenRpm_1, np.dot(iT2_1,-1), color="blue", linewidth=1.5, linestyle="-", label="Shaft Power Short Time")
+        plt.plot(iGenRpm_1, np.dot(iU2_1,-1), color="gray", linewidth=1.5, linestyle=":", label="Elec. Power Short Time")
 
         plt.xlim(tempMin - 50, tempMax + 50)
         # gongLvTu.set_xlabel('generetor speed[rpm]')
@@ -683,10 +683,10 @@ class MyFrame(SC_CALCUL):
         print("tempMax = %s" % tempMax)
         # 标注额定点
         for i in range(n - 1):
-            gongLvTu.scatter(iGenRpm_1[i], (iQ2_1[i]), s=30, color='gray')
-            gongLvTu.scatter(iGenRpm_1[i], (iR2_1[i]), s=30, color='gray')
-            gongLvTu.scatter(iGenRpm_1[i], (iT2_1[i]), s=30, color='gray')
-            gongLvTu.scatter(iGenRpm_1[i], (iU2_1[i]), s=30, color='gray')
+            gongLvTu.scatter(iGenRpm_1[i], (np.dot(iQ2_1[i],-1)), s=30, color='gray')
+            gongLvTu.scatter(iGenRpm_1[i], (np.dot(iR2_1[i],-1)), s=30, color='gray')
+            gongLvTu.scatter(iGenRpm_1[i], (np.dot(iT2_1[i],-1)), s=30, color='gray')
+            gongLvTu.scatter(iGenRpm_1[i], (np.dot(iU2_1[i],-1)), s=30, color='gray')
 
         # ######################################################################################
         dianLiuTu = plt.subplot(2, 2, 2)  # 电流图
@@ -795,10 +795,10 @@ class MyFrame(SC_CALCUL):
         iT2_1 = iT2[0:-1]
         iU2_1 = iU2[0:-1]
 
-        plt.plot(iGenRpm_1, iQ2_1, color="red", linewidth=1.5, linestyle="-", label="Shaft Power Long Time")
-        plt.plot(iGenRpm_1, iR2_1, color="gray", linewidth=1.5, linestyle=":", label="Elec. Power Long Time")
-        plt.plot(iGenRpm_1, iT2_1, color="blue", linewidth=1.5, linestyle="-", label="Shaft Power Short Time")
-        plt.plot(iGenRpm_1, iU2_1, color="gray", linewidth=1.5, linestyle=":", label="Elec. Power Short Time")
+        plt.plot(iGenRpm_1, np.dot(iQ2_1,-1), color="red", linewidth=1.5, linestyle="-", label="Shaft Power Long Time")
+        plt.plot(iGenRpm_1, np.dot(iR2_1,-1), color="gray", linewidth=1.5, linestyle=":", label="Elec. Power Long Time")
+        plt.plot(iGenRpm_1, np.dot(iT2_1,-1), color="blue", linewidth=1.5, linestyle="-", label="Shaft Power Short Time")
+        plt.plot(iGenRpm_1, np.dot(iU2_1,-1), color="gray", linewidth=1.5, linestyle=":", label="Elec. Power Short Time")
 
         plt.xlim(tempMin - 50, tempMax + 50)
         gongLvTu.set_xlabel('generetor speed[rpm]')
@@ -809,10 +809,10 @@ class MyFrame(SC_CALCUL):
         print("tempMax = %s" % tempMax)
         # 标注额定点
         for i in range(n - 1):
-            gongLvTu.scatter(iGenRpm_1[i], (iQ2_1[i]), s=30, color='gray')
-            gongLvTu.scatter(iGenRpm_1[i], (iR2_1[i]), s=30, color='gray')
-            gongLvTu.scatter(iGenRpm_1[i], (iT2_1[i]), s=30, color='gray')
-            gongLvTu.scatter(iGenRpm_1[i], (iU2_1[i]), s=30, color='gray')
+            gongLvTu.scatter(iGenRpm_1[i], (np.dot(iQ2_1[i],-1)), s=30, color='gray')
+            gongLvTu.scatter(iGenRpm_1[i], (np.dot(iR2_1[i],-1)), s=30, color='gray')
+            gongLvTu.scatter(iGenRpm_1[i], (np.dot(iT2_1[i],-1)), s=30, color='gray')
+            gongLvTu.scatter(iGenRpm_1[i], (np.dot(iU2_1[i],-1)), s=30, color='gray')
 
         plt.tight_layout()
 
@@ -957,37 +957,38 @@ class MyFrame(SC_CALCUL):
         #
         self.DoWork(1)
         #####################################################################创建PPT,修改文本框
-        print('ppt start')
-        filename = resource_path(os.path.join("pptx", "abcd.pptx"))
-        pptx = Presentation(filename)
-        for slide in pptx.slides:
-            # 遍历幻灯片页的所有形状
-            print("slide found")
-            for shape in slide.shapes:
-                print("shape found")
-                # 判断形状是否含有文本框，如果含有则顺序运行代码
-                if shape.has_text_frame:
-
-                    # 获取文本框
-                    text_frame = shape.text_frame
-                    # 遍历文本框中的所有段落
-                    for paragraph in text_frame.paragraphs:
-                        paragraph.text = paragraph.text.replace('X1', str(format(Xs, '.5f')) + '[ohm]')
-                        paragraph.text = paragraph.text.replace('X2', str(format(Xr, '.5f')) + '[ohm]')
-                        paragraph.text = paragraph.text.replace('R1', str(format(Rs, '.5f')) + '[ohm]')
-                        paragraph.text = paragraph.text.replace('R2', str(format(Rr, '.5f')) + '[ohm]')
-
-                        paragraph.text = paragraph.text.replace('XNN', str(format(Xm, '.5f')) + '[ohm]')
-                        paragraph.font.size = Pt(22)
-
-        #####################################################################保存PPT,另存为png
-        save_ppt = outputFolderName + r'\fig_x.pptx'
-        pptx.save(save_ppt)
-
-        utils.save_pptx_as_png(outputFolderName, save_ppt, overwrite_folder=True)
-        fig_x_dir = outputFolderName + r'\幻灯片1.PNG'
-        print('ppt end')
+        # print('ppt start')
+        # filename = resource_path(os.path.join("pptx", "abcd.pptx"))
+        # pptx = Presentation(filename)
+        # for slide in pptx.slides:
+        #     # 遍历幻灯片页的所有形状
+        #     print("slide found")
+        #     for shape in slide.shapes:
+        #         print("shape found")
+        #         # 判断形状是否含有文本框，如果含有则顺序运行代码
+        #         if shape.has_text_frame:
+        #
+        #             # 获取文本框
+        #             text_frame = shape.text_frame
+        #             # 遍历文本框中的所有段落
+        #             for paragraph in text_frame.paragraphs:
+        #                 paragraph.text = paragraph.text.replace('X1', str(format(Xs, '.5f')) + '[ohm]')
+        #                 paragraph.text = paragraph.text.replace('X2', str(format(Xr, '.5f')) + '[ohm]')
+        #                 paragraph.text = paragraph.text.replace('R1', str(format(Rs, '.5f')) + '[ohm]')
+        #                 paragraph.text = paragraph.text.replace('R2', str(format(Rr, '.5f')) + '[ohm]')
+        #
+        #                 paragraph.text = paragraph.text.replace('XNN', str(format(Xm, '.5f')) + '[ohm]')
+        #                 paragraph.font.size = Pt(22)
+        #
+        # #####################################################################保存PPT,另存为png
+        # save_ppt = outputFolderName + r'\fig_x.pptx'
+        # pptx.save(save_ppt)
+        #
+        # utils.save_pptx_as_png(outputFolderName, save_ppt, overwrite_folder=True)
+        # fig_x_dir = outputFolderName + r'\幻灯片1.PNG'
+        # print('ppt end')
         #####################################################################创建word
+        global document
         document = Document()
         # print(dir(document))
 
@@ -1071,10 +1072,10 @@ class MyFrame(SC_CALCUL):
             paragraph = document.add_paragraph()
             paragraph.alignment = WD_PARAGRAPH_ALIGNMENT.CENTER
             run = paragraph.add_run("")
-            run.add_picture(r'.\fig_save\幻灯片1.PNG', width=Inches(5.25))
-
-            run = document.add_paragraph('图1. 鼠笼发电机等效电路图')
-            run.alignment = WD_PARAGRAPH_ALIGNMENT.CENTER
+            # run.add_picture(r'.\fig_save\幻灯片1.PNG', width=Inches(5.25))
+            #
+            # run = document.add_paragraph('图1. 鼠笼发电机等效电路图')
+            # run.alignment = WD_PARAGRAPH_ALIGNMENT.CENTER
 
         except:
             pass
@@ -1104,7 +1105,7 @@ class MyFrame(SC_CALCUL):
         run = paragraph.add_run("")
         run.add_picture(r'.\fig_save\fig_power.png', width=Inches(5.25))
 
-        run = document.add_paragraph('图2. 轴功率/电磁功率（长期、短时）')
+        run = document.add_paragraph('图1. 轴功率/电磁功率（长期、短时）')
         run.alignment = WD_PARAGRAPH_ALIGNMENT.CENTER
         run = document.add_paragraph('')
         # run.add_run(r'"*注：对于转子功率(Rotor Active Power)，负值表示从电网获取功率"').italic = True
@@ -1121,7 +1122,7 @@ class MyFrame(SC_CALCUL):
         run = paragraph.add_run("")
         run.add_picture(r'.\fig_save\fig_Current.png', width=Inches(5.25))
 
-        run = document.add_paragraph('图3. 定子长期/定子短时/网侧长期电流')
+        run = document.add_paragraph('图2. 定子长期/定子短时/网侧长期电流')
         run.alignment = WD_PARAGRAPH_ALIGNMENT.CENTER
         run = document.add_paragraph('')
 
@@ -1147,7 +1148,7 @@ class MyFrame(SC_CALCUL):
         run = paragraph.add_run("")
         run.add_picture(r'.\fig_save\fig_Torque.png', width=Inches(5.25))
 
-        run = document.add_paragraph('图4. 转矩需求（长期、短时）')
+        run = document.add_paragraph('图3. 转矩需求（长期、短时）')
         run.alignment = WD_PARAGRAPH_ALIGNMENT.CENTER
         #
         # document.add_paragraph(r'以下三个数据分别表示工况（正常电网电压）（电网90%低电压）（电网110%高电压）')
@@ -1166,7 +1167,7 @@ class MyFrame(SC_CALCUL):
         run = paragraph.add_run("")
         run.add_picture(r'.\fig_save\fig_PF.png', width=Inches(5.25))
 
-        run = document.add_paragraph('图5. 电机效率与功率因数')
+        run = document.add_paragraph('图4. 电机效率与功率因数')
         run.alignment = WD_PARAGRAPH_ALIGNMENT.CENTER
         #
         # document.add_paragraph('根据指定的定子无功功率值，计算有功输出最大值。')
@@ -1257,9 +1258,11 @@ class MyFrame(SC_CALCUL):
             paragraph = document.add_paragraph(r'结论:设计参数 %d项校验不通过！' % TF.count(False))
 
         document.add_page_break()
-        document.save('鼠笼风电机组电驱系统设计计算报告.docx')
-
+        # document.save('鼠笼风电机组电驱系统设计计算报告.docx')
+        self.Close(True)
         # ##############################################test
 
+def save_all():
+    document.save('鼠笼风电机组电驱系统设计计算报告.docx')
 
 '''end of file'''
